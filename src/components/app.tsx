@@ -10,25 +10,28 @@ interface IProps {
 
 const App: React.FC<IProps> = (props) => {
 
-	const [picks, addPick] = React.useReducer(
-		(state: IngredientData[], newPickID: string) => {
-			return [...state, props.possibleIngredients.find(({ id }) => id === newPickID)];
-		},
-		[]
+	const picksDispatch = React.useCallback(
+		createPicksReducer(props),
+		[props]
 	);
+
+	const [picks, managePicks] = React.useReducer(
+		picksDispatch, []
+	);
+
+
 
 	return <div>
 		<IngredientPicks
 			picked={picks}
-
-
+			removePickCallback={index => managePicks({type:'remove', index})}
 
 		/>
 		{
 			(picks.length < 5) ?
 				<IngredientChoice
 					ingredients={props.possibleIngredients}
-					callback={(id) => { addPick(id); }}
+					callback={id => { managePicks({type:'add', id}); }}
 				/>
 				:
 				<div>Maksymalna ilość wybrana!</div>
@@ -42,7 +45,36 @@ const App: React.FC<IProps> = (props) => {
 	</div>;
 };
 
+const createPicksReducer = (props:IProps) => {
+	return (
+		state: IngredientData[],
+		action: IManagePickAction['remove' | 'add']
+	): IngredientData[] => {
 
+		switch (action.type) {
+		case 'add':
+			return [...state, props.possibleIngredients.find(({ id }) => id === action.id)];
+		case 'remove':
+			state.splice(action.index, 1);
+			return [...state];
+
+		default:
+			return state;
+		}
+	};
+};
+
+interface IManagePickAction {
+	remove: {
+		type: 'remove',
+		index: number
+	},
+	add: {
+		type: 'add',
+		id: string
+	}
+
+}
 
 export type IngredientData = {
 	id: string,
