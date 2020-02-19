@@ -1,0 +1,56 @@
+$ingredient-color: green;
+$picks-color: hsl(91, 37%, 61%);
+
+@mixin ingredient {
+	width: 6em;
+	height: 6em;
+	margin: 1rem;
+	color: white;
+	font-size: 1.2rem;
+	border: 0;
+	border-radius: 10px;
+}
+
+body {
+	margin: 0;
+}
+.ingredient-picks {
+	justify-content: center;
+	display: flex;
+	width: 100%;
+	text-align: center;
+	background-color: $picks-color;
+}
+
+.pick {
+	@include ingredient;
+	position: relative;
+	display: inline-block;
+	width: 10vw;
+	height: 10vw;
+	font-size: 1.7vw;
+	background-color: $ingredient-color;
+}
+
+.ingredient-choice {
+	flex-wrap: wrap;
+	justify-content: center;
+	display: flex;
+}
+
+.ingredient {
+	@include ingredient;
+	flex-shrink: 0;
+	background-color: $ingredient-color;
+}
+
+.pick.empty {
+	background-color: darken($picks-color, 10);
+}
+
+.pick .cross {
+	position: absolute;
+	right: 0.4em;
+	bottom: 0.4em;
+	font-size: 0.6em;
+}
