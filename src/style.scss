@@ -59,3 +59,13 @@ button {
 	bottom: 0.4em;
 	font-size: 0.6em;
 }
+.clear {
+	display: block;
+	width: 10vw;
+	height: 10vw;
+	margin: 1em auto;
+	font-size: 1.2em;
+	background: $complimentary-color;
+	border: none;
+	border-radius: 50%;
+}
