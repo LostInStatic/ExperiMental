@@ -13,6 +13,11 @@ $picks-color: hsl(91, 37%, 61%);
 
 body {
 	margin: 0;
+	font-family: 'Tomorrow', sans-serif;
+}
+
+button {
+	font-family: inherit;
 }
 .ingredient-picks {
 	justify-content: center;
