@@ -16,7 +16,8 @@ const App: React.FC<IProps> = (props) => {
 	);
 
 	const [picks, managePicks] = React.useReducer(
-		picksDispatch, []
+		picksDispatch,
+		[]
 	);
 
 
@@ -24,17 +25,25 @@ const App: React.FC<IProps> = (props) => {
 	return <div>
 		<IngredientPicks
 			picked={picks}
-			removePickCallback={index => managePicks({type:'remove', index})}
+			removePickCallback={index => managePicks({ type: 'remove', index })}
 
 		/>
 		{
 			(picks.length < 5) ?
 				<IngredientChoice
 					ingredients={props.possibleIngredients}
-					callback={id => { managePicks({type:'add', id}); }}
+					callback={id => managePicks({ type: 'add', id })}
 				/>
 				:
-				<div>Maksymalna ilość wybrana!</div>
+				<div>
+					Maksymalna ilość wybrana!
+					<button
+						className="clear"
+						onClick={() => managePicks({ type: 'clear' })}
+					>
+						⭯
+					</button>
+				</div>
 		}
 
 		<ExperimentMatch
@@ -45,21 +54,23 @@ const App: React.FC<IProps> = (props) => {
 	</div>;
 };
 
-const createPicksReducer = (props:IProps) => {
+const createPicksReducer = (props: IProps) => {
 	return (
 		state: IngredientData[],
-		action: IManagePickAction['remove' | 'add']
+		action: IManagePickAction['remove' | 'add' | 'clear']
 	): IngredientData[] => {
 
 		switch (action.type) {
-		case 'add':
-			return [...state, props.possibleIngredients.find(({ id }) => id === action.id)];
-		case 'remove':
-			state.splice(action.index, 1);
-			return [...state];
+			case 'add':
+				return [...state, props.possibleIngredients.find(({ id }) => id === action.id)];
+			case 'remove':
+				state.splice(action.index, 1);
+				return [...state];
+			case 'clear':
+				return [];
 
-		default:
-			return state;
+			default:
+				return state;
 		}
 	};
 };
@@ -72,6 +83,9 @@ interface IManagePickAction {
 	add: {
 		type: 'add',
 		id: string
+	}
+	clear: {
+		type: 'clear'
 	}
 
 }
