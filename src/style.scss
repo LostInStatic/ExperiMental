@@ -1,5 +1,6 @@
 $ingredient-color: green;
 $picks-color: hsl(91, 37%, 61%);
+$complimentary-color: adjust-color($picks-color, $hue: -120);
 
 @mixin ingredient {
 	width: 6em;
