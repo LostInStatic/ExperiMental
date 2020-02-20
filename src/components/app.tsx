@@ -36,7 +36,11 @@ const App: React.FC<IProps> = (props) => {
 				/>
 				:
 				<div>
+				<div
+					className="max-picks-message">
+
 					Maksymalna ilość wybrana!
+
 					<button
 						className="clear"
 						onClick={() => managePicks({ type: 'clear' })}
