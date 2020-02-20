@@ -35,7 +35,6 @@ const App: React.FC<IProps> = (props) => {
 					callback={id => managePicks({ type: 'add', id })}
 				/>
 				:
-				<div>
 				<div
 					className="max-picks-message">
 
