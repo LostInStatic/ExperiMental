@@ -4,7 +4,8 @@ import IngredientPicks from './picks';
 
 interface IProps {
 	experiments: ExperimentData[],
-	picks: IngredientData[]
+	picks: IngredientData[],
+	reportCallback: (isMatched:boolean) => void
 }
 
 const ExperimentMatch: React.FC<IProps> = (props) => {
@@ -41,7 +42,7 @@ const matchExperiments = (props: IProps): ExperimentData[] => {
 			}
 		}
 	);
-
+	props.reportCallback(output.length !== 0);
 	return output;
 };
 

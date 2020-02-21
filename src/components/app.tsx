@@ -2,6 +2,7 @@ import React = require('react');
 import IngredientChoice from './choice';
 import IngredientPicks from './picks';
 import ExperimentMatch from './experimentMatch';
+import Indicator from './indicator';
 
 interface IProps {
 	possibleIngredients: IngredientData[]
@@ -20,6 +21,8 @@ const App: React.FC<IProps> = (props) => {
 		[]
 	);
 
+	const [isMatch, setIsMatch] = React.useState();
+
 
 
 	return <div>
@@ -28,6 +31,7 @@ const App: React.FC<IProps> = (props) => {
 			removePickCallback={index => managePicks({ type: 'remove', index })}
 
 		/>
+		<Indicator isTrue={isMatch}/>
 		{
 			(picks.length < 5) ?
 				<IngredientChoice
@@ -52,6 +56,7 @@ const App: React.FC<IProps> = (props) => {
 		<ExperimentMatch
 			picks={picks}
 			experiments={props.experiments}
+			reportCallback={setIsMatch}
 		/>
 
 	</div>;

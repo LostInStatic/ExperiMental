@@ -1,6 +1,8 @@
 $ingredient-color: green;
 $picks-color: hsl(91, 37%, 61%);
 $complimentary-color: adjust-color($picks-color, $hue: -120);
+$positive-color: hsl(128, 80%, 60%);
+$negative-color: hsl(7, 56%, 62%);
 
 @mixin ingredient {
 	width: 6em;
@@ -77,3 +79,19 @@ button {
 	border: none;
 	border-radius: 50%;
 }
+
+.match-indicator {
+	height: 1.5rem;
+	line-height: 1.5rem;
+	text-align: center;
+	transition: background-color 0.1s;
+}
+
+.match-indicator.true{
+	background: $positive-color;
+}
+
+.match-indicator.false{
+	background: $negative-color;
+}
+
