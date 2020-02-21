@@ -48,7 +48,7 @@ const App: React.FC<IProps> = (props) => {
 						className="clear"
 						onClick={() => managePicks({ type: 'clear' })}
 					>
-						⭯
+						&#8634;
 					</button>
 				</div>
 		}
