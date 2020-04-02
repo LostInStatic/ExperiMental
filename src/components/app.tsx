@@ -21,9 +21,7 @@ const App: React.FC<IProps> = (props) => {
 		[]
 	);
 
-	const [isMatch, setIsMatch] = React.useState();
-
-
+	const [isMatch, setMatch] = React.useState(false);
 
 	return <div>
 		<IngredientPicks
@@ -56,7 +54,7 @@ const App: React.FC<IProps> = (props) => {
 		<ExperimentMatch
 			picks={picks}
 			experiments={props.experiments}
-			reportCallback={setIsMatch}
+			reportCallback={setMatch}
 		/>
 
 	</div>;
