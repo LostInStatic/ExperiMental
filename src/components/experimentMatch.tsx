@@ -5,11 +5,16 @@ import IngredientPicks from './picks';
 interface IProps {
 	experiments: ExperimentData[],
 	picks: IngredientData[],
-	reportCallback: (isMatched:boolean) => void
+	reportCallback: (isMatched: boolean) => void
 }
 
 const ExperimentMatch: React.FC<IProps> = (props) => {
 
+	const match = matchExperiments(props);
+
+	React.useEffect(() => {
+		props.reportCallback(match.length !== 0);
+	}, [props.picks]);
 
 
 	return <div
@@ -17,9 +22,7 @@ const ExperimentMatch: React.FC<IProps> = (props) => {
 	>
 		<ul>
 			{
-				matchExperiments(props).map(
-					createExperiment
-				)
+				match.map(createExperiment)
 			}
 		</ul>
 
@@ -29,7 +32,7 @@ const ExperimentMatch: React.FC<IProps> = (props) => {
 const createExperiment = (experiment: ExperimentData) => {
 	return <li>
 		<h4>{experiment.name}</h4>
-		<p>{experiment.description}</p>
+		<p>{experiment.content}</p>
 	</li>;
 };
 
@@ -42,7 +45,6 @@ const matchExperiments = (props: IProps): ExperimentData[] => {
 			}
 		}
 	);
-	props.reportCallback(output.length !== 0);
 	return output;
 };
 
