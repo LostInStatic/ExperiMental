@@ -105,7 +105,7 @@ export interface ExperimentData {
 	id: string,
 	ingredientIDs: string[],
 	name: string,
-	description: string
+	content: string | React.ReactElement
 }
 
 export default App;

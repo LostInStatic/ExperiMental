@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 const path = require('path');
+const DirectoryTreePlugin = require('directory-tree-webpack-plugin');
 
 
 const inputPath = path.resolve(__dirname, 'src');
@@ -31,5 +32,11 @@ module.exports = {
 	resolve: {
 		extensions: ['.tsx', '.ts', '.js']
 	},
-	plugins: []
+	plugins: [
+		new DirectoryTreePlugin({
+			dir: path.resolve(inputPath, 'experiments'),
+			path: path.resolve(inputPath, 'experiments.json'),
+			extensions: /\.md/
+		})
+	]
 };

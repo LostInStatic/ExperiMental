@@ -1,6 +1,7 @@
 import React = require('react');
 import { ExperimentData, IngredientData } from './app';
 import IngredientPicks from './picks';
+import Markdown from 'markdown-to-jsx';
 
 interface IProps {
 	experiments: ExperimentData[],
@@ -11,6 +12,7 @@ interface IProps {
 const ExperimentMatch: React.FC<IProps> = (props) => {
 
 	const match = matchExperiments(props);
+	console.log(props.experiments);
 
 	React.useEffect(() => {
 		props.reportCallback(match.length !== 0);
@@ -31,8 +33,7 @@ const ExperimentMatch: React.FC<IProps> = (props) => {
 
 const createExperiment = (experiment: ExperimentData) => {
 	return <li>
-		<h4>{experiment.name}</h4>
-		<p>{experiment.content}</p>
+		<Markdown>{experiment.content}</Markdown>
 	</li>;
 };
 
