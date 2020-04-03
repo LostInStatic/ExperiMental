@@ -1,5 +1,5 @@
 ---
-name: Budowniczy piramid
+name: Dziura w ręce
 ingredientIDs:
 - paper
 ---

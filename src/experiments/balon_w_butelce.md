@@ -2,7 +2,7 @@
 name: Balon w butelce
 ingredientIDs:
 - pet-bottle
-- baloon
+- balloon
 ---
 ### Balon w butelce
 

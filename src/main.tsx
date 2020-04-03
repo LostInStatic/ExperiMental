@@ -17,7 +17,7 @@ const possibleIngredients = [
 		name: 'Papierowa kartka'
 	},
 	{
-		id: 'baloon',
+		id: 'balloon',
 		name: 'Balon'
 	},
 	{

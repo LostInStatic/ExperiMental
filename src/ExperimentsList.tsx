@@ -3,7 +3,7 @@ import * as ExperimentsDirectoryList from './experiments.json';
 import { ExperimentData } from './components/app';
 
 
-const parseFM = require('front-matter-markdown');
+import parseFM = require('front-matter-markdown');
 
 const convertToDataFormat = (
 	experiment,

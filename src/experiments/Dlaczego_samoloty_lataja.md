@@ -1,8 +1,8 @@
 ---
 name: Dlaczego samoloty latają
 ingredientIDs:
-- baloon
-- baloon
+- balloon
+- balloon
 ---
 ### Dlaczego samoloty latają
 
