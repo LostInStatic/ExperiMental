@@ -96,12 +96,12 @@ interface IManagePickAction {
 
 }
 
-export type IngredientData = {
+export interface IngredientData {
 	id: string,
 	name: string
 }
 
-export type ExperimentData = {
+export interface ExperimentData {
 	id: string,
 	ingredientIDs: string[],
 	name: string,
