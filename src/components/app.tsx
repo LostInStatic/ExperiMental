@@ -21,9 +21,7 @@ const App: React.FC<IProps> = (props) => {
 		[]
 	);
 
-	const [isMatch, setIsMatch] = React.useState();
-
-
+	const [isMatch, setMatch] = React.useState(false);
 
 	return <div>
 		<IngredientPicks
@@ -56,7 +54,7 @@ const App: React.FC<IProps> = (props) => {
 		<ExperimentMatch
 			picks={picks}
 			experiments={props.experiments}
-			reportCallback={setIsMatch}
+			reportCallback={setMatch}
 		/>
 
 	</div>;
@@ -98,16 +96,16 @@ interface IManagePickAction {
 
 }
 
-export type IngredientData = {
+export interface IngredientData {
 	id: string,
 	name: string
 }
 
-export type ExperimentData = {
+export interface ExperimentData {
 	id: string,
 	ingredientIDs: string[],
 	name: string,
-	description: string
+	content: string | React.ReactElement
 }
 
 export default App;
