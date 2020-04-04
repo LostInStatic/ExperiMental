@@ -30,12 +30,8 @@ module.exports = {
 			{
 				test: /\.md$/,
 				use: [
-					{
-						loader: 'raw-loader',
-						options: {
-							esModule: false,
-						},
-					}
+					'json-loader',
+					'front-matter-loader'
 				],
 				exclude: /node_modules/,
 			}
