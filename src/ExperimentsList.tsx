@@ -28,7 +28,6 @@ const getExperiments = () => {
 	ExperimentsDirectoryList.children.forEach(item => {
 		import(`./experiments/${item.name}`)
 			.then(body => {
-				console.log(body);
 				ExperimentsList.push(convertToDataFormat(body, item.name));
 			})
 			.catch(error => console.error('Failed to load experiment: ' + error));
