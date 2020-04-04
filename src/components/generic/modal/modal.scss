@@ -1,0 +1,37 @@
+.modal_box {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 99999;
+	background: rgba(0, 0, 0, 0.8);
+}
+.modal_box.collapsed {
+	display: none;
+}
+
+.modal_box-close {
+	position: absolute;
+	top: 0.5em;
+	right: 0.5em;
+	box-sizing: border-box;
+	width: 2em;
+	height: 2em;
+	padding: 0;
+	font-size: 1.2rem;
+}
+
+.modal_box-content {
+	position: relative;
+	width: 90%;
+	max-height: 90vh;
+	padding: 1em;
+	margin: 1% auto;
+	overflow-y: auto;
+	font-size: 1rem;
+	line-height: 1.5em;
+	text-align: left;
+	background-color: #FFF;
+	border-radius: 1em;
+}

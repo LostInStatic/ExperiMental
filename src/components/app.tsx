@@ -29,7 +29,11 @@ const App: React.FC<IProps> = (props) => {
 			removePickCallback={index => managePicks({ type: 'remove', index })}
 
 		/>
-		<Indicator isTrue={isMatch}/>
+		<ExperimentMatch
+			picks={picks}
+			experiments={props.experiments}
+			reportCallback={setMatch}
+		/>
 		{
 			(picks.length < 5) ?
 				<IngredientChoice
@@ -51,11 +55,6 @@ const App: React.FC<IProps> = (props) => {
 				</div>
 		}
 
-		<ExperimentMatch
-			picks={picks}
-			experiments={props.experiments}
-			reportCallback={setMatch}
-		/>
 
 	</div>;
 };

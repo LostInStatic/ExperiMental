@@ -2,6 +2,9 @@ import React = require('react');
 import { ExperimentData, IngredientData } from './app';
 import IngredientPicks from './picks';
 import Markdown from 'markdown-to-jsx';
+import Dropdown from './generic/dropdown/dropdown';
+import Modal from './generic/modal/modal';
+import Indicator from './indicator';
 
 interface IProps {
 	experiments: ExperimentData[],
@@ -18,21 +21,22 @@ const ExperimentMatch: React.FC<IProps> = (props) => {
 	}, [props.picks]);
 
 
-	return <div
-		className="experiments-match"
+	return <Indicator
+		isTrue={match.length !== 0}
 	>
 		<ul>
 			{
 				match.map(createExperiment)
 			}
 		</ul>
-
-	</div>;
+	</Indicator>;
 };
 
 const createExperiment = (experiment: ExperimentData) => {
 	return <li>
-		<Markdown>{experiment.content}</Markdown>
+		<Modal buttonSymbol={experiment.name}>
+			<Markdown>{experiment.content}</Markdown>
+		</Modal>
 	</li>;
 };
 
