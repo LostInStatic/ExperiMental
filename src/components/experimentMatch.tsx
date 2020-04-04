@@ -12,7 +12,6 @@ interface IProps {
 const ExperimentMatch: React.FC<IProps> = (props) => {
 
 	const match = matchExperiments(props);
-	console.log(props.experiments);
 
 	React.useEffect(() => {
 		props.reportCallback(match.length !== 0);
