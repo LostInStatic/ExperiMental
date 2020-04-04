@@ -1,5 +1,5 @@
 ---
-name: Budowniczy piramid
+name: Odwrócony obraz
 ingredientIDs:
 - pet-bottle
 - scissors
