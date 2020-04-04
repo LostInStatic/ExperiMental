@@ -7,6 +7,8 @@ $negative-color: hsl(7, 56%, 62%);
 @mixin ingredient {
 	width: 6.5em;
 	height: 6.5em;
+	min-width: 40px;
+	min-height: 40px;
 	margin: 0.5em;
 	color: white;
 	font-size: 14px;
@@ -41,10 +43,6 @@ button {
 	@include ingredient;
 	position: relative;
 	display: inline-block;
-	width: 5em;
-	height: 5em;
-	max-width: 15vw;
-	max-height: 15vw;
 	margin: 1%;
 	font-size: 12px;
 	background-color: $ingredient-color;
@@ -91,8 +89,6 @@ button {
 }
 
 .match-indicator {
-	justify-content: center;
-	display: flex;
 	min-height: 3em;
 	padding: 0.5em;
 	text-align: center;
@@ -110,10 +106,13 @@ button {
 .match-indicator > ul {
 	padding: 0;
 	margin: 0;
+	justify-content: center;
+	flex-wrap: wrap;
+	display: flex;
 }
 
 .match-indicator > ul > li {
-	display: inline;
+	list-style-type: none;
 	margin: 5px 1em;
 	font-size: 1.2rem;
 }
