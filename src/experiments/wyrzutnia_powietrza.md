@@ -1,5 +1,5 @@
 ---
-name: Budowniczy piramid
+name: Wyrzutnia powietrza
 ingredientIDs:
 - pet-bottle
 - balloon
