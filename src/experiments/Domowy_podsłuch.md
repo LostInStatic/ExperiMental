@@ -1,7 +1,7 @@
 ---
 name: Domowy podsłuch
 ingredientIDs:
-- balloon
+- pet-bottle
 ---
 ### Domowy podsłuch
 

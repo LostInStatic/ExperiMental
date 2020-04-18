@@ -1,13 +1,14 @@
 ---
 name: Spadanie stykających się ciał
 ingredientIDs:
+- paper
 - pet-bottle
 - water
 ---
 ### Spadanie stykających się ciał
 
 ##### Rzeczy
--kartka
+- kartka
 - butelka
 - woda
 
