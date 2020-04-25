@@ -17,16 +17,16 @@ const ExperimentMatch: React.FC<IProps> = (props) => {
 	const match = matchExperiments(props);
 
 	React.useEffect(() => {
-		props.reportCallback(match.length !== 0);
+		props.reportCallback(match.experiments.length !== 0);
 	}, [props.picks]);
 
 
 	return <Indicator
-		isTrue={match.length !== 0}
+		state={getIndicatorState(match.experiments[0], match.hasPartialFit)}
 	>
 		<ul>
 			{
-				match.map(createExperiment)
+				match.experiments.map(createExperiment)
 			}
 		</ul>
 	</Indicator>;
@@ -40,23 +40,64 @@ const createExperiment = (experiment: ExperimentData) => {
 	</li>;
 };
 
-const matchExperiments = (props: IProps): ExperimentData[] => {
-	let output = [];
+const getIndicatorState = (isMatch, hasPartialFit) => {
+	if (isMatch) return 'good';
+	if (hasPartialFit) return 'neutral';
+	return 'bad';
+};
+
+const matchExperiments = (props: IProps): { experiments: ExperimentData[], hasPartialFit: boolean } => {
+	let output = { experiments: [], hasPartialFit: false };
 	props.experiments.map(
 		(experiment) => {
-			if (checkIDsMatch(props.picks, experiment.ingredientIDs)) {
-				output.push(experiment);
+			let matchStatus = checkIDsMatch(props.picks, experiment.ingredientIDs);
+			if (matchStatus.isMatch) {
+				output.experiments.push(experiment);
+			}
+			if (matchStatus.isPartialFit) {
+				output.hasPartialFit = true;
 			}
 		}
 	);
+
 	return output;
 };
 
-const checkIDsMatch = (picks: IngredientData[], ingredientIDs: string[]): boolean => {
+const checkIDsMatch = (picks: IngredientData[], ingredientIDs: string[]): { isMatch: boolean, isPartialFit: boolean } => {
 
-	if (picks.length !== ingredientIDs.length) return false;
+	if (picks.length > ingredientIDs.length) return { isMatch: false, isPartialFit: false };
+	if (picks.length === 0) return { isMatch: false, isPartialFit: true };
 
-	picks = picks.slice()
+	const pickIDsCount = createIDCount(picks.map(({ id }) => id));
+	const ingredientIDsCount = createIDCount(ingredientIDs);
+
+	let output = { isMatch: true, isPartialFit: true };
+	let IDsNotProcessed = Object.keys(pickIDsCount);
+
+	for (const key in ingredientIDsCount) {
+		if (Object.prototype.hasOwnProperty.call(ingredientIDsCount,key)) {
+			if (pickIDsCount[key]) {
+
+				IDsNotProcessed = IDsNotProcessed.filter(item => item !== key);
+
+				const pickedCount = pickIDsCount[key];
+				const ingredientCount = ingredientIDsCount[key];
+				if (pickedCount !== ingredientCount) output.isMatch = false;
+				if (pickedCount > ingredientCount) output.isPartialFit = false;
+			} else {
+				output.isMatch = false;
+			}
+			if (!output.isMatch && !output.isPartialFit) return output;
+		}
+	}
+
+	if (IDsNotProcessed.length !== 0) return { isMatch: false, isPartialFit: false };
+
+	if (output.isPartialFit) console.log(ingredientIDs);
+
+	return output;
+
+	/* 	picks = picks.slice()
 		.sort(
 			(a, b) => {
 				if (a.id < b.id) {
@@ -73,9 +114,20 @@ const checkIDsMatch = (picks: IngredientData[], ingredientIDs: string[]): boolea
 	for (let index = 0; index < picks.length; index++) {
 		const pickID = picks[index].id;
 		const ingredientID = ingredientIDs[index];
-		if (pickID !== ingredientID) return false;
-	}
-	return true;
+		if (ingredientIDs.indexOf(pickID, index) && !output.isPartialFit) output.isPartialFit = true;
+		if (pickID !== ingredientID) output.isMatch = false;
+
+	} */
+};
+
+const createIDCount = (array) => {
+	let obj = {};
+	array.map(
+		(element) => {
+			obj[element] ? obj[element] = obj[element] + 1 : obj[element] = 1;
+		}
+	);
+	return obj;
 };
 
 export default ExperimentMatch;
