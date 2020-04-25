@@ -93,31 +93,7 @@ const checkIDsMatch = (picks: IngredientData[], ingredientIDs: string[]): { isMa
 
 	if (IDsNotProcessed.length !== 0) return { isMatch: false, isPartialFit: false };
 
-	if (output.isPartialFit) console.log(ingredientIDs);
-
 	return output;
-
-	/* 	picks = picks.slice()
-		.sort(
-			(a, b) => {
-				if (a.id < b.id) {
-					return -1;
-				}
-				if (a.id > b.id) {
-					return 1;
-				}
-			}
-		);
-
-	ingredientIDs.sort();
-
-	for (let index = 0; index < picks.length; index++) {
-		const pickID = picks[index].id;
-		const ingredientID = ingredientIDs[index];
-		if (ingredientIDs.indexOf(pickID, index) && !output.isPartialFit) output.isPartialFit = true;
-		if (pickID !== ingredientID) output.isMatch = false;
-
-	} */
 };
 
 const createIDCount = (array) => {
