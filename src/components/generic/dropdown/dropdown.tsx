@@ -9,7 +9,7 @@ const Dropdown: React.FC<IProps> = (props) => {
 
 	const [expanded, toggle] = React.useReducer(manageToggle, false);
 
-	return <div className={'dropdown'}>
+	return <div className="dropdown">
 		<button
 			onClick={toggle}
 		>
