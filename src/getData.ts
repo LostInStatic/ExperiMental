@@ -1,11 +1,17 @@
 const getData = async (dataURL: string) => {
-	let response = await fetch(dataURL).catch((error) => {
-		console.error('There has been a problem with your fetch operation. URL: ', dataURL,'\nError message: ', error);
-		return new Response(JSON.stringify({
-		}));
+	let response = await fetch(dataURL).catch(error => {
+		return handleError(error, dataURL);
 	});
-	let data = await response.json();
+	let data = await response.json().catch(error => {
+		return handleError(error, dataURL, true);
+	});
 	return data;
+};
+
+const handleError = (error: any, URL: string, isInParsingJSON?: boolean):Response => {
+	const stage = isInParsingJSON ? 'parsing JSON' : 'fetching data' ;
+	console.error(`There has been a problem with fetching data.\nStage: ${stage}\nURL: ${URL}\nError: ${error}`);
+	return new Response(JSON.stringify({}));
 };
 
 export default getData;
