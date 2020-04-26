@@ -7,8 +7,8 @@ import getExperiments from './ExperimentsList';
 import getData from './getData';
 const experiments = getExperiments();
 
-let possibleIngredients = [
-	/* {
+const possibleIngredientsFallback = [
+	{
 		id: 'water',
 		name: 'Woda'
 	},
@@ -27,15 +27,19 @@ let possibleIngredients = [
 	{
 		id: 'scissors',
 		name: 'Nożyczki'
-	} */
-];
-getData('/products/').then(data => {
-	possibleIngredients = data._embedded.products;
-	for (let index = 0; index < possibleIngredients.length; index++) {
-		possibleIngredients[index].id = index.toString();
 	}
-	if (possibleIngredients.length === 0) {
-		possibleIngredients.push({ id: '0', name: 'pusta DB' });
+];
+
+getData('./products').then(data => {
+	let possibleIngredients = [];
+	try {
+		possibleIngredients = data._embedded.products;
+		if (possibleIngredients.length === 0) {
+			throw 'Ingredients empty!';
+		}
+	} catch (error) {
+		console.error('Invalid ingredients list, using fallback.\n', error);
+		possibleIngredients = possibleIngredientsFallback;
 	}
 	ReactDOM.render(
 		<App
