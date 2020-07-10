@@ -5,6 +5,7 @@ import Markdown from 'markdown-to-jsx';
 import Dropdown from './generic/dropdown/dropdown';
 import Modal from './generic/modal/modal';
 import Indicator from './indicator';
+import ExperimentDisplay from './experimentDisplay';
 
 interface IProps {
 	experiments: ExperimentData[],
@@ -33,10 +34,8 @@ const ExperimentMatch: React.FC<IProps> = (props) => {
 };
 
 const createExperiment = (experiment: ExperimentData) => {
-	return <li>
-		<Modal buttonSymbol={experiment.name}>
-			<Markdown>{experiment.content}</Markdown>
-		</Modal>
+	return <li key={experiment.id}>
+		<ExperimentDisplay data={experiment}/>
 	</li>;
 };
 

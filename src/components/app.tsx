@@ -104,7 +104,8 @@ export interface ExperimentData {
 	id: string,
 	ingredientIDs: string[],
 	name: string,
-	content: string
+	instruction: string,
+	explanation: string
 }
 
 export default App;

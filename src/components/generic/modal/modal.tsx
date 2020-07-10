@@ -5,9 +5,9 @@ interface IProps {
 	buttonSymbol: string
 }
 
-const Dropdown: React.FC<IProps> = (props) => {
+const Modal: React.FC<IProps> = (props) => {
 
-	const [expanded, toggle] = React.useReducer(manageToggle, false);
+	const [displayed, toggle] = React.useReducer(manageToggle, false);
 
 	return <>
 		<button
@@ -15,7 +15,7 @@ const Dropdown: React.FC<IProps> = (props) => {
 		>
 			{props.buttonSymbol}
 		</button>
-		<div className={'modal_box ' + (expanded ? '' : 'collapsed')}>
+		<div className={'modal_box ' + (displayed ? '' : 'collapsed')}>
 			<button
 				className='modal_box-close'
 				onClick={toggle}
@@ -34,4 +34,4 @@ const manageToggle = (state: boolean) => {
 	return !state;
 };
 
-export default Dropdown;
+export default Modal;
