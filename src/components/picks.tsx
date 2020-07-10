@@ -1,5 +1,6 @@
 import React = require('react');
 import { IngredientData } from './app';
+import CloseIndicator from './generic/closeIndicator/closeIndicator';
 
 interface IProps {
 	picked: IngredientData[],
@@ -35,6 +36,7 @@ const createPicks = (props: IProps) => {
 					onClick={() => {props.removePickCallback(index);}}
 				>
 					{element.name}
+					<CloseIndicator/>
 				</button>
 			);
 		}

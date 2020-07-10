@@ -18,7 +18,11 @@ module.exports = {
 	devServer: {
 		contentBase: outputPath,
 		watchContentBase: true,
-		disableHostCheck: true
+		disableHostCheck: true,
+		port: 9000,
+		proxy: {
+			'/products': 'http://localhost:8080'
+		}
 	},
 	module: {
 		rules: [

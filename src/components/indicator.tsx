@@ -2,12 +2,12 @@ import React = require('react');
 import Dropdown from '../components/generic/dropdown/dropdown';
 
 interface IProps {
-	isTrue: boolean
+	state: 'good'|'bad'|'neutral'
 }
 
 const Indicator: React.FC<IProps> = (props) => {
 	return <div
-		className={'match-indicator ' + (props.isTrue ? 'true' : 'false')}
+		className={'match-indicator ' + (props.state)}
 	>
 		{props.children}
 
