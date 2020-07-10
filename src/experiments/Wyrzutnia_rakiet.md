@@ -8,15 +8,15 @@ ingredientIDs:
 ### Wyrzutnia rakiet
 
 
-#### Rzeczy
+##### Rzeczy
 - butelka
 - kartka
 - nożyczki
 
-#### Wstęp
+##### Wstęp
 Skonstruuj własną wyrzutnię rakiet
 
-#### Instrukcja
+##### Instrukcja
 1. Wytnij z kartki kwadrat o wymiarach zbliżonych do 5 cm x 5 cm
 2. Wycięty kwadrat skręć w rulon i umieść w otworze butelki, tak aby część wystawała, a część była w środku. To będzie nasza wyrzutnia
 3. Wytnij z kartki prostokąt o wymiarach zbliżonych do 7 cm x 12 cm
@@ -26,5 +26,5 @@ Skonstruuj własną wyrzutnię rakiet
 7. Obserwuj, co się dzieje
 8. Eksperymentuj z rozmiarami, kształtem i typem pocisku
 
-#### Wyjaśnienie
+##### Wyjaśnienie
 Gdy naciskamy na butelkę powietrze w środku próbuje wydostać się na zewnątrz. Na drodze ku wolności znajduje się  jednak rakieta. Powietrze wychodząc z butelki wystrzeliwuje przy okazji nasz pocisk. Im mocniejszy będzie nacisk tym szybciej i dalej rakieta poleci. Niezmiernie istotne jest, aby ściany pocisku przepuszczały jak najmniej powietrza – jeżeli przepuszczą go zbyt dużo siła nie będzie wystarczająca do wystrzału, a uciekające powietrze rozejdzie się na boki. 

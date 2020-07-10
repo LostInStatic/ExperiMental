@@ -7,15 +7,15 @@ ingredientIDs:
 ---
 ### Instrument strunowy
 
-#### Rzeczy
+##### Rzeczy
 - balon
 - butelka
 - nożyczki
 
-#### Wstęp
+##### Wstęp
 Nie masz gitary? A masz 5 minut? To możesz mieć i gitarę.
 
-#### Instrukcja
+##### Instrukcja
 1. Rozciągnij balon, tak aby powstała z niego „struna”
 2. Pograj na strunie, po czym przystaw jeden z jej końców do ucha i znowu zagraj 
 3. Rozetnij butelkę na pół. Do reszty doświadczenia przyda się tylko dolna połowa butelki 
@@ -23,7 +23,7 @@ Nie masz gitary? A masz 5 minut? To możesz mieć i gitarę.
 5. Zagraj na strunie
 6. Słuchaj, co się dzieje
 
-#### Wyjaśnienie 
+##### Wyjaśnienie 
 Dźwięk powstaje w wyniku drgań. Drgać może praktycznie wszystko: słup powietrza, membrana, struna gitary, czy chociażby struny głosowe.
 
 Drgająca struna tworzy falę dźwiękową, która przez powietrze dociera do naszego ucha. Może być jednak zbyt słaba, aby dźwięk był słyszalny. Jednym ze sposobów na jego zgłośnienie jest pudło rezonansowe, które pozwala na „zamknięcie” powietrze w skrzynce. Kolejne drgania struny powodują  pobudzanie powietrza w pudle. Dzięki utrudnionemu natychmiastowemu rozejściu się dźwięku jest on wzmacniany i muzyka gra głośniej.

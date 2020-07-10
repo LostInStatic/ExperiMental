@@ -7,16 +7,16 @@ ingredientIDs:
 ### Przyrząd optyczny
 
 
-#### Rzeczy
+##### Rzeczy
 - butelka
 - woda
 
-#### Wstęp
+##### Wstęp
 Skonstruuj własną lupę detektywie!
 
-#### Instrukcja
+##### Instrukcja
 1. Napełnij szklaną butelkę wodą 
 2. Poprzyglądaj się różnym przedmiotom patrząc przez butelkę – szczególną uwagę zwróć na napisy
 
-#### Wyjaśnienie
+##### Wyjaśnienie
 Zaokrąglona butelka napełniona wodą działa jak soczewka. To znaczy, że obraz, który przez nią zobaczymy może być pomniejszony, powiększony, czy nawet odwrócony. Zależy to od rodzaju soczewki oraz odległości w jakiej znajduje się przedmiot. 

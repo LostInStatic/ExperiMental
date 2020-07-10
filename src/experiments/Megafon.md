@@ -5,20 +5,20 @@ ingredientIDs:
 ---
 ### Megafon
 
-#### Rzeczy
+##### Rzeczy
 - kartka
 
-#### Wstęp
+##### Wstęp
 Wzmocnij moc swych strun głosowych!
 
-#### Instrukcja
+##### Instrukcja
 1. Zwiń kartkę w „lejek”. Wielkość powstałego otworu nie jest szczególnie istotna – najważniejsze, aby można było w miarę wygodnie przystawić do niego usta
 2. Przystaw usta do mniejszego otworu, który powstał przy zrobieniu „lejka”
 3. Wydawaj rozmaite dźwięki. Raz z ustami przystawionymi do stworzonego megafonu, a raz obok niego
 4. Słuchaj, co się dzieje
 5. Spróbuj przyłożyć do megafonu inne źródła dźwięku (np. głośnik telefonu)
 
-#### Wytłumaczenie
+##### Wyjaśnienie
 
 Megafon nie tylko wzmacnia siłę dźwięku, ale wyznacza także kierunek, w którym będzie się rozchodził. Co ciekawe podczas przemieszczania dźwięku nie przemieszczają się cząsteczki, a jedynie informacja o ich zagęszczeniu. Zasięg stworzonego hałasu również ma swoje granice - wraz z odległością zmniejsza się natężenie dźwięku, czyli innymi słowy zmniejsza się jego głośność.
 
