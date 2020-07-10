@@ -4,10 +4,10 @@ import React = require('react')
 import './style.scss';
 import App from './components/app';
 import getExperiments from './ExperimentsList';
-
+import getData from './getData';
 const experiments = getExperiments();
 
-const possibleIngredients = [
+const possibleIngredientsFallback = [
 	{
 		id: 'water',
 		name: 'Woda'
@@ -30,11 +30,25 @@ const possibleIngredients = [
 	}
 ];
 
-ReactDOM.render(
-	<App
-		possibleIngredients={possibleIngredients}
-		experiments={experiments}
-	/>,
-	document.getElementById('root')
-);
+getData('./products').then(data => {
+	let possibleIngredients = [];
+	try {
+		possibleIngredients = data._embedded.products;
+		if (possibleIngredients.length === 0) {
+			throw 'Ingredients empty!';
+		}
+	} catch (error) {
+		console.error('Invalid ingredients list, using fallback.\n', error);
+		possibleIngredients = possibleIngredientsFallback;
+	}
+	ReactDOM.render(
+		<App
+			possibleIngredients={possibleIngredients}
+			experiments={experiments}
+		/>,
+		document.getElementById('root')
+	);
+
+});
+
 

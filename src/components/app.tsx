@@ -29,7 +29,11 @@ const App: React.FC<IProps> = (props) => {
 			removePickCallback={index => managePicks({ type: 'remove', index })}
 
 		/>
-		<Indicator isTrue={isMatch}/>
+		<ExperimentMatch
+			picks={picks}
+			experiments={props.experiments}
+			reportCallback={setMatch}
+		/>
 		{
 			(picks.length < 5) ?
 				<IngredientChoice
@@ -46,16 +50,11 @@ const App: React.FC<IProps> = (props) => {
 						className="clear"
 						onClick={() => managePicks({ type: 'clear' })}
 					>
-						⭯
+						&#8634;
 					</button>
 				</div>
 		}
 
-		<ExperimentMatch
-			picks={picks}
-			experiments={props.experiments}
-			reportCallback={setMatch}
-		/>
 
 	</div>;
 };
@@ -105,7 +104,7 @@ export interface ExperimentData {
 	id: string,
 	ingredientIDs: string[],
 	name: string,
-	content: string | React.ReactElement
+	content: string
 }
 
 export default App;
