@@ -14,11 +14,13 @@ const convertToDataFormat = (
 		console.error('No experiment name! Filename:' + experimentFilename);
 		experiment.name = 'No name found';
 	}
+	let [instruction, explanation] = experiment.body.split('##### Wyjaśnienie');
 	return {
 		id: experimentFilename,
 		name: experiment.attributes.name,
 		ingredientIDs: experiment.attributes.ingredientIDs,
-		content: experiment.body
+		instruction: instruction,
+		explanation: '##### Wyjaśnienie' + explanation
 	};
 };
 
