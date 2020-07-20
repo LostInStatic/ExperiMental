@@ -5,7 +5,7 @@
 	bottom: 0;
 	left: 0;
 	z-index: 900;
-	overflow: hidden;
+	overflow: auto;
 	background: rgba(0, 0, 0, 0.8);
 	transition: ease-in-out opacity 0.6s, visibility 0.6s;
 	opacity: 1;
@@ -29,8 +29,6 @@
 
 .modal_box-content {
 	width: 90%;
-	max-width: 90vw;
-	max-height: 90vh;
 	padding: 1em;
 	margin: 1% auto;
 	overflow-y: auto;
