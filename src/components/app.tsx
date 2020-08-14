@@ -1,5 +1,5 @@
 import React = require('react');
-import IngredientChoice from './choice';
+import IngredientChoice from './choice/choice';
 import IngredientPicks from './picks';
 import ExperimentMatch from './experimentMatch';
 import Indicator from './indicator';

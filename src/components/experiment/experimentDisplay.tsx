@@ -1,9 +1,8 @@
 import React = require('react');
-import { ExperimentData } from './app';
-import Modal from './generic/modal/modal';
+import { ExperimentData } from '../app';
+import Modal from '../generic/modal/modal';
 import Markdown from 'markdown-to-jsx';
-import Dropdown from './generic/dropdown/dropdown';
-import Pages from './generic/pages/pages';
+import Pages from './pages';
 
 interface IProps {
 	data: ExperimentData
