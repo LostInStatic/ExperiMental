@@ -1,10 +1,6 @@
 import React = require('react');
-import { ExperimentData, IngredientData } from './app';
-import IngredientPicks from './picks';
-import Markdown from 'markdown-to-jsx';
-import Dropdown from './generic/dropdown/dropdown';
-import Modal from './generic/modal/modal';
-import Indicator from './indicator';
+import { ExperimentData, IngredientData } from '../app';
+import Indicator from '../indicator';
 import ExperimentDisplay from './experimentDisplay';
 
 interface IProps {
