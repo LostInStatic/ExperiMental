@@ -1,4 +1,3 @@
-import React = require('react');
 import * as ExperimentsDirectoryList from './experiments.json';
 import { ExperimentData } from './components/app';
 

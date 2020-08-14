@@ -1,7 +1,7 @@
 import React = require('react');
 import IngredientChoice from './choice/choice';
 import IngredientPicks from './picks';
-import ExperimentMatch from './experimentMatch';
+import ExperimentMatch from './experiment/experimentMatch';
 import Indicator from './indicator';
 
 interface IProps {
