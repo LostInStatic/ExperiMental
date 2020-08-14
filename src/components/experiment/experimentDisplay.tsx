@@ -2,7 +2,6 @@ import React = require('react');
 import { ExperimentData } from '../app';
 import Modal from '../generic/modal/modal';
 import Markdown from 'markdown-to-jsx';
-import Pages from './pages';
 import TimedButton from './TimedButton';
 
 interface IProps {
