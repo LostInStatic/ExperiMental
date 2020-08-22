@@ -106,6 +106,7 @@ export interface ExperimentData {
 	name: string,
 	instruction: string,
 	explanation: string
+	explanationDelay?: number
 }
 
 export default App;

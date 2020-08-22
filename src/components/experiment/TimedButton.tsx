@@ -1,14 +1,14 @@
 import React = require('react');
 
 interface IProps {
-	seconds: number
+	seconds?: number
 	onClick: () => void
 	className?: string
 }
 
 const TimedButton: React.FC<IProps> = (props) => {
 
-	const [secondsLeft, setTimeLeft] = React.useState(props.seconds);
+	const [secondsLeft, setTimeLeft] = React.useState(props.seconds ? props.seconds : 2);
 
 	React.useEffect(() => {
 		if (secondsLeft > 0) {

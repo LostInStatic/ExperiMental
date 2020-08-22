@@ -14,13 +14,18 @@ const convertToDataFormat = (
 		experiment.name = 'No name found';
 	}
 	let [instruction, explanation] = experiment.body.split('##### Wyjaśnienie');
-	return {
+	let output = {
 		id: experimentFilename,
 		name: experiment.attributes.name,
 		ingredientIDs: experiment.attributes.ingredientIDs,
 		instruction: instruction,
 		explanation: '##### Wyjaśnienie' + explanation
 	};
+
+	if (experiment.attributes.explanationDelay) {
+		output['explanationDelay'] = experiment.attributes.explanationDelay;
+	}
+	return output;
 };
 
 const getExperiments = () => {

@@ -22,7 +22,7 @@ const ExperimentDisplay: React.FC<IProps> = (props) => {
 		<TimedButton
 			onClick={() => setActivePage(props.data.explanation)}
 			className={activePage === props.data.explanation ? 'active' : ''}
-			seconds={6}
+			seconds={props.data.explanationDelay}
 		>
 			Wyjaśnienie
 		</TimedButton>
