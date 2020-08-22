@@ -1,17 +1,18 @@
 import React = require('react');
 
 interface IProps {
-	seconds?: number
+	seconds: number
+	isSuspended?: boolean
 	onClick: () => void
 	className?: string
 }
 
 const TimedButton: React.FC<IProps> = (props) => {
 
-	const [secondsLeft, setTimeLeft] = React.useState(props.seconds ? props.seconds : 2);
+	const [secondsLeft, setTimeLeft] = React.useState(props.seconds);
 
 	React.useEffect(() => {
-		if (secondsLeft > 0) {
+		if (secondsLeft > 0 && !props.isSuspended) {
 			const timer = setTimeout(() => {
 				setTimeLeft(secondsLeft - 1);
 			}, 1000);
@@ -21,11 +22,23 @@ const TimedButton: React.FC<IProps> = (props) => {
 
 	return <button
 		onClick={props.onClick}
-		className={props.className}
+		className={`timer-button ${props.className}`}
 		disabled={secondsLeft ? true : false}
 	>
-		{secondsLeft ? secondsLeft : props.children}
+		{props.children}
+		{createOverlay(secondsLeft)}
 	</button>;
+};
+
+
+const createOverlay = (secondsLeft:number) => {
+	if (secondsLeft) {
+		return <div
+			className="timer-overlay"
+		>
+			{secondsLeft}
+		</div>;
+	}
 };
 
 

@@ -128,3 +128,19 @@ button {
 button.active {
 	background-color: adjust-color($button-color, $lightness: -20);
 }
+
+.timer-button {
+	position: relative;
+	overflow: hidden;
+}
+.timer-overlay {
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	position: absolute;
+	font-size: 2em;
+	line-height: 1.8em;
+	background-color: rgba(0, 0, 0, 0.452);
+	color: #ffffff;
+  }
