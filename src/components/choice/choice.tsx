@@ -1,6 +1,6 @@
 import React = require('react');
-import Ingredient from './ingredient';
-import { IngredientData } from './app';
+import Ingredient from '../ingredient';
+import { IngredientData } from '../app';
 
 interface IProps {
 	ingredients: IngredientData[],

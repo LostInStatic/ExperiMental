@@ -1,6 +1,6 @@
 $ingredient-color: green;
-$picks-color: hsl(91, 37%, 61%);
-$complimentary-color: adjust-color($picks-color, $hue: -120);
+$button-color: hsl(91, 37%, 61%);
+$complimentary-color: adjust-color($button-color, $hue: -120);
 $positive-color: hsl(128, 80%, 60%);
 $neutral-color: hsl(56, 80%, 60%);
 $negative-color: hsl(7, 56%, 62%);
@@ -27,7 +27,7 @@ button {
 	padding: 1em;
 	font-family: inherit;
 	text-align: center;
-	background-color: $picks-color;
+	background-color: $button-color;
 	border: 0;
 	border-radius: 1em;
 	cursor: pointer;
@@ -39,7 +39,7 @@ button {
 	width: 100%;
 	padding: 1em 0;
 	text-align: center;
-	background-color: $picks-color;
+	background-color: $button-color;
 }
 
 .pick {
@@ -65,7 +65,7 @@ button {
 }
 
 .pick.empty {
-	background-color: darken($picks-color, 10);
+	background-color: darken($button-color, 10);
 }
 
 .pick .cross {
@@ -125,3 +125,22 @@ button {
 	list-style-type: none;
 }
 
+button.active {
+	background-color: adjust-color($button-color, $lightness: -20);
+}
+
+.timer-button {
+	position: relative;
+	overflow: hidden;
+}
+.timer-overlay {
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	position: absolute;
+	font-size: 2em;
+	line-height: 1.8em;
+	background-color: rgba(0, 0, 0, 0.452);
+	color: #ffffff;
+  }

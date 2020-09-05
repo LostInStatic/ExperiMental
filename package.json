@@ -19,7 +19,7 @@
     "@types/react-dom": "^16.9.8",
     "@typescript-eslint/eslint-plugin": "^2.34.0",
     "@typescript-eslint/parser": "^2.34.0",
-    "browser-sync": "^2.26.7",
+    "browser-sync": "^2.26.10",
     "browser-sync-webpack-plugin": "^2.2.2",
     "css-loader": "^3.6.0",
     "directory-tree-webpack-plugin": "^1.0.2",
@@ -48,6 +48,7 @@
     "@types/webpack-env": "^1.15.1",
     "markdown-to-jsx": "^6.11.0",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "universal-cookie": "^4.0.3"
   }
 }
