@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 const path = require('path');
 const DirectoryTreePlugin = require('directory-tree-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
 const inputPath = path.resolve(__dirname, 'src');
@@ -50,6 +51,9 @@ module.exports = {
 			dir: path.resolve(inputPath, 'experiments'),
 			path: path.resolve(inputPath, 'experiments.json'),
 			extensions: /\.md/
+		}),
+		new HtmlWebpackPlugin({
+			template:'./index.html'
 		})
 	]
 };
