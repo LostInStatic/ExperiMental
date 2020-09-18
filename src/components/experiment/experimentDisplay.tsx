@@ -25,7 +25,7 @@ const ExperimentDisplay: React.FC<IProps> = (props) => {
 				experimentID={props.data.id}
 				onClick={() => setActivePage(props.data.explanation)}
 				className={activePage === props.data.explanation ? 'active' : ''}
-				seconds={props.data.explanationDelay || 4}
+				seconds={props.data.explanationDelay || 60}
 				isSuspended ={wasOpened ? false : true}
 			>
 				Wyjaśnienie
