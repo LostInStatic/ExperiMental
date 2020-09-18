@@ -1,20 +1,27 @@
 import React = require('react');
+import Cookies = require('js-cookie');
 
 interface IProps {
 	seconds: number
 	isSuspended?: boolean
 	onClick: () => void
 	className?: string
+	experimentID: string
 }
 
 const TimedButton: React.FC<IProps> = (props) => {
 
-	const [secondsLeft, setTimeLeft] = React.useState(props.seconds);
+	const cookieName = `${props.experimentID}.timeLeft`;
+
+	const previousTimeLeft = parseInt(Cookies.get(cookieName));
+
+	const [secondsLeft, setTimeLeft] = React.useState(previousTimeLeft || props.seconds);
 
 	React.useEffect(() => {
 		if (secondsLeft > 0 && !props.isSuspended) {
 			const timer = setTimeout(() => {
 				setTimeLeft(secondsLeft - 1);
+				Cookies.set(cookieName, secondsLeft.toString());
 			}, 1000);
 			return () => clearTimeout(timer);
 		}
