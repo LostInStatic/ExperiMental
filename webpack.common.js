@@ -2,6 +2,7 @@
 const path = require('path');
 const DirectoryTreePlugin = require('directory-tree-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 
 const inputPath = path.resolve(__dirname, 'src');
@@ -54,6 +55,7 @@ module.exports = {
 		}),
 		new HtmlWebpackPlugin({
 			template:'./index.html'
-		})
+		}),
+		new CleanWebpackPlugin()
 	]
 };
