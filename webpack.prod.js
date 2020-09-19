@@ -12,6 +12,9 @@ module.exports = merge(common, {
 	optimization: {
 		minimizer: [new miniJs({}), new miniCss({})]
 	},
+	output: {
+		filename: '[name].[contenthash].js'
+	},
 	module: {
 		rules: [
 			{
@@ -29,8 +32,8 @@ module.exports = merge(common, {
 	plugins: [
 		new extractCss(
 			{
-				filename: '[name].css',
-				chunkFilename: '[id].css'
+				filename: '[name].[contenthash].css',
+				chunkFilename: '[id].[contenthash].css'
 			}
 		)
 
