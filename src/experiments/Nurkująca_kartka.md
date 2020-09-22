@@ -4,6 +4,7 @@ ingredientIDs:
 - water
 - paper
 - pet-bottle
+- scissors
 ---
 ### Nurkująca kartka
 
