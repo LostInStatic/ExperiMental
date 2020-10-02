@@ -3,6 +3,7 @@ const path = require('path');
 const DirectoryTreePlugin = require('directory-tree-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { GenerateSW} = require('workbox-webpack-plugin');
 
 
 const inputPath = path.resolve(__dirname, 'src');
@@ -21,6 +22,7 @@ module.exports = {
 		contentBase: outputPath,
 		watchContentBase: true,
 		disableHostCheck: true,
+		writeToDisk: true,
 		port: 9000,
 		proxy: {
 			'/products': 'http://localhost:8080'
@@ -56,6 +58,9 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			template:'./index.html'
 		}),
-		new CleanWebpackPlugin()
+		new CleanWebpackPlugin({
+			maximumFileSizeToCacheInBytes: 50000000000
+		}),
+		new GenerateSW()
 	]
 };
