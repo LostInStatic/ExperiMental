@@ -5,7 +5,10 @@ import './style.scss';
 import App from './components/app';
 import getExperiments from './ExperimentsList';
 import getData from './getData';
+import registerServiceWorker from './registerServiceWorker';
 const experiments = getExperiments();
+
+registerServiceWorker();
 
 const possibleIngredientsFallback = [
 	{
@@ -50,5 +53,6 @@ getData('./products').then(data => {
 	);
 
 });
+
 
 
