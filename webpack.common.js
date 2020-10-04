@@ -4,6 +4,7 @@ const DirectoryTreePlugin = require('directory-tree-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { GenerateSW} = require('workbox-webpack-plugin');
+const WebpackPwaManifest = require('webpack-pwa-manifest');
 
 
 const inputPath = path.resolve(__dirname, 'src');
@@ -58,9 +59,18 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			template:'./index.html'
 		}),
-		new CleanWebpackPlugin({
-			maximumFileSizeToCacheInBytes: 50000000000
-		}),
-		new GenerateSW()
+		new CleanWebpackPlugin(),
+		new GenerateSW({
+			maximumFileSizeToCacheInBytes: 500000000
+		}
+		),
+		new WebpackPwaManifest({
+			name: 'ExperiMental',
+			short_name: 'ExperiMental',
+			icons: [{
+				src: path.resolve(inputPath, 'resources/icon.svg'),
+				sizes: [256],
+			}]
+		})
 	]
 };
