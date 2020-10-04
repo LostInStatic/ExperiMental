@@ -23,7 +23,6 @@ module.exports = {
 		contentBase: outputPath,
 		watchContentBase: true,
 		disableHostCheck: true,
-		writeToDisk: true,
 		port: 9000,
 		proxy: {
 			'/products': 'http://localhost:8080'
@@ -61,7 +60,9 @@ module.exports = {
 		}),
 		new CleanWebpackPlugin(),
 		new GenerateSW({
-			maximumFileSizeToCacheInBytes: 500000000
+			maximumFileSizeToCacheInBytes: 500000000,
+			skipWaiting: true,
+			runtimeCaching: [{handler:'StaleWhileRevalidate', urlPattern: '.*'}]
 		}
 		),
 		new WebpackPwaManifest({
