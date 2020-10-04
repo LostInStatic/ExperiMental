@@ -3,6 +3,7 @@ import IngredientChoice from './choice/choice';
 import IngredientPicks from './picks';
 import ExperimentMatch from './experiment/experimentMatch';
 import Indicator from './indicator';
+import Modal from './generic/modal/modal';
 
 interface IProps {
 	possibleIngredients: IngredientData[]
@@ -24,6 +25,9 @@ const App: React.FC<IProps> = (props) => {
 	const [isMatch, setMatch] = React.useState(false);
 
 	return <div>
+		<Modal buttonSymbol="☰" class="menu">
+			<a href="#">just a test</a>
+		</Modal>
 		<IngredientPicks
 			picked={picks}
 			removePickCallback={index => managePicks({ type: 'remove', index })}

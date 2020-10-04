@@ -3,6 +3,7 @@ import './modal.scss';
 
 interface IProps {
 	buttonSymbol: string
+	class?: string
 }
 
 const Modal: React.FC<IProps> = (props) => {
@@ -11,11 +12,12 @@ const Modal: React.FC<IProps> = (props) => {
 
 	return <>
 		<button
+			className={props.class}
 			onClick={toggle}
 		>
 			{props.buttonSymbol}
 		</button>
-		<div className={'modal_box ' + (displayed ? '' : 'collapsed')}>
+		<div className={`modal_box ${props.class || ''} ${(displayed ? '' : 'collapsed')}`}>
 			<button
 				className='modal_box-close'
 				onClick={toggle}
