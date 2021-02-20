@@ -25,7 +25,11 @@ module.exports = {
 		disableHostCheck: true,
 		port: 9000,
 		proxy: {
-			'/products': 'http://localhost:8080'
+			'/experimental-admin/': { 
+				target: 'https://experimental.vxm.pl',
+				secure: false,
+				changeOrigin: true
+			}
 		}
 	},
 	module: {
