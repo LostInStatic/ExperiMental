@@ -3,7 +3,7 @@ const path = require('path');
 const DirectoryTreePlugin = require('directory-tree-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const { GenerateSW} = require('workbox-webpack-plugin');
+const { GenerateSW } = require('workbox-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 
 
@@ -25,7 +25,7 @@ module.exports = {
 		disableHostCheck: true,
 		port: 9000,
 		proxy: {
-			'/experimental-admin/': { 
+			'/experimental-admin/': {
 				target: 'https://experimental.vxm.pl',
 				secure: false,
 				changeOrigin: true
@@ -48,10 +48,14 @@ module.exports = {
 				exclude: /node_modules/,
 			},
 			{
-				test: /\.(png|jpe?g|gif|svg)$/i,
+				test: /\.(png|jpe?g|gif)$/i,
 				use: [
 					'file-loader'
 				]
+			},
+			{
+				test: /\.svg$/,
+				use: ['@svgr/webpack'],
 			}
 		]
 
@@ -66,13 +70,13 @@ module.exports = {
 			extensions: /\.md/
 		}),
 		new HtmlWebpackPlugin({
-			template:'./index.html'
+			template: './index.html'
 		}),
 		new CleanWebpackPlugin(),
 		new GenerateSW({
 			maximumFileSizeToCacheInBytes: 500000000,
 			skipWaiting: true,
-			runtimeCaching: [{handler:'StaleWhileRevalidate', urlPattern: '.*'}]
+			runtimeCaching: [{ handler: 'StaleWhileRevalidate', urlPattern: '.*' }]
 		}
 		),
 		new WebpackPwaManifest({

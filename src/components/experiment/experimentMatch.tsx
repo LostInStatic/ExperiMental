@@ -1,12 +1,11 @@
 import React = require('react');
-import { ExperimentData, IngredientData } from '../app';
-import Indicator from '../indicator';
+import { ExperimentData, IExperimentMatchState, IngredientData } from '../app';
 import ExperimentDisplay from './experimentDisplay';
 
 interface IProps {
 	experiments: ExperimentData[],
 	picks: IngredientData[],
-	reportCallback: (isMatched: boolean) => void
+	reportCallback: (status:IExperimentMatchState) => void
 }
 
 const ExperimentMatch: React.FC<IProps> = (props) => {
@@ -14,31 +13,21 @@ const ExperimentMatch: React.FC<IProps> = (props) => {
 	const match = matchExperiments(props);
 
 	React.useEffect(() => {
-		props.reportCallback(match.experiments.length !== 0);
+		props.reportCallback({
+			isMatched: match.experiments.length !== 0, 
+			hasPartialMatch: match.hasPartialFit
+		});
 	}, [props.picks]);
 
-
-	return <Indicator
-		state={getIndicatorState(match.experiments[0], match.hasPartialFit)}
-	>
-		<ul>
-			{
-				match.experiments.map(createExperiment)
-			}
-		</ul>
-	</Indicator>;
+	return <ul>
+		{match.experiments.map(createExperiment)}
+	</ul>;
 };
 
 const createExperiment = (experiment: ExperimentData) => {
 	return <li key={experiment.id}>
-		<ExperimentDisplay data={experiment}/>
+		<ExperimentDisplay data={experiment} />
 	</li>;
-};
-
-const getIndicatorState = (isMatch, hasPartialFit) => {
-	if (isMatch) return 'good';
-	if (hasPartialFit) return 'neutral';
-	return 'bad';
 };
 
 const matchExperiments = (props: IProps): { experiments: ExperimentData[], hasPartialFit: boolean } => {
@@ -70,7 +59,7 @@ const checkIDsMatch = (picks: IngredientData[], ingredientIDs: string[]): { isMa
 	let IDsNotProcessed = Object.keys(pickIDsCount);
 
 	for (const key in ingredientIDsCount) {
-		if (Object.prototype.hasOwnProperty.call(ingredientIDsCount,key)) {
+		if (Object.prototype.hasOwnProperty.call(ingredientIDsCount, key)) {
 			if (pickIDsCount[key]) {
 
 				IDsNotProcessed = IDsNotProcessed.filter(item => item !== key);

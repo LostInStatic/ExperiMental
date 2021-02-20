@@ -1,8 +1,6 @@
 import React = require('react');
 import { IngredientData } from './app';
 import CloseIndicator from './generic/closeIndicator/closeIndicator';
-// @ts-ignore
-import circleBackground from '../resources/background.svg';
 
 interface IProps {
 	picked: IngredientData[],
@@ -13,7 +11,6 @@ const IngredientPicks: React.FC<IProps> = (props) => {
 
 	return <div
 		className="ingredient-picks">
-		<img src={circleBackground} alt="" className="circle" />
 		<div className="picks-container">
 			{createPicks(props)}
 		</div>

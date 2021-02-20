@@ -2,7 +2,7 @@ import React = require('react');
 import IngredientChoice from './choice/choice';
 import IngredientPicks from './picks';
 import ExperimentMatch from './experiment/experimentMatch';
-import Indicator from './indicator';
+import IndicatorBackground from './indicatorBackground';
 import Modal from './generic/modal/modal';
 
 interface IProps {
@@ -22,21 +22,29 @@ const App: React.FC<IProps> = (props) => {
 		[]
 	);
 
-	const [isMatch, setMatch] = React.useState(false);
+	const [matchStatus, setMatchStatus] = React.useState({
+		isMatched: false,
+		hasPartialMatch: false
+	});
 
 	return <div>
 		<Modal buttonSymbol="☰" class="menu">
 			<a href="#">just a test</a>
 		</Modal>
-		<IngredientPicks
-			picked={picks}
-			removePickCallback={index => managePicks({ type: 'remove', index })}
+		<div className="picks-indicator-wrapper">
+			<IndicatorBackground
+				experimentMatchStatus={matchStatus}
+			/>
+			<IngredientPicks
+				picked={picks}
+				removePickCallback={index => managePicks({ type: 'remove', index })}
+			/>
+		</div>
 
-		/>
 		<ExperimentMatch
 			picks={picks}
 			experiments={props.experiments}
-			reportCallback={setMatch}
+			reportCallback={setMatchStatus}
 		/>
 		{
 			(picks.length < 5) ?
@@ -113,4 +121,8 @@ export interface ExperimentData {
 	explanationDelay?: number
 }
 
+export interface IExperimentMatchState {
+	isMatched: boolean,
+	hasPartialMatch: boolean
+}
 export default App;
