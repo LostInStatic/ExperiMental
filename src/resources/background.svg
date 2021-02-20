@@ -14,7 +14,7 @@
    viewBox="0 0 1440 1137"
    style="enable-background:new 0 0 1440 1137;"
    xml:space="preserve"
-   sodipodi:docname="background-circle.svg"
+   sodipodi:docname="background.svg"
    inkscape:version="1.0.1 (0767f8302a, 2020-10-17)"><metadata
    id="metadata39"><rdf:RDF><cc:Work
        rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
@@ -81,23 +81,24 @@
    d="m 1214.4,848.9 c -3.4,-4.2 -8.4,-7.7 -14.6,-10.2 -4.3,4.4 -10.7,8 -18.3,10.2 z"
    id="path10" />
 		</g>
-	</g><circle
-   class="indicator"
-   cx="720"
-   cy="568.5"
-   r="440.5"
-   id="circle16"
-   style="image-rendering:auto" /><circle
-   class="st5"
-   cx="720"
-   cy="568.5"
-   r="410.10001"
-   id="circle18" /><circle
-   class="st6"
-   cx="720"
-   cy="568.5"
-   r="335.29999"
-   id="circle20" /><g
+	</g><g
+   id="g24"><circle
+     class="indicator"
+     cx="720"
+     cy="568.5"
+     r="440.5"
+     id="circle16"
+     style="image-rendering:auto;fill:#ff00ff" /><circle
+     class="st5"
+     cx="720"
+     cy="568.5"
+     r="410.10001"
+     id="circle18" /><circle
+     class="st6"
+     cx="720"
+     cy="568.5"
+     r="335.29999"
+     id="circle20" /></g><g
    id="g30">
 		<path
    class="st1"
