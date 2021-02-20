@@ -4,6 +4,7 @@ $complimentary-color: adjust-color($button-color, $hue: -120);
 $positive-color: hsl(128, 80%, 60%);
 $neutral-color: hsl(56, 80%, 60%);
 $negative-color: hsl(7, 56%, 62%);
+$background-wheel:#385fae;
 
 @mixin ingredient {
 	width: 6.5em;
@@ -16,6 +17,45 @@ $negative-color: hsl(7, 56%, 62%);
 	word-wrap: break-word;
 	border-radius: 1em;
 }
+
+/// Mixin to place items on a circle
+/// @author Hugo Giraudel
+/// @author Ana Tudor
+/// @param {Integer} $item-count - Number of items on the circle
+/// @param {Length} $circle-size - Large circle size
+/// @param {Length} $item-size - Single item size
+@mixin on-circle($item-count, $circle-size, $item-size) {
+	position: relative;
+	width:  $circle-size;
+	height: $circle-size;
+	padding: 0;
+	border-radius: 50%; 
+	list-style: none;
+	
+	> * {
+	  display: block;
+	  position: absolute;
+	  top:  50%; 
+	  left: 50%;
+	  width:  $item-size;
+	  height: $item-size;
+	  margin: -($item-size / 2);
+	
+	  $angle: (360 / $item-count);
+	  $rot: -18;
+  
+	  @for $i from 1 through $item-count {
+		&:nth-of-type(#{$i}) {
+		  transform: 
+			rotate($rot * 1deg) 
+			translate($circle-size / 2) 
+			rotate($rot * -1deg);
+		}
+  
+		$rot: $rot + $angle;
+	  }
+	}
+  }
 
 body {
 	margin: 0;
@@ -33,20 +73,39 @@ button {
 	cursor: pointer;
 }
 .ingredient-picks {
-	flex-wrap: wrap;
-	justify-content: center;
+	position: relative;
 	display: flex;
+	justify-content: center;
+	align-items: center;
 	width: 100%;
 	padding: 1em 0;
+	height: 50vh;
 	text-align: center;
-	background-color: $button-color;
+	background-color: $background-wheel;
+}
+
+.circle {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	object-fit: contain;
+	left: 0;
+}
+
+.picks-container {
+	@include on-circle($item-count: 5, $circle-size: 20vh, $item-size:6.5em);
 }
 
 .pick {
-	@include ingredient;
-	position: relative;
-	display: inline-block;
-	margin: 1%;
+	box-sizing: border-box;
+	width: 6.5em;
+	height: 6.5em;
+	min-width: 40px;
+	min-height: 40px;
+	color: white;
+	font-size: 14px;
+	word-wrap: break-word;
+	border-radius: 1em;
 	font-size: 12px;
 	background-color: $ingredient-color;
 }
