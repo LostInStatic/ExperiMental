@@ -1,10 +1,10 @@
 import * as ExperimentsDirectoryList from './experiments.json';
-import { ExperimentData } from './components/app';
+import { IExperimentData } from './components/app';
 
 const convertToDataFormat = (
 	experiment,
 	experimentFilename: string
-): ExperimentData => {
+): IExperimentData => {
 	if (!experiment.attributes.ingredientIDs) {
 		console.error('No ingredients ids! Filename:' + experimentFilename);
 		experiment.ingredientIDs = [];

@@ -6,8 +6,8 @@ import IndicatorBackground from './indicatorBackground';
 import Modal from './generic/modal/modal';
 
 interface IProps {
-	possibleIngredients: IngredientData[]
-	experiments: ExperimentData[]
+	possibleIngredients: IIngredientData[]
+	experiments: IExperimentData[]
 }
 
 const App: React.FC<IProps> = (props) => {
@@ -73,9 +73,9 @@ const App: React.FC<IProps> = (props) => {
 
 const createPicksReducer = (props: IProps) => {
 	return (
-		state: IngredientData[],
+		state: IIngredientData[],
 		action: IManagePickAction['remove' | 'add' | 'clear']
-	): IngredientData[] => {
+	): IIngredientData[] => {
 
 		switch (action.type) {
 			case 'add':
@@ -107,12 +107,12 @@ interface IManagePickAction {
 
 }
 
-export interface IngredientData {
+export interface IIngredientData {
 	id: string,
 	name: string
 }
 
-export interface ExperimentData {
+export interface IExperimentData {
 	id: string,
 	ingredientIDs: string[],
 	name: string,
