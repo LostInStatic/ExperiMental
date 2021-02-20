@@ -46,6 +46,12 @@ module.exports = {
 					'front-matter-loader'
 				],
 				exclude: /node_modules/,
+			},
+			{
+				test: /\.(png|jpe?g|gif|svg)$/i,
+				use: [
+					'file-loader'
+				]
 			}
 		]
 
