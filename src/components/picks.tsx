@@ -13,11 +13,11 @@ const IngredientPicks: React.FC<IProps> = (props) => {
 
 	return <div
 		className="ingredient-picks">
-		<img src={circleBackground} alt="" className="circle"/>
+		<img src={circleBackground} alt="" className="circle" />
 		<div className="picks-container">
 			{createPicks(props)}
 		</div>
-		
+
 	</div>;
 };
 
@@ -26,24 +26,26 @@ const createPicks = (props: IProps) => {
 	for (let index = 0; index < 5; index++) {
 		const element = props.picked[index];
 
+
+
 		if (element === undefined) {
 			output.push(
-				<div
-					className="pick empty"
-					key={index.toString()}
-				>
-				</div>
+				<div className="pick-wrapper"/>
+
 			);
 		} else {
 			output.push(
-				<button
-					className="pick"
-					key={index.toString()}
-					onClick={() => {props.removePickCallback(index);}}
-				>
-					{element.name}
-					<CloseIndicator/>
-				</button>
+				<div className="pick-wrapper">
+					<button
+						className="pick"
+						key={index.toString()}
+						onClick={() => { props.removePickCallback(index); }}
+					>
+						{element.name}
+						<CloseIndicator />
+					</button>
+				</div>
+
 			);
 		}
 
