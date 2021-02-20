@@ -1,9 +1,9 @@
 import React = require('react');
-import { IngredientData } from './app';
+import { IIngredientData } from './app';
 import CloseIndicator from './generic/closeIndicator/closeIndicator';
 
 interface IProps {
-	picked: IngredientData[],
+	picked: IIngredientData[],
 	removePickCallback: (index: number) => void
 }
 

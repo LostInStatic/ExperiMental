@@ -1,10 +1,10 @@
 import React = require('react');
-import { ExperimentData, IExperimentMatchState, IngredientData } from '../app';
+import { IExperimentData, IExperimentMatchState, IIngredientData } from '../app';
 import ExperimentDisplay from './experimentDisplay';
 
 interface IProps {
-	experiments: ExperimentData[],
-	picks: IngredientData[],
+	experiments: IExperimentData[],
+	picks: IIngredientData[],
 	reportCallback: (status:IExperimentMatchState) => void
 }
 
@@ -24,13 +24,13 @@ const ExperimentMatch: React.FC<IProps> = (props) => {
 	</ul>;
 };
 
-const createExperiment = (experiment: ExperimentData) => {
+const createExperiment = (experiment: IExperimentData) => {
 	return <li key={experiment.id}>
 		<ExperimentDisplay data={experiment} />
 	</li>;
 };
 
-const matchExperiments = (props: IProps): { experiments: ExperimentData[], hasPartialFit: boolean } => {
+const matchExperiments = (props: IProps): { experiments: IExperimentData[], hasPartialFit: boolean } => {
 	let output = { experiments: [], hasPartialFit: false };
 	props.experiments.map(
 		(experiment) => {
@@ -47,7 +47,7 @@ const matchExperiments = (props: IProps): { experiments: ExperimentData[], hasPa
 	return output;
 };
 
-const checkIDsMatch = (picks: IngredientData[], ingredientIDs: string[]): { isMatch: boolean, isPartialFit: boolean } => {
+const checkIDsMatch = (picks: IIngredientData[], ingredientIDs: string[]): { isMatch: boolean, isPartialFit: boolean } => {
 
 	if (picks.length > ingredientIDs.length) return { isMatch: false, isPartialFit: false };
 	if (picks.length === 0) return { isMatch: false, isPartialFit: true };

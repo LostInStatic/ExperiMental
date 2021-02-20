@@ -1,11 +1,11 @@
 import React = require('react');
-import { ExperimentData } from '../app';
+import { IExperimentData } from '../app';
 import Modal from '../generic/modal/modal';
 import Markdown from 'markdown-to-jsx';
 import TimedButton from './TimedButton';
 
 interface IProps {
-	data: ExperimentData
+	data: IExperimentData
 }
 
 const ExperimentDisplay: React.FC<IProps> = (props) => {
