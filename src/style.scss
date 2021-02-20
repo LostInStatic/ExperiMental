@@ -72,6 +72,12 @@ button {
 	border-radius: 1em;
 	cursor: pointer;
 }
+
+.picks-indicator-wrapper {
+	position: relative;
+	background-color: $background-wheel;
+}
+
 .ingredient-picks {
 	position: relative;
 	display: flex;
@@ -81,15 +87,6 @@ button {
 	padding: 1em 0;
 	height: 50vh;
 	text-align: center;
-	background-color: $background-wheel;
-}
-
-.circle {
-	position: absolute;
-	height: 100%;
-	width: 100%;
-	object-fit: contain;
-	left: 0;
 }
 
 .picks-container {
@@ -149,6 +146,35 @@ button {
 	background: $complimentary-color;
 	border: none;
 	border-radius: 50%;
+}
+
+.background-indicator {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	object-fit: contain;
+	left: 0;
+	top: 0;
+}
+
+.background-indicator svg {
+	height: 100%;
+	width: 100%;
+}
+
+.background-indicator .background_svg__indicator{
+	transition: fill 1s;
+}
+
+.background-indicator.good .background_svg__indicator {
+	fill: $positive-color
+}
+.background-indicator.neutral .background_svg__indicator {
+	fill: $neutral-color
+}
+
+.background-indicator.bad .background_svg__indicator {
+	fill: $negative-color
 }
 
 .match-indicator {
