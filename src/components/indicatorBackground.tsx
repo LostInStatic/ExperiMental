@@ -11,7 +11,7 @@ const IndicatorBackground: React.FC<IProps> = (props) => {
 	return <div
 		className={
 			'background-indicator ' +
-			getIndicatorState(props)
+			getIndicatorStatus(props)
 		}
 	>
 		<Background />
@@ -20,11 +20,13 @@ const IndicatorBackground: React.FC<IProps> = (props) => {
 
 export default IndicatorBackground;
 
-const getIndicatorState = (props: IProps) => {
-	const state = props.experimentMatchStatus;
-	if (state.isMatched) {
+const getIndicatorStatus = (props: IProps) => {
+	const status = props.experimentMatchStatus;
+	if (status.hasNonePicked) {
+		return 'empty';
+	} else if (status.isMatched) {
 		return 'good';
-	} else if (state.hasPartialMatch) {
+	} else if (status.hasPartialMatch) {
 		return 'neutral';
 	} else return 'bad';
 };
