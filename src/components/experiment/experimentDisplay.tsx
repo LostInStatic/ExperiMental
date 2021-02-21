@@ -14,7 +14,9 @@ const ExperimentDisplay: React.FC<IProps> = (props) => {
 	const [wasOpened, setWasOpened] = React.useState(false);
 
 	return <div onClick={() => setWasOpened(true)}>
-		<Modal buttonSymbol={props.data.name}>
+		<Modal
+			buttonSymbol={props.data.name}
+			className="experiment-button">
 			<button
 				onClick={() => setActivePage(props.data.instruction)}
 				className={activePage === props.data.instruction ? 'active' : ''}
@@ -26,7 +28,7 @@ const ExperimentDisplay: React.FC<IProps> = (props) => {
 				onClick={() => setActivePage(props.data.explanation)}
 				className={activePage === props.data.explanation ? 'active' : ''}
 				seconds={props.data.explanationDelay || 4}
-				isSuspended ={wasOpened ? false : true}
+				isSuspended={wasOpened ? false : true}
 			>
 				Wyjaśnienie
 			</TimedButton>
