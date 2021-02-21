@@ -24,7 +24,8 @@ const App: React.FC<IProps> = (props) => {
 
 	const [matchStatus, setMatchStatus] = React.useState({
 		isMatched: false,
-		hasPartialMatch: false
+		hasPartialMatch: false,
+		hasNonePicked: true
 	});
 
 	return <>
@@ -127,6 +128,7 @@ export interface IExperimentData {
 
 export interface IExperimentMatchState {
 	isMatched: boolean,
-	hasPartialMatch: boolean
+	hasPartialMatch: boolean,
+	hasNonePicked: boolean
 }
 export default App;

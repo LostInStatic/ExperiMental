@@ -15,7 +15,8 @@ const ExperimentMatch: React.FC<IProps> = (props) => {
 	React.useEffect(() => {
 		props.reportCallback({
 			isMatched: match.experiments.length !== 0, 
-			hasPartialMatch: match.hasPartialFit
+			hasPartialMatch: match.hasPartialFit,
+			hasNonePicked: props.picks.length === 0
 		});
 	}, [props.picks]);
 

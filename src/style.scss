@@ -229,6 +229,11 @@ button {
 	fill: $negative-color;
 }
 
+.background-indicator.empty .background_svg__indicator {
+	fill: transparent;
+}
+
+
 .experiments-list {
 	list-style: none;
 	padding: 0;
