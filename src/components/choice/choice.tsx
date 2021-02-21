@@ -16,12 +16,11 @@ const IngredientChoice: React.FC<IProps> = (props) => {
 };
 
 const listIngredients = (list: IIngredientData[], callback: (id: string) => void) => {
-	return list.map((ingredient) => {
+	return list.map((ingredientData) => {
 		return <Ingredient
-			key={ingredient.id}
-			id={ingredient.id}
-			name={ingredient.name}
-			onClick={() => { callback(ingredient.id); }}
+			key={ingredientData.id}
+			attributes={ingredientData}
+			onClick={() => { callback(ingredientData.id); }}
 		/>;
 	});
 };

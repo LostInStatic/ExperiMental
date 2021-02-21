@@ -28,9 +28,9 @@ const App: React.FC<IProps> = (props) => {
 	});
 
 	return <div>
-		<Modal buttonSymbol="☰" class="menu">
+		{/* <Modal buttonSymbol="☰" class="menu">
 			<a href="#">just a test</a>
-		</Modal>
+		</Modal> */}
 		<div className="picks-indicator-wrapper">
 			<IndicatorBackground
 				experimentMatchStatus={matchStatus}
@@ -109,7 +109,11 @@ interface IManagePickAction {
 
 export interface IIngredientData {
 	id: string,
-	name: string
+	name: string,
+	iconUrls?: {
+		mono?: string,
+		color?: string
+	}
 }
 
 export interface IExperimentData {

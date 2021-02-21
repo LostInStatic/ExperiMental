@@ -8,30 +8,74 @@ import getData from './getData';
 import registerServiceWorker from './registerServiceWorker';
 const experiments = getExperiments();
 
+//@ts-ignore
+import iconBalloonC from './resources/ingredient-icons/ikona-kolor-balon.svg';
+//@ts-ignore
+import iconBalloonM from './resources/ingredient-icons/ikona-mono-balon.svg';
+//@ts-ignore
+import iconScissC from './resources/ingredient-icons/ikona-kolor-no¾yczki.svg';
+//@ts-ignore
+import iconScissM from './resources/ingredient-icons/ikona-mono-no¾yczki.svg';
+//@ts-ignore
+import iconWaterC from './resources/ingredient-icons/ikona-kolor-woda.svg';
+//@ts-ignore
+import iconWaterM from './resources/ingredient-icons/ikony-mono-woda.svg';
+//@ts-ignore
+import iconSBottM from './resources/ingredient-icons/ikona-mono-butelka.svg';
+//@ts-ignore
+import iconBottC from './resources/ingredient-icons/ikona-kolor-burelka.svg';
+//@ts-ignore
+import iconPapC from './resources/ingredient-icons/ikona-kolor-papier.svg';
+//@ts-ignore
+import iconPapM from './resources/ingredient-icons/ikona-mono-papier.svg';
+
+
 registerServiceWorker();
 
 const possibleIngredientsFallback = [
 	{
 		id: 'water',
-		name: 'Woda'
+		name: 'Woda',
+		iconUrls: {
+			mono: iconWaterM,
+			color: iconWaterC
+		}
 	},
 	{
 		id: 'paper',
-		name: 'Papierowa kartka'
+		name: 'Papier',
+		iconUrls: {
+			mono: iconPapM,
+			color: iconPapC
+		}
 	},
 	{
 		id: 'balloon',
-		name: 'Balon'
+		name: 'Balon',
+		iconUrls: {
+			mono: iconBalloonM,
+			color: iconBalloonC
+		}
 	},
 	{
 		id: 'pet-bottle',
-		name: 'Butelka PET'
+		name: 'Butelka',
+		iconUrls: {
+			mono: iconSBottM,
+			color: iconBottC
+		}
 	},
 	{
 		id: 'scissors',
-		name: 'Nożyczki'
+		name: 'Nożyczki',
+		iconUrls: {
+			mono: iconScissM,
+			color: iconScissC
+		}
 	}
 ];
+
+console.log(possibleIngredientsFallback);
 
 getData('./products').then(data => {
 	let possibleIngredients = [];

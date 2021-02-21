@@ -27,7 +27,7 @@ const createPicks = (props: IProps) => {
 
 		if (element === undefined) {
 			output.push(
-				<div className="pick-wrapper"/>
+				<div className="pick-wrapper" />
 
 			);
 		} else {
@@ -38,8 +38,9 @@ const createPicks = (props: IProps) => {
 						key={index.toString()}
 						onClick={() => { props.removePickCallback(index); }}
 					>
-						{element.name}
-						<CloseIndicator />
+						<img src={
+							element.iconUrls.mono
+						} alt="" />
 					</button>
 				</div>
 

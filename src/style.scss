@@ -3,19 +3,23 @@ $button-color: hsl(91, 37%, 61%);
 $complimentary-color: adjust-color($button-color, $hue: -120);
 $positive-color: hsl(128, 80%, 60%);
 $neutral-color: hsl(56, 80%, 60%);
-$negative-color: hsl(7, 56%, 62%);
+$negative-color: #f20f35;
 $background-wheel: #385fae;
 
+$ingredient-size: 80px;
+
 @mixin ingredient {
-	width: 6.5em;
-	height: 6.5em;
+	width: #{$ingredient-size * 1.2};
+	height: #{$ingredient-size * 1.2};
 	min-width: 40px;
 	min-height: 40px;
 	margin: 0.5em;
-	color: white;
-	font-size: 14px;
+	color: #000;
+	font-size: 17px;
 	word-wrap: break-word;
 	border-radius: 1em;
+	flex-shrink: 0;
+	padding: 0;
 }
 
 /// Mixin to place items on a circle
@@ -87,13 +91,13 @@ button {
 }
 
 .picks-container {
-	@include on-circle($item-count: 5, $circle-size: 20vh, $item-size: 6.5em);
+	@include on-circle($item-count: 5, $circle-size: 130px, $item-size: $ingredient-size);
 }
 
 .pick {
 	box-sizing: border-box;
-	width: 6.5em;
-	height: 6.5em;
+	width: $ingredient-size;
+	height: $ingredient-size;
 	min-width: 40px;
 	min-height: 40px;
 	color: white;
@@ -101,20 +105,26 @@ button {
 	word-wrap: break-word;
 	border-radius: 1em;
 	font-size: 12px;
-	background-color: $ingredient-color;
+	background-color: transparent
+}
+
+.pick img {
+	width: 100%;
+	height: 100%;
 }
 
 .ingredient-choice {
 	flex-wrap: wrap;
 	justify-content: center;
 	display: flex;
-	padding: 1em 0;
+	padding: 1em 0 5em;
+	background-color: #eff3f6
 }
 
 .ingredient {
 	@include ingredient;
 	flex-shrink: 0;
-	background-color: $ingredient-color;
+	background-color: transparent
 }
 
 .pick.empty {
@@ -179,13 +189,14 @@ button {
 	padding: 0.5em;
 	display: flex;
 	flex-wrap: wrap;
+	min-height: 3.5em;
 }
 
 .experiments-list li {
 	margin: 0.5em;
 }
 
-.experiments-list li div > button{
+.experiments-list li div > button {
 	background-color: #ff6363;
 	color: #ffffff;
 }

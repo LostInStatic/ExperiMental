@@ -1,8 +1,8 @@
 import React = require('react');
+import { IIngredientData } from './app';
 
 interface IProps {
-	id: string,
-	name: string
+	attributes: IIngredientData,
 	onClick: () => void
 }
 
@@ -11,7 +11,10 @@ const Ingredient: React.FC<IProps> = (props) => {
 		className="ingredient"
 		onClick={props.onClick}
 	>
-		{props.name}
+		<img src={
+			props.attributes.iconUrls.color
+		} alt="" />
+		{props.attributes.name}
 	</button>;
 };
 
