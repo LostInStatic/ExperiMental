@@ -229,13 +229,22 @@ button {
 	overflow-x: auto;
 	height: 3em;
 	margin: 0;
-	justify-content: center;
+	// justify-content: center;
 }
 
 .experiments-list > li {
 	margin: 0.5em;
 	flex-shrink: 0;
 }
+
+.experiments-list > li:first-child{
+	margin-left: auto;
+}
+
+.experiments-list > li:last-child{
+	margin-right: auto;
+}
+
 
 button.experiment-button {
 	background-color: #ff6363;
