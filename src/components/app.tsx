@@ -27,7 +27,7 @@ const App: React.FC<IProps> = (props) => {
 		hasPartialMatch: false
 	});
 
-	return <div>
+	return <>
 		{/* <Modal buttonSymbol="☰" class="menu">
 			<a href="#">just a test</a>
 		</Modal> */}
@@ -68,7 +68,7 @@ const App: React.FC<IProps> = (props) => {
 		}
 
 
-	</div>;
+	</>;
 };
 
 const createPicksReducer = (props: IProps) => {

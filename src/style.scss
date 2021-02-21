@@ -7,13 +7,13 @@ $negative-color: #f20f35;
 $background-wheel: #385fae;
 $background-offwhite: #eff3f6;
 
-$ingredient-size: 40px;
+$ingredient-size: 48px;
 $ingredient-size-smaller: 30px;
 $ingredient-picks-height: 350px;
 $ingredient-picks-height-smaller: 225px;
 
 @mixin resize-smaller {
-	@media (max-width: 400px), (max-height: 600px) {
+	@media (max-width: 350px), (max-height: 600px) {
 		@content;
 	}
 }
@@ -79,6 +79,13 @@ body {
 
 }
 
+#root {
+	display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+}
+
 button {
 	box-sizing: border-box;
 	padding: 1em;
@@ -110,12 +117,12 @@ button {
 }
 
 .picks-container {
-	@include on-circle($item-count: 5, $circle-size: ($ingredient-picks-height * 0.3), $item-size: $ingredient-size);
+	@include on-circle($item-count: 5, $circle-size: ($ingredient-picks-height * 0.4), $item-size: $ingredient-size);
 
 	@include resize-smaller() {
 		@include on-circle(
 			$item-count: 5,
-			$circle-size: ($ingredient-picks-height-smaller * 0.3),
+			$circle-size: ($ingredient-picks-height-smaller * 0.4),
 			$item-size: $ingredient-size-smaller
 		);
 	}
