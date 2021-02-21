@@ -19,7 +19,7 @@ const ExperimentMatch: React.FC<IProps> = (props) => {
 		});
 	}, [props.picks]);
 
-	return <ul>
+	return <ul className="experiments-list">
 		{match.experiments.map(createExperiment)}
 	</ul>;
 };

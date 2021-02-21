@@ -4,7 +4,7 @@ $complimentary-color: adjust-color($button-color, $hue: -120);
 $positive-color: hsl(128, 80%, 60%);
 $neutral-color: hsl(56, 80%, 60%);
 $negative-color: hsl(7, 56%, 62%);
-$background-wheel:#385fae;
+$background-wheel: #385fae;
 
 @mixin ingredient {
 	width: 6.5em;
@@ -26,40 +26,37 @@ $background-wheel:#385fae;
 /// @param {Length} $item-size - Single item size
 @mixin on-circle($item-count, $circle-size, $item-size) {
 	position: relative;
-	width:  $circle-size;
+	width: $circle-size;
 	height: $circle-size;
 	padding: 0;
-	border-radius: 50%; 
+	border-radius: 50%;
 	list-style: none;
-	
+
 	> * {
-	  display: block;
-	  position: absolute;
-	  top:  50%; 
-	  left: 50%;
-	  width:  $item-size;
-	  height: $item-size;
-	  margin: -($item-size / 2);
-	
-	  $angle: (360 / $item-count);
-	  $rot: -18;
-  
-	  @for $i from 1 through $item-count {
-		&:nth-of-type(#{$i}) {
-		  transform: 
-			rotate($rot * 1deg) 
-			translate($circle-size / 2) 
-			rotate($rot * -1deg);
+		display: block;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: $item-size;
+		height: $item-size;
+		margin: -($item-size / 2);
+
+		$angle: (360 / $item-count);
+		$rot: -18;
+
+		@for $i from 1 through $item-count {
+			&:nth-of-type(#{$i}) {
+				transform: rotate($rot * 1deg) translate($circle-size / 2) rotate($rot * -1deg);
+			}
+
+			$rot: $rot + $angle;
 		}
-  
-		$rot: $rot + $angle;
-	  }
 	}
-  }
+}
 
 body {
 	margin: 0;
-	font-family: 'Tomorrow', sans-serif;
+	font-family: "Tomorrow", sans-serif;
 }
 
 button {
@@ -90,7 +87,7 @@ button {
 }
 
 .picks-container {
-	@include on-circle($item-count: 5, $circle-size: 20vh, $item-size:6.5em);
+	@include on-circle($item-count: 5, $circle-size: 20vh, $item-size: 6.5em);
 }
 
 .pick {
@@ -162,52 +159,35 @@ button {
 	width: 100%;
 }
 
-.background-indicator .background_svg__indicator{
+.background-indicator .background_svg__indicator {
 	transition: fill 1s;
 }
 
 .background-indicator.good .background_svg__indicator {
-	fill: $positive-color
+	fill: $positive-color;
 }
 .background-indicator.neutral .background_svg__indicator {
-	fill: $neutral-color
+	fill: $neutral-color;
 }
 
 .background-indicator.bad .background_svg__indicator {
-	fill: $negative-color
+	fill: $negative-color;
 }
 
-.match-indicator {
-	min-height: 3.5em;
+.experiments-list {
+	list-style: none;
 	padding: 0.5em;
-	text-align: center;
-	transition: background-color 0.1s;
-}
-
-.match-indicator.good{
-	background: $positive-color;
-}
-
-.match-indicator.neutral{
-	background: $neutral-color;
-}
-
-.match-indicator.bad{
-	background: $negative-color;
-}
-
-.match-indicator > ul {
-	flex-wrap: wrap;
-	justify-content: center;
 	display: flex;
-	padding: 0;
-	margin: 0;
+	flex-wrap: wrap;
 }
 
-.match-indicator > ul > li {
-	margin: 5px 1em;
-	font-size: 1.2rem;
-	list-style-type: none;
+.experiments-list li {
+	margin: 0.5em;
+}
+
+.experiments-list li div > button{
+	background-color: #ff6363;
+	color: #ffffff;
 }
 
 button.active {
