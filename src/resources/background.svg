@@ -1,118 +1,44 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   version="1.1"
-   id="Warstwa_1"
-   x="0px"
-   y="0px"
-   viewBox="0 0 1440 1137"
-   style="enable-background:new 0 0 1440 1137;"
-   xml:space="preserve"
-   sodipodi:docname="background-circle.svg"
-   inkscape:version="1.0.1 (0767f8302a, 2020-10-17)"><metadata
-   id="metadata39"><rdf:RDF><cc:Work
-       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
-         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /></cc:Work></rdf:RDF></metadata><defs
-   id="defs37">
-	
-	
-	
-	
-	
-</defs><sodipodi:namedview
-   pagecolor="#ffffff"
-   bordercolor="#666666"
-   borderopacity="1"
-   objecttolerance="10"
-   gridtolerance="10"
-   guidetolerance="10"
-   inkscape:pageopacity="0"
-   inkscape:pageshadow="2"
-   inkscape:window-width="1920"
-   inkscape:window-height="1053"
-   id="namedview35"
-   showgrid="false"
-   inkscape:zoom="0.534217"
-   inkscape:cx="321.19348"
-   inkscape:cy="501.48503"
-   inkscape:window-x="0"
-   inkscape:window-y="27"
-   inkscape:window-maximized="1"
-   inkscape:current-layer="Warstwa_1"
-   inkscape:document-rotation="0" />
-<style
-   type="text/css"
-   id="style2">
-	.st0{fill:#3B60AA;}
-	.st1{fill:#FFFFFF;}
-	.st2{fill:#E3CED5;}
-	.st3{fill:#D7BAC4;}
-	.st4{fill:#FF0BF4;}
-	.st5{fill:#487EBD;}
-	.st6{opacity:0.5;fill:#72C5D9;}
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.2.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Warstwa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1091.98 1094.42" style="enable-background:new 0 0 1091.98 1094.42;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFFFFF;}
+	.st1{fill:#E3CED5;}
+	.st2{fill:#D7BAC4;}
+	.st3{fill:#FF0BF4;}
+	.st4{fill:#487EBD;}
+	.st5{opacity:0.5;fill:#72C5D9;}
+	.st6{fill:#7A187A;}
 </style>
-<rect
-   x="-1282.6"
-   y="2781.6"
-   class="st0"
-   width="1440"
-   height="1137"
-   id="rect4" />
-<g
-   id="g14">
-		<path
-   class="st1"
-   d="m 1214.4,848.9 c -6.8,-8.5 -20.7,-14.2 -36.7,-14.2 -7.8,0 -15.1,1.4 -21.3,3.8 -4.5,-15.6 -26.1,-27.4 -52,-27.4 -21.1,0 -39.3,7.8 -47.8,19.2 -2.6,-0.4 -5.4,-0.6 -8.3,-0.6 -17.9,0 -32.6,8.4 -34.9,19.3 h 201 z"
-   id="path6" />
-		<g
-   id="g12">
-			<path
-   class="st2"
-   d="m 1157.8,848.9 c 0.3,-1.6 0.5,-3.2 0.5,-4.8 0,-2.1 -0.3,-4.1 -0.9,-6.1 -0.4,0.1 -0.7,0.3 -1.1,0.4 -2.7,-9.5 -11.8,-17.5 -24.3,-22.4 -4.9,14.4 -24.2,25.5 -47.8,27 -4.7,-7 -14.6,-12.4 -26.7,-14 -0.3,0.4 -0.7,0.8 -1,1.3 0,0 0,0 -0.1,0 -6,8.3 -19.1,14 -34.4,14 -2.3,0 -4.5,-0.1 -6.6,-0.4 -1,1.6 -1.7,3.3 -2.1,5.1 h 144.5 z"
-   id="path8" />
-			<path
-   class="st3"
-   d="m 1214.4,848.9 c -3.4,-4.2 -8.4,-7.7 -14.6,-10.2 -4.3,4.4 -10.7,8 -18.3,10.2 z"
-   id="path10" />
-		</g>
-	</g><circle
-   class="indicator"
-   cx="720"
-   cy="568.5"
-   r="440.5"
-   id="circle16"
-   style="image-rendering:auto" /><circle
-   class="st5"
-   cx="720"
-   cy="568.5"
-   r="410.10001"
-   id="circle18" /><circle
-   class="st6"
-   cx="720"
-   cy="568.5"
-   r="335.29999"
-   id="circle20" /><g
-   id="g30">
-		<path
-   class="st1"
-   d="m 163.2,420.8 c 9.7,-19 29.5,-32.1 52.3,-32.1 11.1,0 21.5,3.1 30.4,8.5 6.4,-35.1 37.1,-61.7 74,-61.7 30.1,0 56,17.6 68.1,43.1 3.8,-0.9 7.7,-1.4 11.8,-1.4 25.5,0 46.5,19 49.7,43.6 z"
-   id="path22" />
-		<g
-   id="g28">
-			<path
-   class="st2"
-   d="m 243.8,420.8 c -0.5,-3.5 -0.8,-7.1 -0.8,-10.8 0,-4.7 0.4,-9.3 1.2,-13.8 0.5,0.3 1.1,0.6 1.6,0.9 3.9,-21.3 16.8,-39.5 34.6,-50.5 7,32.5 34.4,57.4 68.1,60.7 6.7,-15.9 20.8,-27.8 38,-31.6 0.5,0.9 1,1.9 1.4,2.8 0,0 0.1,0 0.1,0 8.5,18.6 27.2,31.6 49,31.6 3.2,0 6.4,-0.3 9.5,-0.9 1.4,3.6 2.4,7.5 2.9,11.5 H 243.8 Z"
-   id="path24" />
-			<path
-   class="st3"
-   d="m 163.2,420.8 c 4.8,-9.4 12,-17.3 20.8,-22.9 6.2,10 15.3,18 26.1,22.9 z"
-   id="path26" />
-		</g>
+<g>
+	<path class="st0" d="M1069.63,776.31c-6.81-8.45-20.69-14.24-36.72-14.24c-7.8,0-15.09,1.37-21.31,3.75
+		c-4.51-15.57-26.06-27.38-51.99-27.38c-21.12,0-39.33,7.83-47.81,19.15c-2.65-0.4-5.41-0.62-8.26-0.62
+		c-17.89,0-32.65,8.43-34.93,19.34H1069.63z"/>
+	<g>
+		<path class="st1" d="M1013.03,776.31c0.35-1.56,0.53-3.16,0.53-4.79c0-2.09-0.3-4.13-0.86-6.11c-0.37,0.13-0.74,0.27-1.1,0.41
+			c-2.74-9.47-11.78-17.53-24.27-22.41c-4.94,14.42-24.16,25.48-47.84,26.96c-4.72-7.04-14.63-12.36-26.7-14.03
+			c-0.34,0.41-0.68,0.83-1,1.25c-0.02,0-0.04-0.01-0.06-0.01c-5.95,8.27-19.11,14.02-34.41,14.02c-2.27,0-4.49-0.14-6.65-0.38
+			c-0.99,1.62-1.69,3.32-2.06,5.1H1013.03z"/>
+		<path class="st2" d="M1069.63,776.31c-3.35-4.16-8.42-7.67-14.6-10.17c-4.33,4.45-10.72,8.01-18.32,10.17H1069.63z"/>
 	</g>
+</g>
+<g>
+	<circle class="indicator" cx="545.99" cy="548.43" r="440.5"/>
+	<circle class="st4" cx="545.99" cy="548.43" r="410.06"/>
+	<circle class="st5" cx="545.99" cy="548.43" r="335.32"/>
+</g>
+<g>
+	<path class="st0" d="M3.36,348.21c9.11-17.86,27.66-30.1,49.08-30.1c10.43,0,20.17,2.9,28.49,7.93
+		c6.02-32.91,34.83-57.87,69.49-57.87c28.22,0,52.57,16.55,63.9,40.47c3.54-0.85,7.23-1.31,11.03-1.31
+		c23.91,0,43.64,17.81,46.69,40.88H3.36z"/>
+	<g>
+		<path class="st1" d="M79.02,348.21c-0.46-3.31-0.71-6.68-0.71-10.12c0-4.41,0.4-8.72,1.15-12.91c0.5,0.28,0.99,0.56,1.47,0.86
+			c3.66-20,15.75-37.05,32.43-47.36c6.61,30.48,32.3,53.85,63.94,56.97c6.31-14.89,19.55-26.12,35.68-29.66
+			c0.46,0.87,0.91,1.75,1.33,2.65c0.03-0.01,0.06-0.01,0.09-0.02c7.96,17.47,25.55,29.62,45.99,29.62c3.03,0,6-0.29,8.88-0.8
+			c1.32,3.42,2.26,7.02,2.76,10.77H79.02z"/>
+		<path class="st2" d="M3.36,348.21c4.48-8.79,11.25-16.21,19.52-21.49c5.79,9.4,14.32,16.94,24.48,21.49H3.36z"/>
+	</g>
+</g>
+
 </svg>
