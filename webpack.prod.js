@@ -6,6 +6,11 @@ const extractCss = require('mini-css-extract-plugin');
 const miniCss = require('optimize-css-assets-webpack-plugin');
 const miniJs = require('terser-webpack-plugin');
 
+const ifdefOpts = {
+	PRODUCTION: true,
+	version: 3
+};
+
 
 module.exports = merge(common, {
 	mode: 'production',
@@ -17,6 +22,17 @@ module.exports = merge(common, {
 	},
 	module: {
 		rules: [
+			{
+				test: /\.tsx?$/,
+				use: [
+					'ts-loader',
+					{
+						loader: 'ifdef-loader',
+						options: ifdefOpts
+					}
+				],
+				exclude: /node_modules/,
+			},
 			{
 				test: /\.(sa|sc|c)ss$/,
 				use: [
