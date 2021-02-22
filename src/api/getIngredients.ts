@@ -1,5 +1,5 @@
 import APIURLS from'./apiUrls';
-import getData from './getData';
+import fetchJSON from './fetchJSON';
 import { Ingredients } from './interfaces/ingredients';
 
 export interface IIngredientsData {
@@ -9,8 +9,8 @@ export interface IIngredientsData {
 }
 
 
-const getIngredients = async ():Promise<IIngredientsData[]> => {
-	let ingredients = getData<Ingredients>(APIURLS.ingredients).then(data => {
+const fetchIngredients = async ():Promise<IIngredientsData[]> => {
+	let ingredients = fetchJSON<Ingredients>(APIURLS.ingredients).then(data => {
 		try {
 			let ingredients = data.data.map(ingredient => {
 				return {
@@ -30,4 +30,4 @@ const getIngredients = async ():Promise<IIngredientsData[]> => {
 
 	return ingredients;
 };
-export default getIngredients;
+export default fetchIngredients;
