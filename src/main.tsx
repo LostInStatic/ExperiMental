@@ -5,7 +5,7 @@ import './style.scss';
 import App from './components/app';
 import getExperiments from './ExperimentsList';
 import getData from './getData';
-import registerServiceWorker from './registerServiceWorker';
+
 const experiments = getExperiments();
 
 //@ts-ignore
@@ -30,7 +30,14 @@ import iconPapC from './resources/ingredient-icons/ikona-kolor-papier.svg';
 import iconPapM from './resources/ingredient-icons/ikona-mono-papier.svg';
 
 
+/// #if PRODUCTION
+import registerServiceWorker from './registerServiceWorker';
 registerServiceWorker();
+/// #else
+console.info('devbuild');
+/// #endif
+
+
 
 const possibleIngredientsFallback = [
 	{

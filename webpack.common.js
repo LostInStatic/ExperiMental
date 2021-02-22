@@ -35,11 +35,6 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.tsx?$/,
-				use: 'ts-loader',
-				exclude: /node_modules/,
-			},
-			{
 				test: /\.md$/,
 				use: [
 					'json-loader',
@@ -55,7 +50,7 @@ module.exports = {
 			},
 			{
 				test: /\.svg$/,
-				use: ['@svgr/webpack','file-loader'],
+				use: ['@svgr/webpack', 'file-loader'],
 			}
 		]
 
