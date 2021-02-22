@@ -23,8 +23,12 @@ $ingredient-picks-height-smaller: 225px;
 }
 
 @mixin ingredient {
-	width: 72px;
-	height: 72px;
+	width: 0.21466666 * $ingredient-picks-height;
+	height: 0.21466666 * $ingredient-picks-height;
+	@include resize-smaller(){
+		width: 0.21466666 * $ingredient-picks-height-smaller;
+		height: 0.21466666* $ingredient-picks-height-smaller;
+	}
 	min-width: 40px;
 	min-height: 40px;
 	margin: 0.5em;
