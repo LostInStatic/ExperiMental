@@ -1,5 +1,5 @@
 import APIURLS from'./apiUrls';
-import getData from './getData';
+import fetchJSON from './fetchJSON';
 import { Experiments } from './interfaces/experiments';
 
 export interface IExperimentsData {
@@ -14,8 +14,8 @@ export interface IExperimentsData {
 }
 
 
-const getExperiments = async ():Promise<IExperimentsData[]> => {
-	let experiments = getData<Experiments>(APIURLS.experiments).then(data => {
+const fetchExperiments = async ():Promise<IExperimentsData[]> => {
+	let experiments = fetchJSON<Experiments>(APIURLS.experiments).then(data => {
 		try {
 			let experiments = data.data.map(experiment => {
 				return {
@@ -40,4 +40,4 @@ const getExperiments = async ():Promise<IExperimentsData[]> => {
 
 	return experiments;
 };
-export default getExperiments;
+export default fetchExperiments;
