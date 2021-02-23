@@ -82,8 +82,6 @@ const possibleIngredientsFallback = [
 	}
 ];
 
-console.log(possibleIngredientsFallback);
-
 getData('./products').then(data => {
 	let possibleIngredients = [];
 	try {
@@ -97,8 +95,6 @@ getData('./products').then(data => {
 	}
 	ReactDOM.render(
 		<App
-			possibleIngredients={possibleIngredients}
-			experiments={experiments}
 		/>,
 		document.getElementById('root')
 	);
