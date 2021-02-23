@@ -1,4 +1,4 @@
-export interface Experiments {
+export interface IAPIExperiments {
     jsonapi: Jsonapi;
     data:    Datum[];
     links:   DatumLinks;
