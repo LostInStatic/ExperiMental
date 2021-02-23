@@ -1,6 +1,5 @@
 import React = require('react');
 import Modal from '../generic/modal/modal';
-import Markdown from 'markdown-to-jsx';
 import TimedButton from './TimedButton';
 import { IExperimentsData } from '../../api/fetchExperiments';
 import parse from 'html-react-parser';
