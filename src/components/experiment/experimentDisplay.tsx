@@ -48,6 +48,6 @@ const assembleFrontPage = (props: IProps) => {
 	return `<div>
 		<h1>${props.data.name}</h1>
 		<p>${props.data.intro}</p>
-		<ul>${props.data.steps.map(step => `<li>${step}</li>`).join()}</ul>
+		<ol>${props.data.steps.map(step => `<li>${step}</li>`).join('')}</ol>
 	</div>`;
 };
