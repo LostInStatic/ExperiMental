@@ -54,6 +54,7 @@
     "@types/js-cookie": "^2.2.6",
     "@types/markdown-to-jsx": "^6.11.0",
     "@types/webpack-env": "^1.15.1",
+    "html-react-parser": "^1.2.4",
     "js-cookie": "^2.2.1",
     "markdown-to-jsx": "^6.11.0",
     "react": "^16.13.1",
