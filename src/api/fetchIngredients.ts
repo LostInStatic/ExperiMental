@@ -7,8 +7,8 @@ export interface IIngredientsData {
 	id: string,
 	name: string,
 	iconUrls: {
-		iconColorUrl?: string,
-		iconMonoUrl?: string
+		color?: string,
+		mono?: string
 	}
 }
 
@@ -27,8 +27,8 @@ const fetchIngredients = async (
 					id: ingredient.id,
 					name: ingredient.title,
 					iconUrls: {
-						iconColorUrl: ingredient?.field_ikona?.uri?.url,
-						iconMonoUrl: ingredient?.field_ikona_mono?.uri?.url
+						color: ingredient?.field_ikona?.uri?.url,
+						mono: ingredient?.field_ikona_mono?.uri?.url
 					}
 				};
 			});

@@ -4,17 +4,37 @@ import IngredientPicks from './picks';
 import ExperimentMatch from './experiment/experimentMatch';
 import IndicatorBackground from './indicatorBackground';
 import Modal from './generic/modal/modal';
+import fetchIngredients, { IIngredientsData } from '../api/fetchIngredients';
+import fetchExperiments, { IExperimentsData } from '../api/fetchExperiments';
 
 interface IProps {
-	possibleIngredients: IIngredientData[]
-	experiments: IExperimentData[]
 }
 
 const App: React.FC<IProps> = (props) => {
 
+	const [experiments, setExperiments] = React.useState([] as IExperimentsData[]);
+
+	React.useEffect(() => {
+		const updateExperiments = async () => {
+			const experiments = await fetchExperiments('all');
+			setExperiments(experiments);
+		};
+		updateExperiments();
+	}, []);
+	
+	const [ingredients, setIngredients] = React.useState([] as IIngredientsData[]);
+
+	React.useEffect(() => {
+		const updateIngredients = async () => {
+			const ingredients = await fetchIngredients('all');
+			setIngredients(ingredients);
+		};
+		updateIngredients();
+	}, []);
+
 	const picksDispatch = React.useCallback(
-		createPicksReducer(props),
-		[props]
+		createPicksReducer(ingredients),
+		[experiments, ingredients]
 	);
 
 	const [picks, managePicks] = React.useReducer(
@@ -44,13 +64,13 @@ const App: React.FC<IProps> = (props) => {
 
 		<ExperimentMatch
 			picks={picks}
-			experiments={props.experiments}
+			experiments={experiments}
 			reportCallback={setMatchStatus}
 		/>
 		{
 			(picks.length < 5) ?
 				<IngredientChoice
-					ingredients={props.possibleIngredients}
+					ingredients={ingredients}
 					callback={id => managePicks({ type: 'add', id })}
 				/>
 				:
@@ -72,15 +92,15 @@ const App: React.FC<IProps> = (props) => {
 	</>;
 };
 
-const createPicksReducer = (props: IProps) => {
+const createPicksReducer = (ingredients: IIngredientsData[]) => {
 	return (
-		state: IIngredientData[],
+		state: IIngredientsData[],
 		action: IManagePickAction['remove' | 'add' | 'clear']
-	): IIngredientData[] => {
+	): IIngredientsData[] => {
 
 		switch (action.type) {
 			case 'add':
-				return [...state, props.possibleIngredients.find(({ id }) => id === action.id)];
+				return [...state, ingredients.find(({ id }) => id === action.id)];
 			case 'remove':
 				state.splice(action.index, 1);
 				return [...state];

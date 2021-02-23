@@ -1,16 +1,16 @@
 import React = require('react');
-import { IExperimentData } from '../app';
 import Modal from '../generic/modal/modal';
 import Markdown from 'markdown-to-jsx';
 import TimedButton from './TimedButton';
+import { IExperimentsData } from '../../api/fetchExperiments';
 
 interface IProps {
-	data: IExperimentData
+	data: IExperimentsData
 }
 
 const ExperimentDisplay: React.FC<IProps> = (props) => {
 
-	const [activePage, setActivePage] = React.useState(props.data.instruction);
+	const [activePage, setActivePage] = React.useState(props.data.steps.join('/n'));
 	const [wasOpened, setWasOpened] = React.useState(false);
 
 	return <div onClick={() => setWasOpened(true)}>
@@ -18,8 +18,8 @@ const ExperimentDisplay: React.FC<IProps> = (props) => {
 			buttonSymbol={props.data.name}
 			className="experiment-button">
 			<button
-				onClick={() => setActivePage(props.data.instruction)}
-				className={activePage === props.data.instruction ? 'active' : ''}
+				onClick={() => setActivePage(props.data.steps.join('/n'))}
+				className={activePage === props.data.steps.join('/n') ? 'active' : ''}
 			>
 				Instrukcja
 			</button>
