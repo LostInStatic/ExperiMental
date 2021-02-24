@@ -1,9 +1,9 @@
 import React = require('react');
-import Ingredient from '../ingredient';
-import { IIngredientData } from '../app';
+import { IIngredientsData } from '../../api/fetchIngredients';
+import Ingredient from './ingredient';
 
 interface IProps {
-	ingredients: IIngredientData[],
+	ingredients: IIngredientsData[],
 	callback: (id: string) => void
 }
 
@@ -15,7 +15,7 @@ const IngredientChoice: React.FC<IProps> = (props) => {
 	</div>;
 };
 
-const listIngredients = (list: IIngredientData[], callback: (id: string) => void) => {
+const listIngredients = (list: IIngredientsData[], callback: (id: string) => void) => {
 	return list.map((ingredientData) => {
 		return <Ingredient
 			key={ingredientData.id}
