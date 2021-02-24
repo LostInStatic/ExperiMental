@@ -2,7 +2,7 @@ import React = require('react');
 import './modal.scss';
 
 interface IProps {
-	buttonSymbol: string
+	buttonSymbol: React.ReactNode|string
 	className?: string
 }
 
