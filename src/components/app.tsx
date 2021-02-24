@@ -5,6 +5,7 @@ import ExperimentMatch from './experiment/experimentMatch';
 import IndicatorBackground from './indicatorBackground';
 import fetchIngredients, { IIngredientsData } from '../api/fetchIngredients';
 import fetchExperiments, { IExperimentsData } from '../api/fetchExperiments';
+import MainMenu from './generic/mainMenu/mainMenu';
 
 interface IProps {
 }
@@ -48,9 +49,11 @@ const App: React.FC<IProps> = (props) => {
 	});
 
 	return <>
-		{/* <Modal buttonSymbol="☰" class="menu">
-			<a href="#">just a test</a>
-		</Modal> */}
+		<MainMenu>
+			<button>just a test</button>
+			<button>just a test</button>
+			<a href="#">just a test 2</a>
+		</MainMenu>
 		<div className="picks-indicator-wrapper">
 			<IndicatorBackground
 				experimentMatchStatus={matchStatus}
