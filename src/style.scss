@@ -1,16 +1,19 @@
 $ingredient-color: green;
-$button-color: hsl(91, 37%, 61%);
+$button-color: #ff6363;
 $complimentary-color: adjust-color($button-color, $hue: -120);
 $positive-color: hsl(128, 80%, 60%);
 $neutral-color: hsl(56, 80%, 60%);
 $negative-color: #f20f35;
-$background-wheel: #385fae;
+$background-primary-blue: #385fae;
 $background-offwhite: #eff3f6;
 
 $ingredient-size: 48px;
 $ingredient-size-smaller: 30px;
-$ingredient-picks-height: 350px;
+$ingredient-picks-height: 300px;
 $ingredient-picks-height-smaller: 225px;
+
+$ingredient-pick-size-factor: 0.16;
+$ingredient-choice-size-factor: 0.21466666;
 
 @mixin resize-smaller {
 	@media (max-width: 350px), (max-height: 600px) {
@@ -22,22 +25,20 @@ $ingredient-picks-height-smaller: 225px;
 	max-width: 700px;
 }
 
-@mixin ingredient {
-	width: 0.21466666 * $ingredient-picks-height;
-	height: 0.21466666 * $ingredient-picks-height;
+/// @param {Float} $factor
+@mixin ingredientWidth($factor) {
+	width: $factor * $ingredient-picks-height;
 	@include resize-smaller(){
-		width: 0.21466666 * $ingredient-picks-height-smaller;
-		height: 0.21466666* $ingredient-picks-height-smaller;
+		width: $factor * $ingredient-picks-height-smaller;
 	}
-	min-width: 40px;
-	min-height: 40px;
-	margin: 0.5em;
-	color: #000;
-	font-size: 16px;
-	word-wrap: break-word;
-	border-radius: 1em;
-	flex-shrink: 0;
-	padding: 0;
+}
+
+/// @param {Float} $factor
+@mixin ingredientHeight($factor) {
+	height: $factor * $ingredient-picks-height;
+	@include resize-smaller(){
+		height: $factor* $ingredient-picks-height-smaller;
+	}
 }
 
 /// Mixin to place items on a circle
@@ -104,7 +105,7 @@ button {
 
 .picks-indicator-wrapper {
 	position: relative;
-	background-color: $background-wheel;
+	background-color: $background-primary-blue;
 }
 
 .ingredient-picks {
@@ -121,25 +122,21 @@ button {
 }
 
 .picks-container {
-	@include on-circle($item-count: 5, $circle-size: ($ingredient-picks-height * 0.4), $item-size: $ingredient-size);
+	@include on-circle($item-count: 5, $circle-size: ($ingredient-picks-height * 0.4), $item-size: $ingredient-picks-height * $ingredient-pick-size-factor);
 
 	@include resize-smaller() {
 		@include on-circle(
 			$item-count: 5,
 			$circle-size: ($ingredient-picks-height-smaller * 0.4),
-			$item-size: $ingredient-size-smaller
+			$item-size: $ingredient-picks-height-smaller * $ingredient-pick-size-factor
 		);
 	}
 }
 
 .pick {
 	box-sizing: border-box;
-	width: $ingredient-size;
-	height: $ingredient-size;
-	@include resize-smaller() {
-		width: $ingredient-size-smaller;
-		height: $ingredient-size-smaller;
-	}
+	@include ingredientHeight($factor: $ingredient-pick-size-factor);
+	@include ingredientWidth($factor: $ingredient-pick-size-factor);
 	color: white;
 	font-size: 12px;
 	padding: 0;
@@ -158,13 +155,61 @@ button {
 	padding: 1em 0;
 	@include content-width-limit();
 	margin: auto;
+	flex-grow: 0;
+	overflow-y: auto;
 }
 
 .ingredient {
-	@include ingredient;
+	min-width: 40px;
+	min-height: 40px;
+	margin: 0.5em;
+	color: #000;
+	font-size: 16px;
+	word-wrap: break-word;
+	border-radius: 1em;
 	flex-shrink: 0;
+	padding: 0;
 	background-color: transparent;
+	text-align: center;
 }
+
+.ingredient-icon.color{
+	@include ingredientHeight($factor: $ingredient-choice-size-factor);
+	@include ingredientWidth($factor: $ingredient-choice-size-factor);
+}
+
+.ingredient-icon.mono{
+	@include ingredientHeight($factor: $ingredient-pick-size-factor);
+	@include ingredientWidth($factor: $ingredient-pick-size-factor);
+}
+
+.ingredient-icon.placeholder{
+	position: relative;
+	border-radius: 50% 50%;
+	font-size: 120%;
+	@include resize-smaller(){font-size: 100%}
+	font-weight: 700;
+}
+
+.ingredient-icon.placeholder.color {
+	background-color: $background-primary-blue;
+}
+
+.ingredient-icon.placeholder.mono {
+	border: #ffffff dashed 1px;
+	border-radius: 33% 33%;
+}
+
+.ingredient-icon.placeholder div {
+	color: #ffffff;
+	margin: 0;
+	position: absolute;
+	top:50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+
 
 .pick.empty {
 	background-color: darken($button-color, 10);
@@ -242,10 +287,15 @@ button {
 	list-style: none;
 	padding: 0;
 	display: flex;
+	align-items: center;
 	overflow-x: auto;
 	height: 3em;
 	margin: 0;
-	// justify-content: center;
+	flex-shrink: 0;
+	flex-grow: 1;
+	background-color: #ffffff;
+	width: 100%;
+	max-height: 5em;
 }
 
 .experiments-list > li {
@@ -263,7 +313,6 @@ button {
 
 
 button.experiment-button {
-	background-color: #ff6363;
 	color: #ffffff;
 	box-sizing: border-box;
 	height: 3em;
@@ -271,7 +320,7 @@ button.experiment-button {
 }
 
 button.active {
-	background-color: adjust-color($button-color, $lightness: -20);
+	display: none;
 }
 
 .timer-button {
