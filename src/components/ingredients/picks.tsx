@@ -1,9 +1,9 @@
 import React = require('react');
-import { IIngredientData } from './app';
-import CloseIndicator from './generic/closeIndicator/closeIndicator';
+import { IIngredientsData } from '../../api/fetchIngredients';
+import IngredientIcon from './IngredientIcon';
 
 interface IProps {
-	picked: IIngredientData[],
+	picked: IIngredientsData[],
 	removePickCallback: (index: number) => void
 }
 
@@ -38,9 +38,11 @@ const createPicks = (props: IProps) => {
 						key={index.toString()}
 						onClick={() => { props.removePickCallback(index); }}
 					>
-						<img src={
-							element.iconUrls.mono
-						} alt="" />
+						<IngredientIcon
+							ingredientName={props.picked[index].name}
+							iconUrl={props.picked[index].iconUrls.mono}
+							type="mono"
+						/>
 					</button>
 				</div>
 

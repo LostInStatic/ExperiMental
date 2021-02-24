@@ -1,9 +1,8 @@
 import React = require('react');
-import IngredientChoice from './choice/choice';
-import IngredientPicks from './picks';
+import IngredientChoice from './ingredients/choice';
+import IngredientPicks from './ingredients/picks';
 import ExperimentMatch from './experiment/experimentMatch';
 import IndicatorBackground from './indicatorBackground';
-import Modal from './generic/modal/modal';
 import fetchIngredients, { IIngredientsData } from '../api/fetchIngredients';
 import fetchExperiments, { IExperimentsData } from '../api/fetchExperiments';
 
