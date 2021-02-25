@@ -4,7 +4,7 @@ import React = require('react')
 import './style.scss';
 import App from './components/app';
 import getExperiments from './ExperimentsList';
-import getData from './getData';
+import fetchRooms from './api/fetchRooms';
 
 const experiments = getExperiments();
 
@@ -37,69 +37,10 @@ registerServiceWorker();
 console.info('devbuild');
 /// #endif
 
+fetchRooms('all').then(d => console.log(d));
 
-
-const possibleIngredientsFallback = [
-	{
-		id: 'water',
-		name: 'Woda',
-		iconUrls: {
-			mono: iconWaterM,
-			color: iconWaterC
-		}
-	},
-	{
-		id: 'paper',
-		name: 'Papier',
-		iconUrls: {
-			mono: iconPapM,
-			color: iconPapC
-		}
-	},
-	{
-		id: 'balloon',
-		name: 'Balon',
-		iconUrls: {
-			mono: iconBalloonM,
-			color: iconBalloonC
-		}
-	},
-	{
-		id: 'pet-bottle',
-		name: 'Butelka',
-		iconUrls: {
-			mono: iconSBottM,
-			color: iconBottC
-		}
-	},
-	{
-		id: 'scissors',
-		name: 'Nożyczki',
-		iconUrls: {
-			mono: iconScissM,
-			color: iconScissC
-		}
-	}
-];
-
-getData('./products').then(data => {
-	let possibleIngredients = [];
-	try {
-		possibleIngredients = data._embedded.products;
-		if (possibleIngredients.length === 0) {
-			throw 'Ingredients empty!';
-		}
-	} catch (error) {
-		console.error('Invalid ingredients list, using fallback.\n', error);
-		possibleIngredients = possibleIngredientsFallback;
-	}
-	ReactDOM.render(
-		<App
-		/>,
-		document.getElementById('root')
-	);
-
-});
-
-
-
+ReactDOM.render(
+	<App
+	/>,
+	document.getElementById('root')
+);

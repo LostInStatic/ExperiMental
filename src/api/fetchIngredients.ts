@@ -13,7 +13,7 @@ export interface IIngredientsData {
 }
 
 const fetchIngredients = async (
-	ids?: TIdsOrAll
+	ids: TIdsOrAll
 ): Promise<IIngredientsData[]> => {
 	const url = APIURLS.ingredients + addAPIParameters({
 		includeIcons: true,
@@ -32,10 +32,6 @@ const fetchIngredients = async (
 					}
 				};
 			});
-
-		if (ingredients.length === 0) {
-			throw 'Ingredient list empty!';
-		}
 		return ingredients;
 
 	} catch (error) {

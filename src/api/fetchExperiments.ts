@@ -23,6 +23,9 @@ const fetchExperiments = async (
 			specificIds: ids
 		})
 	);
+	console.log(APIURLS.experiments + addAPIParameters({
+		specificIds: ids
+	}));
 	let experiments = dataObject.data.map(experiment => {
 		return {
 			id: experiment.id,
@@ -35,9 +38,6 @@ const fetchExperiments = async (
 
 		};
 	});
-	if (experiments.length === 0) {
-		throw 'Experiment list empty!';
-	}
 	return experiments;
 };
 
