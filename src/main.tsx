@@ -37,10 +37,13 @@ registerServiceWorker();
 console.info('devbuild');
 /// #endif
 
-fetchRooms('all').then(d => console.log(d));
-
-ReactDOM.render(
-	<App
-	/>,
-	document.getElementById('root')
+fetchRooms(['d12a373c-ab08-458b-ba23-241b8a8343ef']).then(
+	(rooms) => {
+		ReactDOM.render(
+			<App
+				defaultRoom={rooms[0]}
+			/>,
+			document.getElementById('root')
+		);
+	}
 );

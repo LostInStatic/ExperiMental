@@ -7,7 +7,7 @@ interface IProps {
 
 const Dropdown: React.FC<IProps> = (props) => {
 
-	const [expanded, toggle] = React.useReducer(manageToggle, false);
+	const [expanded, toggle] = React.useState(manageToggle, false);
 
 	return <div className="dropdown">
 		<button
