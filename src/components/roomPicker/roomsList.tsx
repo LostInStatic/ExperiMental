@@ -1,5 +1,6 @@
 import React = require('react');
 import fetchRooms, { IRoomsData } from '../../api/fetchRooms';
+import Modal from '../generic/modal/modal';
 
 interface IProps {
 	callback: (room: IRoomsData) => void
@@ -7,6 +8,7 @@ interface IProps {
 
 const RoomList: React.FC<IProps> = (props) => {
 
+	const [modalDisplayed, setModalDisplayed] = React.useState(false);
 	const [rooms, setRooms] = React.useState([] as IRoomsData[]);
 
 	React.useEffect(() => {
@@ -17,15 +19,22 @@ const RoomList: React.FC<IProps> = (props) => {
 		updateRooms();
 	}, []);
 
-	return <div
-		className="ingredient-choice">
-		{listRooms(rooms, props.callback)}
-	</div>;
+	return <Modal
+		buttonSymbol="Wybierz pokój"
+		externalState={
+			{
+				displayed: modalDisplayed,
+				manageExternalState: setModalDisplayed
+			}
+		}
+		className="room-choice">
+		{listRooms(rooms, props.callback, () => setModalDisplayed(false))}
+	</Modal>;
 };
 
 export default RoomList;
 
-const listRooms = (list: IRoomsData[], callback: (id: IRoomsData) => void) => {
+const listRooms = (list: IRoomsData[], callback: (id: IRoomsData) => void, closeModal: ()=>void) => {
 	return <ul>
 		{
 			list.map(roomData => {
@@ -34,6 +43,7 @@ const listRooms = (list: IRoomsData[], callback: (id: IRoomsData) => void) => {
 						className="choose-room"
 						onClick={() => {
 							callback(roomData);
+							closeModal();
 						}}
 					>{roomData.name}</button>
 					<p>{roomData.description}</p>

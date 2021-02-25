@@ -8,14 +8,16 @@ import fetchExperiments, { IExperimentsData } from '../api/fetchExperiments';
 import MainMenu from './generic/mainMenu/mainMenu';
 import Modal from './generic/modal/modal';
 import RoomList from './roomPicker/roomsList';
+import fetchRooms, { IRoomsData } from '../api/fetchRooms';
 
 interface IProps {
+	defaultRoom: IRoomsData
 }
 
-const App: React.FC<IProps> = (props) => {
 
-	const [experimentIds, setExperimentIds] = React.useState([]);
-	const [ingredientIds, setIngredientIds] = React.useState([]);
+const App: React.FC<IProps> = (props) => {
+	const [experimentIds, setExperimentIds] = React.useState(props.defaultRoom.experimentIds);
+	const [ingredientIds, setIngredientIds] = React.useState(props.defaultRoom.ingredientIds);
 
 	const [experiments, setExperiments] = React.useState([] as IExperimentsData[]);
 
@@ -55,18 +57,15 @@ const App: React.FC<IProps> = (props) => {
 
 	return <>
 		<MainMenu>
-			<Modal
-				buttonSymbol="Wybierz pokój"
-			>
-				<RoomList
-					callback={
-						room => {
-							setExperimentIds(room.experimentIds);
-							setIngredientIds(room.ingredientIds);
-						}
+
+			<RoomList
+				callback={
+					room => {
+						setExperimentIds(room.experimentIds);
+						setIngredientIds(room.ingredientIds);
 					}
-				/>
-			</Modal>
+				}
+			/>
 		</MainMenu>
 		<div className="picks-indicator-wrapper">
 			<IndicatorBackground
