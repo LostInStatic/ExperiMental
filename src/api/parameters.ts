@@ -25,7 +25,7 @@ export default addAPIParameters;
 
 const idsToParameters = (ids: string[]) => {
 	const idFilters = ids.map(
-		id => `filter[id-filter][condition][value][1]=${id}`
+		(id, index) => `filter[id-filter][condition][value][${index + 1}]=${id}`
 	).join('&');
 
 	return `

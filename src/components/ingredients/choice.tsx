@@ -16,6 +16,8 @@ const IngredientChoice: React.FC<IProps> = (props) => {
 };
 
 const listIngredients = (list: IIngredientsData[], callback: (id: string) => void) => {
+	if (!list) return <div></div>;
+	
 	return list.map((ingredientData) => {
 		return <Ingredient
 			key={ingredientData.id}

@@ -6,31 +6,36 @@ import IndicatorBackground from './indicatorBackground';
 import fetchIngredients, { IIngredientsData } from '../api/fetchIngredients';
 import fetchExperiments, { IExperimentsData } from '../api/fetchExperiments';
 import MainMenu from './generic/mainMenu/mainMenu';
+import Modal from './generic/modal/modal';
+import RoomList from './roomPicker/roomsList';
 
 interface IProps {
 }
 
 const App: React.FC<IProps> = (props) => {
 
+	const [experimentIds, setExperimentIds] = React.useState([]);
+	const [ingredientIds, setIngredientIds] = React.useState([]);
+
 	const [experiments, setExperiments] = React.useState([] as IExperimentsData[]);
 
 	React.useEffect(() => {
 		const updateExperiments = async () => {
-			const experiments = await fetchExperiments('all');
+			const experiments = await fetchExperiments(experimentIds);
 			setExperiments(experiments);
 		};
 		updateExperiments();
-	}, []);
-	
+	}, [experimentIds]);
+
 	const [ingredients, setIngredients] = React.useState([] as IIngredientsData[]);
 
 	React.useEffect(() => {
 		const updateIngredients = async () => {
-			const ingredients = await fetchIngredients('all');
+			const ingredients = await fetchIngredients(ingredientIds);
 			setIngredients(ingredients);
 		};
 		updateIngredients();
-	}, []);
+	}, [ingredientIds]);
 
 	const picksDispatch = React.useCallback(
 		createPicksReducer(ingredients),
@@ -50,9 +55,18 @@ const App: React.FC<IProps> = (props) => {
 
 	return <>
 		<MainMenu>
-			<button>just a test</button>
-			<button>just a test</button>
-			<a href="#">just a test 2</a>
+			<Modal
+				buttonSymbol="Wybierz pokój"
+			>
+				<RoomList
+					callback={
+						room => {
+							setExperimentIds(room.experimentIds);
+							setIngredientIds(room.ingredientIds);
+						}
+					}
+				/>
+			</Modal>
 		</MainMenu>
 		<div className="picks-indicator-wrapper">
 			<IndicatorBackground
