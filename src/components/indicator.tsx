@@ -1,5 +1,4 @@
 import React = require('react');
-import Dropdown from '../components/generic/dropdown/dropdown';
 
 interface IProps {
 	state: 'good'|'bad'|'neutral'
