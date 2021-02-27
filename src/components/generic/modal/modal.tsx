@@ -1,41 +1,51 @@
 import React = require('react');
 import './modal.scss';
+import { createPortal } from 'react-dom';
 
 interface IProps {
 	buttonSymbol: React.ReactNode | string
 	className?: string
 	externalState?: {
 		displayed: boolean
-		manageExternalState: (state:boolean) => void
+		manageExternalState: (state: boolean) => void
 	}
 
 }
 
 const Modal: React.FC<IProps> = (props) => {
 
-	const [displayed, toggle] = props.externalState ?
+	const [displayed, setDisplayed] = props.externalState ?
 		[props.externalState.displayed, props.externalState.manageExternalState] :
 		React.useState(false);
+
+	const modal = <div className={`modal_box ${props.className || ''} ${(displayed ? '' : 'collapsed')}`}>
+		<button
+			className='modal_box-close'
+			onClick={() => setDisplayed(false)}
+		>
+			✖
+		</button>
+		<div
+			className='modal_box-content'
+			onClick={e => e.stopPropagation()}
+			
+		>
+			{props.children}
+		</div>
+
+	</div>;
 
 	return <>
 		<button
 			className={props.className}
-			onClick={() => toggle(true)}
+			onClick={() => setDisplayed(true)}
 		>
 			{props.buttonSymbol}
 		</button>
-		<div className={`modal_box ${props.className || ''} ${(displayed ? '' : 'collapsed')}`}>
-			<button
-				className='modal_box-close'
-				onClick={() => toggle(false)}
-			>
-				✖
-			</button>
-			<div className='modal_box-content'>
-				{props.children}
-			</div>
+		{
+			createPortal(modal, document.getElementById('root'))
+		}
 
-		</div>
 	</>;
 };
 
