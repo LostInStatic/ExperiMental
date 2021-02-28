@@ -106,13 +106,13 @@ h2 {
 
 button {
 	box-sizing: border-box;
-	padding: 1em;
+	padding: 1em 2em;
 	font-family: inherit;
 	text-align: center;
 	background-color: $button-color;
 	color: #ffffff;
 	border: 0;
-	border-radius: 1em;
+	border-radius: 3em;
 	cursor: pointer;
 	font-weight: 500;
 }
@@ -327,10 +327,9 @@ button {
 }
 
 
-button.experiment-button {
+button.experiment {
 	color: #ffffff;
 	box-sizing: border-box;
-	height: 3em;
 	font-size: 12px;
 }
 
@@ -380,4 +379,14 @@ button.active {
 
 ol.instruction li {
 	margin: .67em 0;
+}
+
+.room-choice .modal_box-content {
+	background: $background-primary-blue;
+	color: #ffffff;
+}
+
+.room-choice .modal_box-content, .experiment.explanation .modal_box-content {
+	background: $background-primary-blue;
+	color: #ffffff;
 }
