@@ -193,6 +193,12 @@ button {
 	@include ingredientWidth($factor: $ingredient-choice-size-factor);
 }
 
+.intro-page .ingredient-icon.color{
+	@include ingredientHeight($factor: $ingredient-choice-size-factor * 0.9);
+	@include ingredientWidth($factor: $ingredient-choice-size-factor * 0.9);
+	margin: 0.2em;
+}
+
 .ingredient-icon.mono{
 	@include ingredientHeight($factor: $ingredient-pick-size-factor);
 	@include ingredientWidth($factor: $ingredient-pick-size-factor);
@@ -381,12 +387,12 @@ ol.instruction li {
 	margin: .67em 0;
 }
 
-.room-choice .modal_box-content {
-	background: $background-primary-blue;
-	color: #ffffff;
-}
 
 .room-choice .modal_box-content, .experiment.explanation .modal_box-content {
 	background: $background-primary-blue;
 	color: #ffffff;
+}
+
+.instruction {
+	padding-left: 1em;
 }

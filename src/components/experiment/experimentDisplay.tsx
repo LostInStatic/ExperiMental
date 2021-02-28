@@ -3,9 +3,12 @@ import Modal from '../generic/modal/modal';
 import TimedButton from './TimedButton';
 import { IExperimentsData } from '../../api/fetchExperiments';
 import parse from 'html-react-parser';
+import { IIngredientsData } from '../../api/fetchIngredients';
+import IngredientIcon from '../ingredients/IngredientIcon';
 
 interface IProps {
-	data: IExperimentsData
+	data: IExperimentsData,
+	ingredients: IIngredientsData[];
 }
 
 const ExperimentDisplay: React.FC<IProps> = (props) => {
@@ -20,26 +23,26 @@ const ExperimentDisplay: React.FC<IProps> = (props) => {
 		<Modal
 			buttonSymbol={props.data.name}
 			className={
-				`experiment ${activePage === frontPage ? 'intro' : 'explanation'
+				`experiment ${activePage.id === frontPage.id ? 'intro-page' : 'explanation'
 				}`
 			}>
 			<button
 				onClick={() => setActivePage(frontPage)}
-				className={activePage === frontPage ? 'active' : ''}
+				className={activePage.id === frontPage.id ? 'active' : ''}
 			>
 				⇦ Instrukcja
 			</button>
 			<TimedButton
 				experimentID={props.data.id}
 				onClick={() => setActivePage(explanationPage)}
-				className={activePage === explanationPage ? 'active' : ''}
+				className={activePage.id === explanationPage.id ? 'active' : ''}
 				seconds={props.data.explanationDelay || 4}
 				isSuspended={wasOpened ? false : true}
 			>
 				Wyjaśnienie ⇨
 			</TimedButton>
 
-			<div>{parse(activePage)}</div>
+			<div>{activePage.content}</div>
 		</Modal>
 	</div>;
 };
@@ -48,18 +51,38 @@ export default ExperimentDisplay;
 
 
 const assembleIntroPage = (props: IProps) => {
-	return `
-		<h1 class="experiment-title">${props.data.name}</h1>
-		<div class="intro">${props.data.intro}</div>
-		<h2>Instrukcja</h2>
-		<ol class="instruction">${props.data.steps.map(step => `<li>${step}</li>`).join('')}</ol>
-		`;
+	return {
+		id: 'intro-page',
+		content: <>
+			<h1 className="experiment-title">{props.data.name}</h1>
+			<div className="intro">{parse(props.data.intro)}</div>
+			{
+				props.ingredients.map(
+					(ingredient, index) => {
+						return <IngredientIcon
+							ingredientName={ingredient.name}
+							type="color"
+							iconUrl={ingredient.iconUrls.color}
+							key={ingredient.id + index}
+
+						/>;
+					}
+				)
+			}
+			<ul></ul>
+			<h2>Instrukcja</h2>
+			<ol className="instruction">{props.data.steps.map((step, index) => <li key={index}>{step}</li>)}</ol>
+		</>
+	};
 };
 
 const assembleExplanationPage = (props: IProps) => {
-	return `
-		<h1 class="experiment-title">${props.data.name}</h1>
-		<h2>Wyjaśnienie</h2>
-		${props.data.explanation}
-		`;
+	return {
+		id: 'explanation-page',
+		content: <>
+			<h1 className="experiment-title">{props.data.name}</h1>
+			<h2>Wyjaśnienie</h2>
+			{ parse(props.data.explanation)}
+		</>
+	};
 };

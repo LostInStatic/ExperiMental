@@ -23,13 +23,13 @@ const ExperimentMatch: React.FC<IProps> = (props) => {
 	}, [props.picks]);
 
 	return <ul className="experiments-list">
-		{match.experiments.map(createExperiment)}
+		{match.experiments.map(experiment => createExperiment(experiment, props.picks))}
 	</ul>;
 };
 
-const createExperiment = (experiment: IExperimentsData) => {
+const createExperiment = (experiment: IExperimentsData, picks: IIngredientsData[]) => {
 	return <li key={experiment.id}>
-		<ExperimentDisplay data={experiment} />
+		<ExperimentDisplay data={experiment} ingredients={picks} />
 	</li>;
 };
 
