@@ -396,3 +396,17 @@ ol.instruction li {
 .instruction {
 	padding-left: 1em;
 }
+
+.arrow-button svg {
+	height: 1em;
+	position: relative;
+	top: 0.2em;
+	margin-left: 0.5em;
+	margin-right: -0.5em;
+}
+
+.explanation .arrow-button svg {
+	transform: rotate(180deg);
+	margin-left: -0.5em;
+	margin-right: 0.5em;
+}

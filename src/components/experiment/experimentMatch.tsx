@@ -1,7 +1,7 @@
 import React = require('react');
 import { IExperimentsData } from '../../api/fetchExperiments';
 import { IIngredientsData } from '../../api/fetchIngredients';
-import { IExperimentData, IExperimentMatchState, IIngredientData } from '../app';
+import { IExperimentMatchState} from '../app';
 import ExperimentDisplay from './experimentDisplay';
 
 interface IProps {
