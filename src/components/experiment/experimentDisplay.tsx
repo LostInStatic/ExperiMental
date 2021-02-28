@@ -5,6 +5,8 @@ import { IExperimentsData } from '../../api/fetchExperiments';
 import parse from 'html-react-parser';
 import { IIngredientsData } from '../../api/fetchIngredients';
 import IngredientIcon from '../ingredients/IngredientIcon';
+//@ts-expect-error
+import {ReactComponent as IconArrow} from '../../resources/arrow.svg';
 
 interface IProps {
 	data: IExperimentsData,
@@ -28,20 +30,20 @@ const ExperimentDisplay: React.FC<IProps> = (props) => {
 			}>
 			<button
 				onClick={() => setActivePage(frontPage)}
-				className={activePage.id === frontPage.id ? 'active' : ''}
+				className={`intro-page-button arrow-button ${activePage.id === frontPage.id ? 'active' : ''}`}
 			>
-				⇦ Instrukcja
+				<IconArrow/> Instrukcja
 			</button>
 			<TimedButton
 				experimentID={props.data.id}
 				onClick={() => setActivePage(explanationPage)}
-				className={activePage.id === explanationPage.id ? 'active' : ''}
+				className={`explanation-page-button arrow-button ${activePage.id === explanationPage.id ? 'active' : ''}`}
 				seconds={props.data.explanationDelay || 4}
 				isSuspended={wasOpened ? false : true}
 			>
-				Wyjaśnienie ⇨
+				Wyjaśnienie<IconArrow/>
 			</TimedButton>
-
+ 
 			<div>{activePage.content}</div>
 		</Modal>
 	</div>;
