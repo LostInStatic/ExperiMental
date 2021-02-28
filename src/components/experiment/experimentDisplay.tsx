@@ -19,12 +19,15 @@ const ExperimentDisplay: React.FC<IProps> = (props) => {
 	return <div onClick={() => setWasOpened(true)}>
 		<Modal
 			buttonSymbol={props.data.name}
-			className="experiment-button">
+			className={
+				`experiment ${activePage === frontPage ? 'intro' : 'explanation'
+				}`
+			}>
 			<button
 				onClick={() => setActivePage(frontPage)}
 				className={activePage === frontPage ? 'active' : ''}
 			>
-				Instrukcja
+				⇦ Instrukcja
 			</button>
 			<TimedButton
 				experimentID={props.data.id}
@@ -33,7 +36,7 @@ const ExperimentDisplay: React.FC<IProps> = (props) => {
 				seconds={props.data.explanationDelay || 4}
 				isSuspended={wasOpened ? false : true}
 			>
-				Wyjaśnienie
+				Wyjaśnienie ⇨
 			</TimedButton>
 
 			<div>{parse(activePage)}</div>
@@ -45,18 +48,18 @@ export default ExperimentDisplay;
 
 
 const assembleIntroPage = (props: IProps) => {
-	return `<div>
+	return `
 		<h1 class="experiment-title">${props.data.name}</h1>
 		<div class="intro">${props.data.intro}</div>
 		<h2>Instrukcja</h2>
 		<ol class="instruction">${props.data.steps.map(step => `<li>${step}</li>`).join('')}</ol>
-	</div>`;
+		`;
 };
 
 const assembleExplanationPage = (props: IProps) => {
-	return `<div>
+	return `
 		<h1 class="experiment-title">${props.data.name}</h1>
 		<h2>Wyjaśnienie</h2>
 		${props.data.explanation}
-	</div>`;
+		`;
 };
