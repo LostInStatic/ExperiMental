@@ -6,6 +6,8 @@ $neutral-color: hsl(56, 80%, 60%);
 $negative-color: #f20f35;
 $background-primary-blue: #385fae;
 $background-offwhite: #eff3f6;
+$text-color: #060627;
+$experiment-intro-color: #487ebd;
 
 $ingredient-size: 48px;
 $ingredient-size-smaller: 30px;
@@ -81,7 +83,18 @@ body {
 	margin: 0;
 	font-family: "Tomorrow", sans-serif;
 	background-color: #eff3f6;
+	color: $text-color;
 
+}
+
+h1 {
+	line-height: 100%;
+	margin-top: 1em;
+	margin-bottom: .4em;
+}
+
+h2 {
+	font-size: 1.25em;
 }
 
 #root {
@@ -101,6 +114,7 @@ button {
 	border: 0;
 	border-radius: 1em;
 	cursor: pointer;
+	font-weight: 500;
 }
 
 
@@ -164,7 +178,7 @@ button {
 	min-width: 40px;
 	min-height: 40px;
 	margin: 0.5em;
-	color: #000;
+	color: $text-color;
 	font-size: 16px;
 	word-wrap: break-word;
 	border-radius: 1em;
@@ -347,4 +361,23 @@ button.active {
 	border-radius: 0;
 	width: 100%;
 	color: black;
+}
+
+.room-choice ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.intro {
+	color:$experiment-intro-color;
+	font-weight: 500;
+}
+
+.experiment-title {
+	color: $experiment-intro-color;
+}
+
+ol.instruction li {
+	margin: .67em 0;
 }

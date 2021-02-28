@@ -10,7 +10,8 @@ interface IProps {
 
 const ExperimentDisplay: React.FC<IProps> = (props) => {
 
-	const frontPage = assembleFrontPage(props);
+	const frontPage = assembleIntroPage(props);
+	const explanationPage = assembleExplanationPage(props);
 
 	const [activePage, setActivePage] = React.useState(frontPage);
 	const [wasOpened, setWasOpened] = React.useState(false);
@@ -27,8 +28,8 @@ const ExperimentDisplay: React.FC<IProps> = (props) => {
 			</button>
 			<TimedButton
 				experimentID={props.data.id}
-				onClick={() => setActivePage(props.data.explanation)}
-				className={activePage === props.data.explanation ? 'active' : ''}
+				onClick={() => setActivePage(explanationPage)}
+				className={activePage === explanationPage ? 'active' : ''}
 				seconds={props.data.explanationDelay || 4}
 				isSuspended={wasOpened ? false : true}
 			>
@@ -43,10 +44,19 @@ const ExperimentDisplay: React.FC<IProps> = (props) => {
 export default ExperimentDisplay;
 
 
-const assembleFrontPage = (props: IProps) => {
+const assembleIntroPage = (props: IProps) => {
 	return `<div>
-		<h1>${props.data.name}</h1>
-		<p>${props.data.intro}</p>
-		<ol>${props.data.steps.map(step => `<li>${step}</li>`).join('')}</ol>
+		<h1 class="experiment-title">${props.data.name}</h1>
+		<div class="intro">${props.data.intro}</div>
+		<h2>Instrukcja</h2>
+		<ol class="instruction">${props.data.steps.map(step => `<li>${step}</li>`).join('')}</ol>
+	</div>`;
+};
+
+const assembleExplanationPage = (props: IProps) => {
+	return `<div>
+		<h1 class="experiment-title">${props.data.name}</h1>
+		<h2>Wyjaśnienie</h2>
+		${props.data.explanation}
 	</div>`;
 };
