@@ -17,8 +17,8 @@
 
 .modal_box-close {
 	position: absolute;
-	top: 3%;
-	right: 4%;
+	top: 1em;
+	right: 1em;
 	box-sizing: border-box;
 	width: 2em;
 	height: 2em;
@@ -28,13 +28,14 @@
 }
 
 .modal_box-content {
-	width: 90%;
-	padding: 1em;
-	margin: 1% auto;
+	width: 100%;
+	padding: 1.5em;
+	padding-right: 1.7em;
 	overflow-y: auto;
 	font-size: 1rem;
 	line-height: 1.5em;
 	text-align: left;
 	background-color: #FFF;
 	border-radius: 1em;
+	box-sizing: border-box;
 }
