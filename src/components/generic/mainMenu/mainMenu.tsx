@@ -2,7 +2,7 @@ import React = require('react');
 import Modal from '../modal/modal';
 import './mainMenu.scss';
 //@ts-expect-error
-import { ReactComponent as Icon } from './menu-icon.svg';
+import { ReactComponent as Icon } from '../../../resources/planet.svg';
 
 interface IProps {
 
