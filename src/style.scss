@@ -164,33 +164,51 @@ button {
 }
 
 .ingredient-choice {
-	flex-wrap: wrap;
-	justify-content: center;
-	display: flex;
-	padding: 1em 0;
+	flex-shrink: 0;
+	display: grid;
+	grid-template-columns: repeat(6, 1fr);
+	grid-template-rows: repeat();
+	grid-auto-rows: min-content;
+	align-items: start;
 	@include content-width-limit();
 	margin: auto;
-	flex-grow: 0;
 	overflow-y: auto;
+	padding: 1em 2em 0;
+	box-sizing: border-box;
+	width: 100%;
+	height: $ingredient-picks-height;
+	@include resize-smaller(){
+		height: $ingredient-picks-height-smaller;
+	}
 }
 
 .ingredient {
+	grid-column: span 2;
 	min-width: 40px;
 	min-height: 40px;
-	margin: 0.5em;
+	margin: 0.5em 0.5em;
 	color: $text-color;
 	font-size: 16px;
-	word-wrap: break-word;
 	border-radius: 1em;
 	flex-shrink: 0;
+	flex-grow: 0;
 	padding: 0;
 	background-color: transparent;
 	text-align: center;
 }
 
+.ingredient:nth-child(5n+4) {
+	grid-column: 2 / 4;
+}
+
+.ingredient:nth-child(5n+5) {
+	grid-column: 4 / 6;
+}
+
 .ingredient-icon.color{
 	@include ingredientHeight($factor: $ingredient-choice-size-factor);
 	@include ingredientWidth($factor: $ingredient-choice-size-factor);
+	vertical-align: middle;
 }
 
 .intro-page .ingredient-icon.color{
@@ -210,6 +228,7 @@ button {
 	font-size: 120%;
 	@include resize-smaller(){font-size: 100%}
 	font-weight: 700;
+	margin: auto;
 }
 
 .ingredient-icon.placeholder.color {
@@ -409,4 +428,8 @@ ol.instruction li {
 	transform: rotate(180deg);
 	margin-left: -0.5em;
 	margin-right: 0.5em;
+}
+
+.ingredient-label {
+	margin: 0.5em -50% 0;
 }
