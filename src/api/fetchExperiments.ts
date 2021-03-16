@@ -10,7 +10,8 @@ export interface IExperimentsData {
 	intro: string,
 	steps: string[],
 	explanationDelay: number,
-	explanation: string
+	explanation: string,
+	references: string
 
 }
 
@@ -34,7 +35,8 @@ const fetchExperiments = async (
 			intro: experiment.attributes.field_wstep.processed,
 			steps: experiment.attributes.field_instrukcja,
 			explanationDelay: experiment.attributes.field_opoznienie_wyjasnienia,
-			explanation: experiment.attributes.field_wyjasnienie.processed
+			explanation: experiment.attributes.field_wyjasnienie.processed,
+			references: experiment.attributes.field_odnosniki?.processed
 
 		};
 	});
