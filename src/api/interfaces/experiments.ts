@@ -1,11 +1,11 @@
 export interface IAPIExperiments {
     jsonapi: Jsonapi;
-    data:    Datum[];
+    data:    IAPIExperimentsDatum[];
     links:   DatumLinks;
 }
 
-export interface Datum {
-    type:          string;
+export interface IAPIExperimentsDatum {
+    type:          FluffyType;
     id:            string;
     links:         DatumLinks;
     attributes:    Attributes;
@@ -15,34 +15,44 @@ export interface Datum {
 export interface Attributes {
     drupal_internal__nid:          number;
     drupal_internal__vid:          number;
-    langcode:                      string;
-    revision_timestamp:            Date;
+    langcode:                      Langcode;
+    revision_timestamp:            string;
     revision_log:                  null;
     status:                        boolean;
     title:                         string;
-    created:                       Date;
-    changed:                       Date;
+    created:                       string;
+    changed:                       string;
     promote:                       boolean;
     sticky:                        boolean;
     default_langcode:              boolean;
-    revision_translation_affected: boolean;
+    revision_translation_affected: boolean | null;
     path:                          Path;
     field_instrukcja:              string[];
+    field_odnosniki:               Field | null;
     field_opoznienie_wyjasnienia:  number;
-    field_wstep:                   FieldW;
-    field_wyjasnienie:             FieldW;
+    field_wstep:                   Field;
+    field_wyjasnienie:             Field;
 }
 
-export interface FieldW {
+export interface Field {
     value:     string;
-    format:    string;
+    format:    Format;
     processed: string;
+}
+
+export enum Format {
+    PlainText = 'plain_text',
+    Tekst = 'tekst',
+}
+
+export enum Langcode {
+    Pl = 'pl',
 }
 
 export interface Path {
     alias:    null;
     pid:      null;
-    langcode: string;
+    langcode: Langcode;
 }
 
 export interface DatumLinks {
@@ -61,13 +71,22 @@ export interface Relationships {
 }
 
 export interface FieldSkladniki {
-    data:  DAT[];
+    data:  FieldSkladnikiDatum[];
     links: FieldSkladnikiLinks;
 }
 
-export interface DAT {
-    type: string;
-    id:   string;
+export interface FieldSkladnikiDatum {
+    type:  PurpleType;
+    id:    string;
+    meta?: DatumMeta;
+}
+
+export interface DatumMeta {
+    arity: number;
+}
+
+export enum PurpleType {
+    NodeSkladnik = 'node--skladnik',
 }
 
 export interface FieldSkladnikiLinks {
@@ -76,15 +95,29 @@ export interface FieldSkladnikiLinks {
 }
 
 export interface NodeType {
-    data:  DAT;
+    data:  Data;
     links: FieldSkladnikiLinks;
+}
+
+export interface Data {
+    type: DataType;
+    id:   string;
+}
+
+export enum DataType {
+    NodeTypeNodeType = 'node_type--node_type',
+    UserUser = 'user--user',
+}
+
+export enum FluffyType {
+    NodeEksperyment = 'node--eksperyment',
 }
 
 export interface Jsonapi {
     version: string;
-    meta:    Meta;
+    meta:    JsonapiMeta;
 }
 
-export interface Meta {
+export interface JsonapiMeta {
     links: DatumLinks;
 }
