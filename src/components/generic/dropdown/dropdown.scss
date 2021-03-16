@@ -1,18 +1,21 @@
 .dropdown_content.collapsed {
-	display: none;
+	transform: scaleY(0);
 }
 
-.dropdown_arrow {
-	display: inline-block;
-	padding: 3px;
-	border: solid black;
-	border-width: 0 3px 3px 0;
+.dropdown_content {
+	transform: scaleY(1);
+	transform-origin: top center;
+	transition: all 0.5s;
 }
 
-.dropdown_arrow.up {
-	transform: rotate(-135deg);
+.arrow-button svg {
+	transition: all 0.5s ease-in-out;
 }
 
-.down {
-	transform: rotate(45deg);
+.arrow-button.up svg {
+	transform: rotate(-90deg);
+}
+
+.arrow-button.down svg {
+	transform: rotate(90deg);
 }

@@ -5,8 +5,9 @@ import { IExperimentsData } from '../../api/fetchExperiments';
 import parse from 'html-react-parser';
 import { IIngredientsData } from '../../api/fetchIngredients';
 import IngredientIcon from '../ingredients/IngredientIcon';
+import Dropdown from '../generic/dropdown/dropdown';
 //@ts-expect-error
-import {ReactComponent as IconArrow} from '../../resources/arrow.svg';
+import { ReactComponent as IconArrow } from '../../resources/arrow.svg';
 
 interface IProps {
 	data: IExperimentsData,
@@ -32,7 +33,7 @@ const ExperimentDisplay: React.FC<IProps> = (props) => {
 				onClick={() => setActivePage(frontPage)}
 				className={`intro-page-button arrow-button ${activePage.id === frontPage.id ? 'active' : ''}`}
 			>
-				<IconArrow/> Instrukcja
+				<IconArrow /> Instrukcja
 			</button>
 			<TimedButton
 				experimentID={props.data.id}
@@ -41,9 +42,9 @@ const ExperimentDisplay: React.FC<IProps> = (props) => {
 				seconds={props.data.explanationDelay || 4}
 				isSuspended={wasOpened ? false : true}
 			>
-				Wyjaśnienie<IconArrow/>
+				Wyjaśnienie<IconArrow />
 			</TimedButton>
- 
+
 			<div>{activePage.content}</div>
 		</Modal>
 	</div>;
@@ -71,9 +72,15 @@ const assembleIntroPage = (props: IProps) => {
 					}
 				)
 			}
-			<ul></ul>
-			<h2>Instrukcja</h2>
-			<ol className="instruction">{props.data.steps.map((step, index) => <li key={index}>{step}</li>)}</ol>
+			<Dropdown
+				key="intro-dropdown"
+				buttonLabel="Instrukcja"
+			>
+				<ol className="instruction">{
+					props.data.steps.map((step, index) => <li key={index}>{step}</li>)
+				}</ol>
+			</Dropdown>
+
 		</>
 	};
 };
@@ -85,8 +92,18 @@ const assembleExplanationPage = (props: IProps) => {
 			<h1 className="experiment-title">{props.data.name}</h1>
 			<h2>Wyjaśnienie</h2>
 			{ parse(props.data.explanation)}
-			<h2>Odnośniki</h2>
-			{ parse(props.data.references || '')}
+			{
+				props.data.references ?
+					<Dropdown
+						buttonLabel="Odnośniki"
+						key="explanation-dropdown"
+					>
+						{parse(props.data.references)}
+					</Dropdown> 
+					: 
+					''
+			}
+
 		</>
 	};
 };
