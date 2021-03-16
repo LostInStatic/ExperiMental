@@ -85,6 +85,8 @@ const assembleExplanationPage = (props: IProps) => {
 			<h1 className="experiment-title">{props.data.name}</h1>
 			<h2>Wyjaśnienie</h2>
 			{ parse(props.data.explanation)}
+			<h2>Odnośniki</h2>
+			{ parse(props.data.references || '')}
 		</>
 	};
 };
