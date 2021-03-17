@@ -1,6 +1,6 @@
 import React = require('react');
 import './modal.scss';
-import { createPortal } from 'react-dom';
+import ModalBox from './modalBox';
 
 interface IProps {
 	buttonSymbol: React.ReactNode | string
@@ -18,23 +18,6 @@ const Modal: React.FC<IProps> = (props) => {
 		[props.externalState.displayed, props.externalState.manageExternalState] :
 		React.useState(false);
 
-	const modal = <div className={`modal_box ${props.className || ''} ${(displayed ? '' : 'collapsed')}`}>
-		<button
-			className='modal_box-close'
-			onClick={() => setDisplayed(false)}
-		>
-			✖
-		</button>
-		<div
-			className='modal_box-content'
-			onClick={e => e.stopPropagation()}
-			
-		>
-			{props.children}
-		</div>
-
-	</div>;
-
 	return <>
 		<button
 			className={props.className}
@@ -42,10 +25,18 @@ const Modal: React.FC<IProps> = (props) => {
 		>
 			{props.buttonSymbol}
 		</button>
-		{
-			createPortal(modal, document.getElementById('root'))
-		}
-
+		<ModalBox
+			className={props.className}
+			displayed={displayed}
+		>
+			<button
+				className='modal_box-close'
+				onClick={() => setDisplayed(false)}
+			>
+				✖
+			</button>
+			{props.children}
+		</ModalBox>
 	</>;
 };
 
