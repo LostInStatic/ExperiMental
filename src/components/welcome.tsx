@@ -19,16 +19,12 @@ const Welcome: React.FC<IProps> = () => {
 				<ModalBox
 					displayed={true}
 				>
-					Czy chcesz ciostka?
+					
 					<button onClick={() => {
-						Cookies.allow();
-						Cookies.set(COOKIENAME_SEEN, 'true');
+						Cookies.set(COOKIENAME_SEEN, 'true', true);
 						setClosed(true);
 					}}>
-						Tak
-					</button>
-					<button onClick={() => setClosed(true)}>
-						Nie
+						Zaczynamy!
 					</button>
 				</ModalBox>
 		}
