@@ -1,5 +1,5 @@
 import React = require('react');
-import Cookies = require('js-cookie');
+import Cookies from '../../cookiesProvider';
 
 interface IProps {
 	seconds: number
