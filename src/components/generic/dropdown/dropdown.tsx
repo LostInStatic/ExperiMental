@@ -1,6 +1,5 @@
 import React = require('react');
 import './dropdown.scss';
-//@ts-expect-error
 import {ReactComponent as IconArrow} from '../../../resources/arrow.svg';
 
 interface IProps {

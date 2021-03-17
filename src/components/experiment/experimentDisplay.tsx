@@ -6,7 +6,6 @@ import parse from 'html-react-parser';
 import { IIngredientsData } from '../../api/fetchIngredients';
 import IngredientIcon from '../ingredients/IngredientIcon';
 import Dropdown from '../generic/dropdown/dropdown';
-//@ts-expect-error
 import { ReactComponent as IconArrow } from '../../resources/arrow.svg';
 
 interface IProps {
