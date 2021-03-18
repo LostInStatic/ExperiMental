@@ -118,6 +118,11 @@ button {
 	font-weight: 500;
 }
 
+button.centered {
+	display: block;
+	margin: 1em auto;
+}
+
 
 .picks-indicator-wrapper {
 	position: relative;
@@ -418,20 +423,20 @@ button.active {
 }
 
 .intro {
-	color:$experiment-intro-color;
+	// color:$experiment-intro-color;
 	font-weight: 500;
 }
 
-.experiment-title {
-	color: $experiment-intro-color;
-}
+// .experiment-title {
+// 	color: $experiment-intro-color;
+// }
 
 ol.instruction li {
 	margin: .67em 0;
 }
 
 
-.room-choice .modal_box-content, .experiment.explanation .modal_box-content {
+.room-choice .modal_box-content, .experiment .modal_box-content {
 	background: $background-primary-blue;
 	color: #ffffff;
 }
@@ -448,7 +453,7 @@ ol.instruction li {
 	margin-right: -0.5em;
 }
 
-.explanation .arrow-button svg {
+.intro-page-button.arrow-button svg {
 	transform: rotate(180deg);
 	margin-left: -0.5em;
 	margin-right: 0.5em;
@@ -456,4 +461,22 @@ ol.instruction li {
 
 .ingredient-label {
 	margin: 0.5em -50% 0;
+}
+
+.experiment .dropdown_content {
+	background-color: $background-offwhite;
+	margin: 1em -1.5em;
+	padding: 1.5em;
+	color: #060627;
+}
+
+.sponsors {
+	height: 200px;
+	width: 200px;
+}
+
+.girl-gif {
+	display: block;
+	width: 250px;
+	margin: 0 auto 2em;
 }

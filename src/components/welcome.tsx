@@ -21,11 +21,14 @@ const Welcome: React.FC<IProps> = () => {
 				<ModalBox
 					displayed={true}
 				>
-					
-					<button onClick={() => {
-						Cookies.set(COOKIENAME_SEEN, 'true', true);
-						setClosed(true);
-					}}>
+					<Sponsors className="sponsors" />
+					<img className="girl-gif" src={GirlGif} alt="" />
+					<button
+						className="centered"
+						onClick={() => {
+							// just for tests Cookies.set(COOKIENAME_SEEN, 'true', true);
+							setClosed(true);
+						}}>
 						Zaczynamy!
 					</button>
 				</ModalBox>
