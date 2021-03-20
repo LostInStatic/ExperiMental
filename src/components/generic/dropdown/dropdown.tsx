@@ -1,5 +1,4 @@
 import React = require('react');
-import './dropdown.scss';
 import {ReactComponent as IconArrow} from '../../../resources/arrow.svg';
 
 interface IProps {
