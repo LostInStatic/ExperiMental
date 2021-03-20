@@ -1,5 +1,4 @@
 import React = require('react');
-import './closeIndicator.scss';
 
 interface IProps {
 }

@@ -480,3 +480,117 @@ ol.instruction li {
 	width: 250px;
 	margin: 0 auto 2em;
 }
+
+
+
+// Modals
+
+.modal_box {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 900;
+	overflow: auto;
+	background: rgba(0, 0, 0, 0.8);
+	transition: ease-in-out opacity 0.6s, visibility 0.6s;
+	opacity: 1;
+}
+.modal_box.collapsed {
+	opacity: 0;
+	visibility: hidden;
+}
+
+.modal_box-close {
+	position: absolute;
+	top: 1em;
+	right: 1em;
+	box-sizing: border-box;
+	width: 2em;
+	height: 2em;
+	padding: 0;
+	font-size: 1.2rem;
+	z-index: 990;
+}
+
+.modal_box-content {
+	width: 100%;
+	padding: 1.5em;
+	padding-right: 1.7em;
+	overflow-y: auto;
+	font-size: 1rem;
+	line-height: 1.5em;
+	text-align: left;
+	background-color: #FFF;
+	border-radius: 1em;
+	box-sizing: border-box;
+}
+
+// Main menu
+
+.main-menu_button {
+	position: absolute;
+	right: 0.5em;
+	top: 0.5em;
+	z-index: 600;
+	border-radius: 50% 50%;
+	width: 2.5em;
+	height: 2.5em;
+	padding: 0;
+	background: transparent;
+}
+
+.main-menu{
+	position: absolute;
+	transform: translateY(0);
+	z-index: 500;
+	background-color: #fff;
+	width: 100%;
+	padding: 3em 1em;
+	transition: all linear 0.3s;
+	overflow: visible;
+	box-sizing: border-box;
+}
+
+.main-menu.collapsed {
+	transform: translateY(-100%);
+}
+
+
+
+.main-menu ul{
+	list-style: none;
+	margin: 0;
+	padding: 1em;
+}
+
+.main-menu ul li{
+	margin: 0.5em;
+}
+
+// Dropdown
+
+.dropdown_content.collapsed {
+	transform: scaleY(0);
+}
+
+.dropdown_content {
+	transform: scaleY(1);
+	transform-origin: top center;
+	transition: all 0.5s;
+}
+
+.arrow-button svg {
+	transition: all 0.5s ease-in-out;
+}
+
+.arrow-button.up svg {
+	transform: rotate(-90deg);
+}
+
+.arrow-button.down svg {
+	transform: rotate(90deg);
+}
+
+

@@ -1,5 +1,4 @@
 import React = require('react');
-import './mainMenu.scss';
 import { ReactComponent as Icon } from '../../../resources/planet.svg';
 
 interface IProps {

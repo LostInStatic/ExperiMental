@@ -1,5 +1,4 @@
 import React = require('react');
-import './modal.scss';
 import ModalBox from './modalBox';
 
 interface IProps {
