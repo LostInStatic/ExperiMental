@@ -11,6 +11,7 @@ import RoomList from './roomPicker/roomsList';
 import fetchRooms, { IRoomsData } from '../api/fetchRooms';
 import Welcome from './welcome';
 import { ReactComponent as MainMenuIcon } from '../resources/planet.svg';
+import { ReactComponent as AboutIcon } from '../resources/questionMark.svg';
 
 interface IProps {
 	defaultRoom: IRoomsData
@@ -70,7 +71,7 @@ const App: React.FC<IProps> = (props) => {
 				}
 			/>
 		</Menu>
-		<Menu buttonLabel={MainMenuIcon} className="about" key="about">
+		<Menu buttonLabel={AboutIcon} className="about" key="about">
 
 			tu będzie about
 		</Menu>
