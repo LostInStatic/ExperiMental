@@ -1,27 +1,27 @@
 import React = require('react');
-import { ReactComponent as Icon } from '../../../resources/planet.svg';
 
 interface IProps {
-
+	buttonLabel: React.ElementType
+	className?: string
 }
 
-const MainMenu: React.FC<IProps> = (props) => {
+const Menu: React.FC<IProps> = (props) => {
 	const [displayed, toggleDisplayed] = React.useReducer(toggleState, false);
 
 	return <>
 		<button
-			className="main-menu_button"
-			onClick={ toggleDisplayed }
+			className={`menu-button ${props.className || ''}`}
+			onClick={toggleDisplayed}
 		>
-			<Icon />
+			<props.buttonLabel/>
 		</button>
-		<nav className={`main-menu${displayed ? '' : ' collapsed'} `}>
+		<nav className={`main-menu ${props.className || ''} ${displayed ? '' : 'collapsed'} `}>
 			{createList(props.children, toggleDisplayed)}
 		</nav>
 	</>;
 };
 
-export default MainMenu;
+export default Menu;
 
 const createList = (children: React.ReactNode, onClick: () => void) => {
 	return <ul>
