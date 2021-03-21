@@ -5,11 +5,12 @@ import ExperimentMatch from './experiment/experimentMatch';
 import IndicatorBackground from './indicatorBackground';
 import fetchIngredients, { IIngredientsData } from '../api/fetchIngredients';
 import fetchExperiments, { IExperimentsData } from '../api/fetchExperiments';
-import MainMenu from './generic/mainMenu/mainMenu';
+import Menu from './generic/menu/menu';
 import Modal from './generic/modal/modal';
 import RoomList from './roomPicker/roomsList';
 import fetchRooms, { IRoomsData } from '../api/fetchRooms';
 import Welcome from './welcome';
+import { ReactComponent as MainMenuIcon } from '../resources/planet.svg';
 
 interface IProps {
 	defaultRoom: IRoomsData
@@ -58,7 +59,7 @@ const App: React.FC<IProps> = (props) => {
 
 	return <>
 		<Welcome/>
-		<MainMenu>
+		<Menu buttonLabel={MainMenuIcon} >
 
 			<RoomList
 				callback={
@@ -68,7 +69,7 @@ const App: React.FC<IProps> = (props) => {
 					}
 				}
 			/>
-		</MainMenu>
+		</Menu>
 		<div className="picks-indicator-wrapper">
 			<IndicatorBackground
 				experimentMatchStatus={matchStatus}
