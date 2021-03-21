@@ -58,8 +58,19 @@ const App: React.FC<IProps> = (props) => {
 	});
 
 	return <>
-		<Welcome/>
-		<Menu buttonLabel={MainMenuIcon} >
+		<Welcome />
+		<Menu buttonLabel={MainMenuIcon} className="main">
+
+			<RoomList
+				callback={
+					room => {
+						setExperimentIds(room.experimentIds);
+						setIngredientIds(room.ingredientIds);
+					}
+				}
+			/>
+		</Menu>
+		<Menu buttonLabel={MainMenuIcon} className="about">
 
 			<RoomList
 				callback={
