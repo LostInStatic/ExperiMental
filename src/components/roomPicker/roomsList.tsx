@@ -34,19 +34,22 @@ const RoomList: React.FC<IProps> = (props) => {
 
 export default RoomList;
 
-const listRooms = (list: IRoomsData[], callback: (id: IRoomsData) => void, closeModal: ()=>void) => {
+const listRooms = (list: IRoomsData[], callback: (id: IRoomsData) => void, closeModal: () => void) => {
 	return <ul>
 		{
 			list.map(roomData => {
 				return <li key={roomData.id}>
-					<button
-						className="choose-room"
-						onClick={() => {
-							callback(roomData);
-							closeModal();
-						}}
-					>{roomData.name}</button>
-					<p>{roomData.description}</p>
+					<div>
+						<button
+							className="choose-room"
+							onClick={() => {
+								callback(roomData);
+								closeModal();
+							}}
+						>{roomData.name}</button>
+						<p>{roomData.description}</p>
+					</div>
+
 				</li>;
 			})}
 	</ul>;
