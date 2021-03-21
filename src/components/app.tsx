@@ -9,6 +9,7 @@ import MainMenu from './generic/mainMenu/mainMenu';
 import Modal from './generic/modal/modal';
 import RoomList from './roomPicker/roomsList';
 import fetchRooms, { IRoomsData } from '../api/fetchRooms';
+import Welcome from './welcome';
 
 interface IProps {
 	defaultRoom: IRoomsData
@@ -56,6 +57,7 @@ const App: React.FC<IProps> = (props) => {
 	});
 
 	return <>
+		<Welcome/>
 		<MainMenu>
 
 			<RoomList

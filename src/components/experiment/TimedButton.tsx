@@ -1,5 +1,5 @@
 import React = require('react');
-import Cookies = require('js-cookie');
+import Cookies from '../../cookiesProvider';
 
 interface IProps {
 	seconds: number
@@ -21,7 +21,7 @@ const TimedButton: React.FC<IProps> = (props) => {
 		if (secondsLeft > 0 && !props.isSuspended) {
 			const timer = setTimeout(() => {
 				setTimeLeft(secondsLeft - 1);
-				Cookies.set(cookieName, secondsLeft.toString());
+				Cookies.set(cookieName, secondsLeft.toString(), true);
 			}, 1000);
 			return () => clearTimeout(timer);
 		}

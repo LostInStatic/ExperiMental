@@ -1,5 +1,4 @@
 import React = require('react');
-//@ts-expect-error
 import { ReactComponent as Background } from '../resources/background.svg';
 import { IExperimentMatchState } from './app';
 
