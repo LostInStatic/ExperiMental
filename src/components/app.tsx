@@ -59,7 +59,7 @@ const App: React.FC<IProps> = (props) => {
 
 	return <>
 		<Welcome />
-		<Menu buttonLabel={MainMenuIcon} className="main">
+		<Menu buttonLabel={MainMenuIcon} className="main" key="main">
 
 			<RoomList
 				callback={
@@ -70,16 +70,9 @@ const App: React.FC<IProps> = (props) => {
 				}
 			/>
 		</Menu>
-		<Menu buttonLabel={MainMenuIcon} className="about">
+		<Menu buttonLabel={MainMenuIcon} className="about" key="about">
 
-			<RoomList
-				callback={
-					room => {
-						setExperimentIds(room.experimentIds);
-						setIngredientIds(room.ingredientIds);
-					}
-				}
-			/>
+			tu będzie about
 		</Menu>
 		<div className="picks-indicator-wrapper">
 			<IndicatorBackground

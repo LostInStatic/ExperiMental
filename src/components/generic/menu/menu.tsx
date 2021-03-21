@@ -15,7 +15,7 @@ const Menu: React.FC<IProps> = (props) => {
 		>
 			<props.buttonLabel/>
 		</button>
-		<nav className={`main-menu ${props.className || ''} ${displayed ? '' : 'collapsed'} `}>
+		<nav className={`menu ${props.className || ''} ${displayed ? '' : 'collapsed'} `}>
 			{createList(props.children, toggleDisplayed)}
 		</nav>
 	</>;

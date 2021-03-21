@@ -407,14 +407,6 @@ button.active {
 	color: #ffffff;
 }
 
-.main-menu > ul > li > button {
-	background-color: transparent;
-	border-top: 1px solid black;
-	border-bottom: 1px solid black;
-	border-radius: 0;
-	width: 100%;
-	color: black;
-}
 
 .room-choice ul {
 	list-style: none;
@@ -527,9 +519,9 @@ ol.instruction li {
 	box-sizing: border-box;
 }
 
-// Main menu
+// menu
 
-.main-menu_button {
+.menu-button {
 	position: absolute;
 	right: 0.5em;
 	top: 0.5em;
@@ -541,7 +533,7 @@ ol.instruction li {
 	background: transparent;
 }
 
-.main-menu{
+.menu{
 	position: absolute;
 	transform: translateY(0);
 	z-index: 500;
@@ -553,20 +545,35 @@ ol.instruction li {
 	box-sizing: border-box;
 }
 
-.main-menu.collapsed {
+.menu.collapsed {
 	transform: translateY(-100%);
 }
 
 
 
-.main-menu ul{
+.menu ul{
 	list-style: none;
 	margin: 0;
 	padding: 1em;
 }
 
-.main-menu ul li{
+.menu ul li{
 	margin: 0.5em;
+}
+
+// Menu-about
+
+.menu-button.about {
+	left: 0.5em;
+}
+
+.menu > ul > li > button {
+	background-color: transparent;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+	border-radius: 0;
+	width: 100%;
+	color: black;
 }
 
 // Dropdown
