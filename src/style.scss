@@ -567,6 +567,11 @@ ol.instruction li {
 	left: 0.5em;
 }
 
+.menu-button.about svg {
+	object-fit: contain;
+	height: 100%;
+}
+
 .menu > ul > li > button {
 	background-color: transparent;
 	border-top: 1px solid black;
@@ -598,6 +603,7 @@ ol.instruction li {
 
 .arrow-button.down svg {
 	transform: rotate(90deg);
+	//it just works it just works little lies stunning shows
 }
 
 
