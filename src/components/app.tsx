@@ -12,7 +12,8 @@ import fetchRooms, { IRoomsData } from '../api/fetchRooms';
 import Welcome from './welcome';
 import { ReactComponent as MainMenuIcon } from '../resources/planet.svg';
 import { ReactComponent as AboutIcon } from '../resources/questionMark.svg';
-
+import fetchTextBlocks, { ITextBlockData } from '../api/fetchTextBlocks';
+import parse from 'html-react-parser';
 interface IProps {
 	defaultRoom: IRoomsData
 }
@@ -21,8 +22,17 @@ interface IProps {
 const App: React.FC<IProps> = (props) => {
 	const [experimentIds, setExperimentIds] = React.useState(props.defaultRoom.experimentIds);
 	const [ingredientIds, setIngredientIds] = React.useState(props.defaultRoom.ingredientIds);
+	const [textBlocks, setTextBlocks] = React.useState([]);
 
 	const [experiments, setExperiments] = React.useState([] as IExperimentsData[]);
+
+	React.useEffect(() => {
+		const updateRooms = async () => {
+			const rooms = await fetchTextBlocks('all');
+			setTextBlocks(rooms);
+		};
+		updateRooms();
+	}, []);
 
 	React.useEffect(() => {
 		const updateExperiments = async () => {
@@ -72,8 +82,7 @@ const App: React.FC<IProps> = (props) => {
 			/>
 		</Menu>
 		<Menu buttonLabel={AboutIcon} className="about" key="about">
-
-			tu będzie about
+			{generateAbout(textBlocks)}
 		</Menu>
 		<div className="picks-indicator-wrapper">
 			<IndicatorBackground
@@ -134,6 +143,29 @@ const createPicksReducer = (ingredients: IIngredientsData[]) => {
 				return state;
 		}
 	};
+};
+
+const generateAbout = (textBlocks: ITextBlockData[]) => {
+	return selectTextBlocksByAnchor('about', textBlocks).map(
+		textBlock => {
+			return <Modal
+				key={`about_${textBlock.id}`}
+				buttonSymbol={textBlock.name}
+			>
+				{parse(textBlock.content)}
+			</Modal>;
+		}
+	);
+};
+
+
+const selectTextBlocksByAnchor = (
+	anchorID: string,
+	textBlocks: ITextBlockData[]
+) => {
+	return textBlocks.filter(
+		textBlock => textBlock.anchor === anchorID
+	);
 };
 
 interface IManagePickAction {
