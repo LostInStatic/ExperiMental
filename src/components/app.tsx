@@ -85,6 +85,7 @@ const App: React.FC<IProps> = (props) => {
 			{generateAbout(textBlocks)}
 		</Menu>
 		<div className="picks-indicator-wrapper">
+			<div className="fullwidth-background"/>
 			<IndicatorBackground
 				experimentMatchStatus={matchStatus}
 			/>
