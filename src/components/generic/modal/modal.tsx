@@ -1,37 +1,42 @@
 import React = require('react');
-import './modal.scss';
+import ModalBox from './modalBox';
 
 interface IProps {
-	buttonSymbol: string
+	buttonSymbol: React.ReactNode | string
+	className?: string
+	externalState?: {
+		displayed: boolean
+		manageExternalState: (state: boolean) => void
+	}
+
 }
 
 const Modal: React.FC<IProps> = (props) => {
 
-	const [displayed, toggle] = React.useReducer(manageToggle, false);
+	const [displayed, setDisplayed] = props.externalState ?
+		[props.externalState.displayed, props.externalState.manageExternalState] :
+		React.useState(false);
 
 	return <>
 		<button
-			onClick={toggle}
+			className={props.className}
+			onClick={() => setDisplayed(true)}
 		>
 			{props.buttonSymbol}
 		</button>
-		<div className={'modal_box ' + (displayed ? '' : 'collapsed')}>
+		<ModalBox
+			className={props.className}
+			displayed={displayed}
+		>
 			<button
 				className='modal_box-close'
-				onClick={toggle}
+				onClick={() => setDisplayed(false)}
 			>
 				✖
 			</button>
-			<div className='modal_box-content'>
-				{props.children}
-			</div>
-
-		</div>
+			{props.children}
+		</ModalBox>
 	</>;
-};
-
-const manageToggle = (state: boolean) => {
-	return !state;
 };
 
 export default Modal;

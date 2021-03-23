@@ -1,32 +1,33 @@
 import React = require('react');
-import './dropdown.scss';
+import {ReactComponent as IconArrow} from '../../../resources/arrow.svg';
 
 interface IProps {
-	buttonText: string
+	buttonLabel: string
 }
 
 const Dropdown: React.FC<IProps> = (props) => {
+	const [displayed, toggleDisplayed] = React.useReducer(toggleState, false);
 
-	const [expanded, toggle] = React.useReducer(manageToggle, false);
-
-	return <div className="dropdown">
+	return <>
 		<button
-			onClick={toggle}
+			className={`arrow-button ${displayed ? 'up' : 'down'}`} 
+			onClick={toggleDisplayed}
 		>
-			{props.buttonText}
-			{expanded ?
-				<i className="dropdown_arrow up" /> :
-				<i className="dropdown_arrow down" />
-			}
+			{props.buttonLabel}
+			<IconArrow/>
 		</button>
-		<div className={'dropdown_content ' + (expanded ? '' : 'collapsed')}>
+		<div className={
+			`dropdown_content ${displayed ? '' : 'collapsed'
+			}`
+		}>
 			{props.children}
 		</div>
-	</div>;
-};
-
-const manageToggle = (state: boolean) => {
-	return !state;
+	</>;
 };
 
 export default Dropdown;
+
+
+const toggleState = (state: boolean) => {
+	return !state;
+};

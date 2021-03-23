@@ -1,19 +1,60 @@
 import React = require('react');
-import IngredientChoice from './choice';
-import IngredientPicks from './picks';
-import ExperimentMatch from './experimentMatch';
-import Indicator from './indicator';
-
+import IngredientChoice from './ingredients/choice';
+import IngredientPicks from './ingredients/picks';
+import ExperimentMatch from './experiment/experimentMatch';
+import IndicatorBackground from './indicatorBackground';
+import fetchIngredients, { IIngredientsData } from '../api/fetchIngredients';
+import fetchExperiments, { IExperimentsData } from '../api/fetchExperiments';
+import Menu from './generic/menu/menu';
+import Modal from './generic/modal/modal';
+import RoomList from './roomPicker/roomsList';
+import fetchRooms, { IRoomsData } from '../api/fetchRooms';
+import Welcome from './welcome';
+import { ReactComponent as MainMenuIcon } from '../resources/planet.svg';
+import { ReactComponent as AboutIcon } from '../resources/questionMark.svg';
+import fetchTextBlocks, { ITextBlockData } from '../api/fetchTextBlocks';
+import parse from 'html-react-parser';
 interface IProps {
-	possibleIngredients: IngredientData[]
-	experiments: ExperimentData[]
+	defaultRoom: IRoomsData
 }
 
+
 const App: React.FC<IProps> = (props) => {
+	const [experimentIds, setExperimentIds] = React.useState(props.defaultRoom.experimentIds);
+	const [ingredientIds, setIngredientIds] = React.useState(props.defaultRoom.ingredientIds);
+	const [textBlocks, setTextBlocks] = React.useState([]);
+
+	const [experiments, setExperiments] = React.useState([] as IExperimentsData[]);
+
+	React.useEffect(() => {
+		const updateRooms = async () => {
+			const rooms = await fetchTextBlocks('all');
+			setTextBlocks(rooms);
+		};
+		updateRooms();
+	}, []);
+
+	React.useEffect(() => {
+		const updateExperiments = async () => {
+			const experiments = await fetchExperiments(experimentIds);
+			setExperiments(experiments);
+		};
+		updateExperiments();
+	}, [experimentIds]);
+
+	const [ingredients, setIngredients] = React.useState([] as IIngredientsData[]);
+
+	React.useEffect(() => {
+		const updateIngredients = async () => {
+			const ingredients = await fetchIngredients(ingredientIds);
+			setIngredients(ingredients);
+		};
+		updateIngredients();
+	}, [ingredientIds]);
 
 	const picksDispatch = React.useCallback(
-		createPicksReducer(props),
-		[props]
+		createPicksReducer(ingredients),
+		[experiments, ingredients]
 	);
 
 	const [picks, managePicks] = React.useReducer(
@@ -21,23 +62,47 @@ const App: React.FC<IProps> = (props) => {
 		[]
 	);
 
-	const [isMatch, setMatch] = React.useState(false);
+	const [matchStatus, setMatchStatus] = React.useState({
+		isMatched: false,
+		hasPartialMatch: false,
+		hasNonePicked: true
+	});
 
-	return <div>
-		<IngredientPicks
-			picked={picks}
-			removePickCallback={index => managePicks({ type: 'remove', index })}
+	return <>
+		<Welcome />
+		<Menu buttonLabel={MainMenuIcon} className="main" key="main">
 
-		/>
+			<RoomList
+				callback={
+					room => {
+						setExperimentIds(room.experimentIds);
+						setIngredientIds(room.ingredientIds);
+					}
+				}
+			/>
+		</Menu>
+		<Menu buttonLabel={AboutIcon} className="about" key="about">
+			{generateAbout(textBlocks)}
+		</Menu>
+		<div className="picks-indicator-wrapper">
+			<IndicatorBackground
+				experimentMatchStatus={matchStatus}
+			/>
+			<IngredientPicks
+				picked={picks}
+				removePickCallback={index => managePicks({ type: 'remove', index })}
+			/>
+		</div>
+
 		<ExperimentMatch
 			picks={picks}
-			experiments={props.experiments}
-			reportCallback={setMatch}
+			experiments={experiments}
+			reportCallback={setMatchStatus}
 		/>
 		{
 			(picks.length < 5) ?
 				<IngredientChoice
-					ingredients={props.possibleIngredients}
+					ingredients={ingredients}
 					callback={id => managePicks({ type: 'add', id })}
 				/>
 				:
@@ -56,18 +121,18 @@ const App: React.FC<IProps> = (props) => {
 		}
 
 
-	</div>;
+	</>;
 };
 
-const createPicksReducer = (props: IProps) => {
+const createPicksReducer = (ingredients: IIngredientsData[]) => {
 	return (
-		state: IngredientData[],
+		state: IIngredientsData[],
 		action: IManagePickAction['remove' | 'add' | 'clear']
-	): IngredientData[] => {
+	): IIngredientsData[] => {
 
 		switch (action.type) {
 			case 'add':
-				return [...state, props.possibleIngredients.find(({ id }) => id === action.id)];
+				return [...state, ingredients.find(({ id }) => id === action.id)];
 			case 'remove':
 				state.splice(action.index, 1);
 				return [...state];
@@ -78,6 +143,29 @@ const createPicksReducer = (props: IProps) => {
 				return state;
 		}
 	};
+};
+
+const generateAbout = (textBlocks: ITextBlockData[]) => {
+	return selectTextBlocksByAnchor('about', textBlocks).map(
+		textBlock => {
+			return <Modal
+				key={`about_${textBlock.id}`}
+				buttonSymbol={textBlock.name}
+			>
+				{parse(textBlock.content)}
+			</Modal>;
+		}
+	);
+};
+
+
+const selectTextBlocksByAnchor = (
+	anchorID: string,
+	textBlocks: ITextBlockData[]
+) => {
+	return textBlocks.filter(
+		textBlock => textBlock.anchor === anchorID
+	);
 };
 
 interface IManagePickAction {
@@ -95,17 +183,27 @@ interface IManagePickAction {
 
 }
 
-export interface IngredientData {
+export interface IIngredientData {
 	id: string,
-	name: string
+	name: string,
+	iconUrls?: {
+		mono?: string,
+		color?: string
+	}
 }
 
-export interface ExperimentData {
+export interface IExperimentData {
 	id: string,
 	ingredientIDs: string[],
 	name: string,
 	instruction: string,
 	explanation: string
+	explanationDelay?: number
 }
 
+export interface IExperimentMatchState {
+	isMatched: boolean,
+	hasPartialMatch: boolean,
+	hasNonePicked: boolean
+}
 export default App;

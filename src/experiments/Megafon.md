@@ -2,16 +2,21 @@
 name: Megafon
 ingredientIDs:
 - paper
+
+explanationDelay: 30
 ---
 ### Megafon
 
 ##### Rzeczy
+
 - kartka
 
 ##### Wstęp
+
 Wzmocnij moc swych strun głosowych!
 
 ##### Instrukcja
+
 1. Zwiń kartkę w „lejek”. Wielkość powstałego otworu nie jest szczególnie istotna – najważniejsze, aby można było w miarę wygodnie przystawić do niego usta
 2. Przystaw usta do mniejszego otworu, który powstał przy zrobieniu „lejka”
 3. Wydawaj rozmaite dźwięki. Raz z ustami przystawionymi do stworzonego megafonu, a raz obok niego

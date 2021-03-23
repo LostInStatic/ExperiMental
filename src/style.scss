@@ -1,71 +1,287 @@
 $ingredient-color: green;
-$picks-color: hsl(91, 37%, 61%);
-$complimentary-color: adjust-color($picks-color, $hue: -120);
+$button-color: #ff6363;
+$complimentary-color: adjust-color($button-color, $hue: -120);
 $positive-color: hsl(128, 80%, 60%);
 $neutral-color: hsl(56, 80%, 60%);
-$negative-color: hsl(7, 56%, 62%);
+$negative-color: #f20f35;
+$background-primary-blue: #385fae;
+$background-offwhite: #eff3f6;
+$text-color: #060627;
+$experiment-intro-color: #487ebd;
 
-@mixin ingredient {
-	width: 6.5em;
-	height: 6.5em;
-	min-width: 40px;
-	min-height: 40px;
-	margin: 0.5em;
-	color: white;
-	font-size: 14px;
-	word-wrap: break-word;
-	border-radius: 1em;
+$ingredient-size: 48px;
+$ingredient-size-smaller: 30px;
+$ingredient-picks-height: 300px;
+$ingredient-picks-height-smaller: 250px;
+
+$ingredient-pick-size-factor: 0.16;
+$ingredient-choice-size-factor: 0.21466666;
+
+@mixin resize-smaller {
+	@media (max-width: 350px), (max-height: 600px) {
+		@content;
+	}
+}
+
+
+@mixin content-width-limit {
+	max-width: 700px;
+}
+
+/// @param {Float} $factor
+@mixin ingredientWidth($factor) {
+	width: $factor * $ingredient-picks-height;
+	@include resize-smaller(){
+		width: $factor * $ingredient-picks-height-smaller;
+	}
+}
+
+/// @param {Float} $factor
+@mixin ingredientHeight($factor) {
+	height: $factor * $ingredient-picks-height;
+	@include resize-smaller(){
+		height: $factor* $ingredient-picks-height-smaller;
+	}
+}
+
+/// Mixin to place items on a circle
+/// @author Hugo Giraudel
+/// @author Ana Tudor
+/// @param {Integer} $item-count - Number of items on the circle
+/// @param {Length} $circle-size - Large circle size
+/// @param {Length} $item-size - Single item size
+@mixin on-circle($item-count, $circle-size, $item-size) {
+	position: relative;
+	width: $circle-size;
+	height: $circle-size;
+	padding: 0;
+	border-radius: 50%;
+	list-style: none;
+
+	> * {
+		display: block;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: $item-size;
+		height: $item-size;
+		margin: -($item-size / 2);
+
+		$angle: (360 / $item-count);
+		$rot: -18;
+
+		@for $i from 1 through $item-count {
+			&:nth-of-type(#{$i}) {
+				transform: rotate($rot * 1deg) translate($circle-size / 2) rotate($rot * -1deg);
+			}
+
+			$rot: $rot + $angle;
+		}
+	}
 }
 
 body {
 	margin: 0;
-	font-family: 'Tomorrow', sans-serif;
+	font-family: "Tomorrow", sans-serif;
+	background-color: #eff3f6;
+	color: $text-color;
+
+}
+
+h1 {
+	line-height: 100%;
+	margin-top: 1em;
+	margin-bottom: .4em;
+}
+
+h2 {
+	font-size: 1.25em;
+}
+
+#root {
+	display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
 }
 
 button {
 	box-sizing: border-box;
-	padding: 1em;
+	padding: 1em 2em;
 	font-family: inherit;
 	text-align: center;
-	background-color: $picks-color;
+	background-color: $button-color;
+	color: #ffffff;
 	border: 0;
-	border-radius: 1em;
+	border-radius: 3em;
 	cursor: pointer;
+	font-weight: 500;
 }
+
+button.centered {
+	display: block;
+	margin: 1em auto;
+}
+
+
+.picks-indicator-wrapper {
+	position: relative;
+	background-color: $background-primary-blue;
+}
+
 .ingredient-picks {
-	flex-wrap: wrap;
-	justify-content: center;
+	position: relative;
 	display: flex;
+	justify-content: center;
+	align-items: center;
 	width: 100%;
-	padding: 1em 0;
+	height: $ingredient-picks-height;
+	@include resize-smaller(){
+		height: $ingredient-picks-height-smaller;
+	}
 	text-align: center;
-	background-color: $picks-color;
+}
+
+.picks-container {
+	@include on-circle($item-count: 5, $circle-size: ($ingredient-picks-height * 0.4), $item-size: $ingredient-picks-height * $ingredient-pick-size-factor);
+
+	@include resize-smaller() {
+		@include on-circle(
+			$item-count: 5,
+			$circle-size: ($ingredient-picks-height-smaller * 0.4),
+			$item-size: $ingredient-picks-height-smaller * $ingredient-pick-size-factor
+		);
+	}
 }
 
 .pick {
-	@include ingredient;
-	position: relative;
-	display: inline-block;
-	margin: 1%;
+	box-sizing: border-box;
+	@include ingredientHeight($factor: $ingredient-pick-size-factor);
+	@include ingredientWidth($factor: $ingredient-pick-size-factor);
+	color: white;
 	font-size: 12px;
-	background-color: $ingredient-color;
+	padding: 0;
+	background-color: transparent;
+}
+
+.pick img {
+	width: 100%;
+	height: 100%;
 }
 
 .ingredient-choice {
-	flex-wrap: wrap;
-	justify-content: center;
-	display: flex;
-	padding: 1em 0;
+	flex-shrink: 0;
+	display: grid;
+	grid-template-columns: repeat(6, 1fr);
+	@media (orientation:landscape){
+		grid-template-columns: repeat(10, 1fr);
+	}
+	grid-auto-rows: min-content;
+	align-items: start;
+	@include content-width-limit();
+	margin: auto;
+	overflow-y: auto;
+	overflow-x: hidden;
+	padding: 1em 2em 0;
+	box-sizing: border-box;
+	width: 100%;
+	height: $ingredient-picks-height;
+	@include resize-smaller(){
+		height: $ingredient-picks-height-smaller;
+	}
 }
 
 .ingredient {
-	@include ingredient;
+	grid-column: span 2;
+	min-width: 40px;
+	min-height: 40px;
+	margin: 0.5em 0.5em;
+	color: $text-color;
+	font-size: 16px;
+	border-radius: 1em;
 	flex-shrink: 0;
-	background-color: $ingredient-color;
+	flex-grow: 0;
+	padding: 0;
+	background-color: transparent;
+	text-align: center;
 }
 
+@media (orientation:portrait) {
+	.ingredient:nth-child(5n+4) {
+		grid-column: 2 / 4;
+	}
+	
+	.ingredient:nth-child(5n+5) {
+		grid-column: 4 / 6;
+	}
+}
+
+@media (orientation: landscape) {
+	.ingredient:nth-child(8n+6) {
+		grid-column: 2 / 4;
+	}
+	
+	.ingredient:nth-child(8n+7) {
+		grid-column: 4 / 6;
+	}
+
+	.ingredient:nth-child(8n+8) {
+		grid-column: 6 / 8;
+	}
+
+	.ingredient:nth-child(8n+9) {
+		grid-column: 8 / 10;
+	}
+}
+
+.ingredient-icon.color{
+	@include ingredientHeight($factor: $ingredient-choice-size-factor);
+	@include ingredientWidth($factor: $ingredient-choice-size-factor);
+	vertical-align: middle;
+	border-radius: 50% 50%;
+}
+
+.intro-page .ingredient-icon.color{
+	@include ingredientHeight($factor: $ingredient-choice-size-factor * 0.9);
+	@include ingredientWidth($factor: $ingredient-choice-size-factor * 0.9);
+	margin: 0.2em;
+}
+
+.ingredient-icon.mono{
+	@include ingredientHeight($factor: $ingredient-pick-size-factor);
+	@include ingredientWidth($factor: $ingredient-pick-size-factor);
+}
+
+.ingredient-icon.placeholder{
+	position: relative;
+	font-size: 120%;
+	@include resize-smaller(){font-size: 100%}
+	font-weight: 700;
+	margin: auto;
+}
+
+.ingredient-icon.placeholder.color {
+	background-color: $background-primary-blue;
+}
+
+.ingredient-icon.placeholder.mono {
+	border: #ffffff dashed 1px;
+	border-radius: 33% 33%;
+}
+
+.ingredient-icon.placeholder div {
+	color: #ffffff;
+	margin: 0;
+	position: absolute;
+	top:50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+
+
 .pick.empty {
-	background-color: darken($picks-color, 10);
+	background-color: darken($button-color, 10);
 }
 
 .pick .cross {
@@ -92,36 +308,302 @@ button {
 	border-radius: 50%;
 }
 
-.match-indicator {
-	min-height: 3.5em;
-	padding: 0.5em;
-	text-align: center;
-	transition: background-color 0.1s;
+.background-indicator {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	object-fit: contain;
+	left: 0;
+	top: 0;
 }
 
-.match-indicator.good{
-	background: $positive-color;
+.background-indicator svg {
+	height: $ingredient-picks-height;
+	width: $ingredient-picks-height;
+	margin: auto;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	@include resize-smaller() {
+		height: $ingredient-picks-height-smaller;
+		width: $ingredient-picks-height-smaller;
+	}
 }
 
-.match-indicator.neutral{
-	background: $neutral-color;
+.background-indicator .background_svg__indicator {
+	transition: fill 1s;
 }
 
-.match-indicator.bad{
-	background: $negative-color;
+.background-indicator.good .background_svg__indicator {
+	fill: $positive-color;
+}
+.background-indicator.neutral .background_svg__indicator {
+	fill: $neutral-color;
 }
 
-.match-indicator > ul {
-	flex-wrap: wrap;
-	justify-content: center;
-	display: flex;
+.background-indicator.bad .background_svg__indicator {
+	fill: $negative-color;
+}
+
+.background-indicator.empty .background_svg__indicator {
+	fill: transparent;
+}
+
+
+.experiments-list {
+	list-style: none;
 	padding: 0;
+	display: flex;
+	align-items: center;
+	overflow-x: auto;
+	height: 3em;
 	margin: 0;
+	flex-shrink: 0;
+	flex-grow: 1;
+	background-color: #ffffff;
+	width: 100%;
+	max-height: 5em;
 }
 
-.match-indicator > ul > li {
-	margin: 5px 1em;
-	font-size: 1.2rem;
-	list-style-type: none;
+.experiments-list > li {
+	margin: 0.5em;
+	flex-shrink: 0;
 }
+
+.experiments-list > li:first-child{
+	margin-left: auto;
+}
+
+.experiments-list > li:last-child{
+	margin-right: auto;
+}
+
+
+button.experiment {
+	color: #ffffff;
+	box-sizing: border-box;
+	font-size: 12px;
+}
+
+button.active {
+	display: none;
+}
+
+.timer-button {
+	position: relative;
+	overflow: hidden;
+}
+.timer-overlay {
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	position: absolute;
+	font-size: 2em;
+	line-height: 1.8em;
+	background-color: rgba(0, 0, 0, 0.452);
+	color: #ffffff;
+}
+
+
+.room-choice ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.intro {
+	// color:$experiment-intro-color;
+	font-weight: 500;
+}
+
+// .experiment-title {
+// 	color: $experiment-intro-color;
+// }
+
+ol.instruction li {
+	margin: .67em 0;
+}
+
+
+.room-choice .modal_box-content, .experiment .modal_box-content {
+	background: $background-primary-blue;
+	color: #ffffff;
+}
+
+.instruction {
+	padding-left: 1em;
+}
+
+.arrow-button svg {
+	height: 1em;
+	position: relative;
+	top: 0.2em;
+	margin-left: 0.5em;
+	margin-right: -0.5em;
+}
+
+.intro-page-button.arrow-button svg {
+	transform: rotate(180deg);
+	margin-left: -0.5em;
+	margin-right: 0.5em;
+}
+
+.ingredient-label {
+	margin: 0.5em -50% 0;
+}
+
+.experiment .dropdown_content {
+	background-color: $background-offwhite;
+	margin: 1em -1.5em;
+	padding: 1.5em;
+	color: #060627;
+}
+
+.sponsors {
+	height: 200px;
+	width: 200px;
+}
+
+.girl-gif {
+	display: block;
+	width: 250px;
+	margin: 0 auto 2em;
+}
+
+
+
+// Modals
+
+.modal_box {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 900;
+	overflow: auto;
+	background: rgba(0, 0, 0, 0.8);
+	transition: ease-in-out opacity 0.6s, visibility 0.6s;
+	opacity: 1;
+}
+.modal_box.collapsed {
+	opacity: 0;
+	visibility: hidden;
+}
+
+.modal_box-close {
+	position: absolute;
+	top: 1em;
+	right: 1em;
+	box-sizing: border-box;
+	width: 2em;
+	height: 2em;
+	padding: 0;
+	font-size: 1.2rem;
+	z-index: 990;
+}
+
+.modal_box-content {
+	width: 100%;
+	padding: 1.5em;
+	padding-right: 1.7em;
+	overflow-y: auto;
+	font-size: 1rem;
+	line-height: 1.5em;
+	text-align: left;
+	background-color: #FFF;
+	border-radius: 1em;
+	box-sizing: border-box;
+}
+
+// menu
+
+.menu-button {
+	position: absolute;
+	right: 0.5em;
+	top: 0.5em;
+	z-index: 600;
+	border-radius: 50% 50%;
+	width: 2.5em;
+	height: 2.5em;
+	padding: 0;
+	background: transparent;
+}
+
+.menu{
+	position: absolute;
+	transform: translateY(0);
+	z-index: 500;
+	background-color: #fff;
+	width: 100%;
+	padding: 3em 1em;
+	transition: all linear 0.3s;
+	overflow: visible;
+	box-sizing: border-box;
+}
+
+.menu.collapsed {
+	transform: translateY(-100%);
+}
+
+
+
+.menu ul{
+	list-style: none;
+	margin: 0;
+	padding: 1em;
+}
+
+.menu ul li{
+	margin: 0.5em;
+}
+
+// Menu-about
+
+.menu-button.about {
+	left: 0.5em;
+}
+
+.menu-button.about svg {
+	object-fit: contain;
+	height: 100%;
+}
+
+.menu > ul > li > button {
+	background-color: transparent;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+	border-radius: 0;
+	width: 100%;
+	color: black;
+}
+
+// Dropdown
+
+.dropdown_content.collapsed {
+	transform: scaleY(0);
+}
+
+.dropdown_content {
+	transform: scaleY(1);
+	transform-origin: top center;
+	transition: all 0.5s;
+}
+
+.arrow-button svg {
+	transition: all 0.5s ease-in-out;
+}
+
+.arrow-button.up svg {
+	transform: rotate(-90deg);
+}
+
+.arrow-button.down svg {
+	transform: rotate(90deg);
+	//it just works it just works little lies stunning shows
+}
+
 
