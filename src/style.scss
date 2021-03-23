@@ -517,6 +517,7 @@ ol.instruction li {
 	background-color: #FFF;
 	border-radius: 1em;
 	box-sizing: border-box;
+	position: relative;
 }
 
 // menu
@@ -603,7 +604,42 @@ ol.instruction li {
 
 .arrow-button.down svg {
 	transform: rotate(90deg);
-	//it just works it just works little lies stunning shows
 }
 
+// górska testing inc
 
+@media screen and (min-width: 414px) {
+	#root {
+	max-width: 700px;
+	margin: auto;
+	position: relative;
+	}
+
+	.modal_box-content  {
+		max-width: 700px;
+		margin: auto;
+	}
+
+	.fullwidth-background {
+		background: inherit;
+		width: 300vh;
+		height: 100%;
+		position: absolute;
+		left: -100vh;
+		top: 0;
+	}
+
+	// .menu {
+	// 	//absolute
+	// 	max-width: 700px;
+	// 	margin-right: auto;
+	// 	margin-left: auto;
+	// }
+
+	// .experiments-list {
+	// 	//flex
+	// 	max-width: 700px;
+	// 	margin-right: auto;
+	// 	margin-left: auto;
+	// }
+}
