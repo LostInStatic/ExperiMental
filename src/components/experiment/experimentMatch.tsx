@@ -23,6 +23,7 @@ const ExperimentMatch: React.FC<IProps> = (props) => {
 	}, [props.picks]);
 
 	return <ul className="experiments-list">
+		<div className="fullwidth-background"/>
 		{match.experiments.map(experiment => createExperiment(experiment, props.picks))}
 	</ul>;
 };
