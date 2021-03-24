@@ -617,6 +617,14 @@ ol.instruction li {
 	transition: all 0.5s;
 }
 
+.dropdown_content img, .dropdown_content iframe {
+	max-width: 100%;
+}
+
+.dropdown_content img {
+	height: 100%;
+}
+
 .dropdown_content a {
 	color: #ff6363;
 }
