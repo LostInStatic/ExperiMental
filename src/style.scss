@@ -539,6 +539,10 @@ ol.instruction li {
 	position: relative;
 }
 
+.modal_box-content a{
+	color: #ff6363;
+}
+
 // menu
 
 .menu-button {
@@ -611,6 +615,10 @@ ol.instruction li {
 	transform: scaleY(1);
 	transform-origin: top center;
 	transition: all 0.5s;
+}
+
+.dropdown_content a {
+	color: #ff6363;
 }
 
 .arrow-button svg {
