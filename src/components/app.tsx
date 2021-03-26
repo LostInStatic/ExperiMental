@@ -14,6 +14,8 @@ import { ReactComponent as MainMenuIcon } from '../resources/planet.svg';
 import { ReactComponent as AboutIcon } from '../resources/questionMark.svg';
 import fetchTextBlocks, { ITextBlockData } from '../api/fetchTextBlocks';
 import parse from 'html-react-parser';
+import LoadingScreen from './loadingScreen';
+
 interface IProps {
 	defaultRoom: IRoomsData
 }
@@ -70,6 +72,7 @@ const App: React.FC<IProps> = (props) => {
 
 	return <>
 		<Welcome />
+		<LoadingScreen/>
 		<Menu buttonLabel={MainMenuIcon} className="main" key="main">
 
 			<RoomList

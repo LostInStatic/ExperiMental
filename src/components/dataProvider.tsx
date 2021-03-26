@@ -4,16 +4,15 @@ import fetchIngredients, { IIngredientsData } from '../api/fetchIngredients';
 import fetchRooms, { IRoomsData } from '../api/fetchRooms';
 import { TIdsOrAll } from '../api/parameters';
 
-type TDataState<T> = {
+type TEntityState<T> = {
 	data?: T
 	status: 'loaded' | 'loading' | 'error'
 }
 
 type TProviderState = {
-	experiments?: TDataState<IExperimentsData[]>
-	ingredients?: TDataState<IIngredientsData[]>
-	rooms?: TDataState<IRoomsData[]>
-	updateRequest: (request: TRequest) => void
+	experiments?: TEntityState<IExperimentsData[]>
+	ingredients?: TEntityState<IIngredientsData[]>
+	rooms?: TEntityState<IRoomsData[]>
 }
 
 type TRequest = {
@@ -22,9 +21,14 @@ type TRequest = {
 	rooms?: TIdsOrAll
 }
 
-const Context = React.createContext<TProviderState | null>(null);
+export type TContextValue = {
+	state: TProviderState
+	request: (request: TRequest) => void
+}
 
-export const useData = (): TProviderState => {
+const Context = React.createContext<TContextValue>(null);
+
+export const useData = (): TContextValue => {
 	const contextState = React.useContext(Context);
 	if (contextState === null) {
 		throw new Error('useItemData must be used within a ItemDataProvider tag');
@@ -72,20 +76,18 @@ export const DataProvider: React.FC<{
 	}, [request]);
 
 	return (
-		<Context.Provider value={{ ...state, updateRequest }}>
+		<Context.Provider value={{ state: state, request: updateRequest }}>
 			{props.children}
 		</Context.Provider>
 	);
 };
-
-
 
 const updateData = (state: TProviderState, update: Partial<TProviderState>) => {
 	return { ...state, ...update };
 };
 
 const resolveRequest = (
-	updateState: (state: TDataState<any>) => void,
+	updateState: (state: TEntityState<any>) => void,
 	fetchData: () => Promise<any>
 ) => {
 	updateState({ status: 'loading' });
