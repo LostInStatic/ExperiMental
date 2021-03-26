@@ -5,14 +5,14 @@ import fetchRooms, { IRoomsData } from '../api/fetchRooms';
 import { TIdsOrAll } from '../api/parameters';
 
 type TEntityState<T> = {
-	data?: T
+	data: T
 	status: 'loaded' | 'loading' | 'error'
 }
 
 type TProviderState = {
-	experiments?: TEntityState<IExperimentsData[]>
-	ingredients?: TEntityState<IIngredientsData[]>
-	rooms?: TEntityState<IRoomsData[]>
+	experiments: TEntityState<IExperimentsData[]>
+	ingredients: TEntityState<IIngredientsData[]>
+	rooms: TEntityState<IRoomsData[]>
 }
 
 type TRequest = {
@@ -40,7 +40,13 @@ export const DataProvider: React.FC<{
 	initialRequest: TRequest
 }> = (props) => {
 	const [request, updateRequest] = React.useState(props.initialRequest);
-	const [state, updateState] = React.useReducer(updateData, null);
+	const [state, updateState] = React.useReducer(
+		updateData,
+		{
+			experiments: { status:'loaded', data: []},
+			ingredients: { status:'loaded', data: []},
+			rooms: { status:'loaded', data: []}
+		});
 
 	React.useEffect(() => {
 		if (request.rooms) {
@@ -67,7 +73,7 @@ export const DataProvider: React.FC<{
 			resolveRequest(
 				state => {
 					updateState({
-						rooms: state
+						ingredients: state
 					});
 				},
 				() => fetchIngredients(request.ingredients)
@@ -90,7 +96,7 @@ const resolveRequest = (
 	updateState: (state: TEntityState<any>) => void,
 	fetchData: () => Promise<any>
 ) => {
-	updateState({ status: 'loading' });
+	updateState({ status: 'loading', data: null });
 	fetchData().then(
 		data => {
 			updateState({
@@ -100,5 +106,13 @@ const resolveRequest = (
 			);
 		}
 
+	).catch(
+		error => {
+			console.error(error);
+			updateState({
+				status: 'error',
+				data: null
+			});
+		}
 	);
 };

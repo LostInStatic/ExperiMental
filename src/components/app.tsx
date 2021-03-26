@@ -15,6 +15,7 @@ import { ReactComponent as AboutIcon } from '../resources/questionMark.svg';
 import fetchTextBlocks, { ITextBlockData } from '../api/fetchTextBlocks';
 import parse from 'html-react-parser';
 import LoadingScreen from './loadingScreen';
+import { useData } from './dataProvider';
 
 interface IProps {
 	defaultRoom: IRoomsData
@@ -22,12 +23,15 @@ interface IProps {
 
 
 const App: React.FC<IProps> = (props) => {
+	const data = useData();
+	
 	const [experimentIds, setExperimentIds] = React.useState(props.defaultRoom.experimentIds);
 	const [ingredientIds, setIngredientIds] = React.useState(props.defaultRoom.ingredientIds);
+	React.useEffect(
+		() => data.request({ingredients: ingredientIds, experiments: experimentIds}), [ingredientIds, experimentIds]
+	);
+
 	const [textBlocks, setTextBlocks] = React.useState([]);
-
-	const [experiments, setExperiments] = React.useState([] as IExperimentsData[]);
-
 	React.useEffect(() => {
 		const updateRooms = async () => {
 			const rooms = await fetchTextBlocks('all');
@@ -36,27 +40,11 @@ const App: React.FC<IProps> = (props) => {
 		updateRooms();
 	}, []);
 
-	React.useEffect(() => {
-		const updateExperiments = async () => {
-			const experiments = await fetchExperiments(experimentIds);
-			setExperiments(experiments);
-		};
-		updateExperiments();
-	}, [experimentIds]);
 
-	const [ingredients, setIngredients] = React.useState([] as IIngredientsData[]);
-
-	React.useEffect(() => {
-		const updateIngredients = async () => {
-			const ingredients = await fetchIngredients(ingredientIds);
-			setIngredients(ingredients);
-		};
-		updateIngredients();
-	}, [ingredientIds]);
 
 	const picksDispatch = React.useCallback(
-		createPicksReducer(ingredients),
-		[experiments, ingredients]
+		createPicksReducer(data.state.ingredients.data),
+		[data.state.experiments.data, data.state.ingredients.data]
 	);
 
 	const [picks, managePicks] = React.useReducer(
@@ -100,13 +88,13 @@ const App: React.FC<IProps> = (props) => {
 
 		<ExperimentMatch
 			picks={picks}
-			experiments={experiments}
+			experiments={data.state?.experiments?.data || []}
 			reportCallback={setMatchStatus}
 		/>
 		{
 			(picks.length < 5) ?
 				<IngredientChoice
-					ingredients={ingredients}
+					ingredients={data.state.ingredients.data}
 					callback={id => managePicks({ type: 'add', id })}
 				/>
 				:
