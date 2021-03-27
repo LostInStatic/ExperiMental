@@ -4,9 +4,11 @@ import fetchIngredients, { IIngredientsData } from '../api/fetchIngredients';
 import fetchRooms, { IRoomsData } from '../api/fetchRooms';
 import { TIdsOrAll } from '../api/parameters';
 
+export type TFetchStatus = 'loaded' | 'loading' | 'error'
+
 type TEntityState<T> = {
 	data: T
-	status: 'loaded' | 'loading' | 'error'
+	status: TFetchStatus
 }
 
 type TProviderState = {
