@@ -2,6 +2,7 @@ import React = require('react');
 import fetchExperiments, { IExperimentsData } from '../api/fetchExperiments';
 import fetchIngredients, { IIngredientsData } from '../api/fetchIngredients';
 import fetchRooms, { IRoomsData } from '../api/fetchRooms';
+import fetchTextBlocks, { ITextBlockData } from '../api/fetchTextBlocks';
 import { TIdsOrAll } from '../api/parameters';
 
 export type TFetchStatus = 'loaded' | 'loading' | 'error'
@@ -15,12 +16,14 @@ type TProviderState = {
 	experiments: TEntityState<IExperimentsData[]>
 	ingredients: TEntityState<IIngredientsData[]>
 	rooms: TEntityState<IRoomsData[]>
+	textBlocks: TEntityState<ITextBlockData[]>
 }
 
 type TRequest = {
 	experiments?: TIdsOrAll
 	ingredients?: TIdsOrAll
 	rooms?: TIdsOrAll
+	textBlocks?: TIdsOrAll
 }
 
 export type TContextValue = {
@@ -45,9 +48,10 @@ export const DataProvider: React.FC<{
 	const [state, updateState] = React.useReducer(
 		updateData,
 		{
-			experiments: { status:'loaded', data: []},
-			ingredients: { status:'loaded', data: []},
-			rooms: { status:'loaded', data: []}
+			experiments: { status: 'loaded', data: [] },
+			ingredients: { status: 'loaded', data: [] },
+			rooms: { status: 'loaded', data: [] },
+			textBlocks: { status: 'loaded', data: [] }
 		});
 
 	React.useEffect(() => {
@@ -81,6 +85,17 @@ export const DataProvider: React.FC<{
 				() => fetchIngredients(request.ingredients)
 			);
 		}
+
+		if (request.textBlocks) {
+			resolveRequest(
+				state => {
+					updateState({
+						textBlocks: state
+					});
+				},
+				() => fetchIngredients(request.textBlocks)
+			);
+		}
 	}, [request]);
 
 	return (
@@ -94,7 +109,7 @@ const updateData = (state: TProviderState, update: Partial<TProviderState>) => {
 	return { ...state, ...update };
 };
 
-const resolveRequest = (
+const resolveRequest = ( //todo-could be better
 	updateState: (state: TEntityState<any>) => void,
 	fetchData: () => Promise<any>
 ) => {
