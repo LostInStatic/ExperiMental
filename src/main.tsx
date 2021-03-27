@@ -4,6 +4,7 @@ import React = require('react')
 import './style.scss';
 import App from './components/app';
 import fetchRooms from './api/fetchRooms';
+import { DataProvider } from './components/dataProvider';
 
 /// #if PRODUCTION
 import registerServiceWorker from './registerServiceWorker';
@@ -15,9 +16,11 @@ console.info('devbuild');
 fetchRooms(['d12a373c-ab08-458b-ba23-241b8a8343ef']).then(
 	(rooms) => {
 		ReactDOM.render(
-			<App
-				defaultRoom={rooms[0]}
-			/>,
+			<DataProvider initialRequest={{}}>
+				<App
+					defaultRoom={rooms[0]}
+				/>
+			</DataProvider>,
 			document.getElementById('root')
 		);
 	}

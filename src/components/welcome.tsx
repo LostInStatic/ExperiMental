@@ -19,6 +19,7 @@ const Welcome: React.FC<IProps> = () => {
 				:
 				<ModalBox
 					displayed={true}
+					className="welcome-screen"
 				>
 					<img className="girl-gif" src={GirlGif} alt="" />
 					<button
