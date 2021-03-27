@@ -7,6 +7,7 @@ import { IIngredientsData } from '../../api/fetchIngredients';
 import IngredientIcon from '../ingredients/IngredientIcon';
 import Dropdown from '../generic/dropdown/dropdown';
 import { ReactComponent as IconArrow } from '../../resources/arrow.svg';
+import { ReactComponent as Background } from '../../resources/experiment-backgrounds/1.svg';
 
 interface IProps {
 	data: IExperimentsData,
