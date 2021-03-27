@@ -7,7 +7,7 @@ import { IIngredientsData } from '../api/fetchIngredients';
 import Menu from './generic/menu/menu';
 import Modal from './generic/modal/modal';
 import RoomList from './roomPicker/roomsList';
-import fetchRooms, { IRoomsData } from '../api/fetchRooms';
+import { IRoomsData } from '../api/fetchRooms';
 import Welcome from './welcome';
 import { ReactComponent as MainMenuIcon } from '../resources/planet.svg';
 import { ReactComponent as AboutIcon } from '../resources/questionMark.svg';
