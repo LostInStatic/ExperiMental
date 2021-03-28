@@ -1,4 +1,5 @@
 import React = require('react');
+import fetchCategories, { ICategoriesData } from '../api/fetchCategories';
 import fetchExperiments, { IExperimentsData } from '../api/fetchExperiments';
 import fetchIngredients, { IIngredientsData } from '../api/fetchIngredients';
 import fetchRooms, { IRoomsData } from '../api/fetchRooms';
@@ -17,6 +18,7 @@ type TProviderState = {
 	ingredients: TEntityState<IIngredientsData[]>
 	rooms: TEntityState<IRoomsData[]>
 	textBlocks: TEntityState<ITextBlockData[]>
+	categories: TEntityState<ICategoriesData[]>
 }
 
 type TRequest = {
@@ -24,6 +26,7 @@ type TRequest = {
 	ingredients?: TIdsOrAll
 	rooms?: TIdsOrAll
 	textBlocks?: TIdsOrAll
+	categories?: TIdsOrAll
 }
 
 export type TContextValue = {
@@ -36,7 +39,7 @@ const Context = React.createContext<TContextValue>(null);
 export const useData = (): TContextValue => {
 	const contextState = React.useContext(Context);
 	if (contextState === null) {
-		throw new Error('useItemData must be used within a ItemDataProvider tag');
+		throw new Error('useData must be used within a DataProvider component');
 	}
 	return contextState;
 };
@@ -51,7 +54,8 @@ export const DataProvider: React.FC<{
 			experiments: { status: 'loaded', data: [] },
 			ingredients: { status: 'loaded', data: [] },
 			rooms: { status: 'loaded', data: [] },
-			textBlocks: { status: 'loaded', data: [] }
+			textBlocks: { status: 'loaded', data: [] },
+			categories: {status: 'loaded', data: []}
 		});
 
 	React.useEffect(() => {
@@ -94,6 +98,16 @@ export const DataProvider: React.FC<{
 					});
 				},
 				() => fetchIngredients(request.textBlocks)
+			);
+		}
+		if (request.categories){
+			resolveRequest(
+				state => {
+					updateState({
+						categories: state
+					});
+				},
+				() => fetchCategories(request.textBlocks)
 			);
 		}
 	}, [request]);
