@@ -521,7 +521,7 @@ ol.instruction li {
 	z-index: 990;
 }
 
-.modal_box-content {
+.modal_box-content { //elo jestę testę
 	width: 100%;
 	padding: 1.5em;
 	padding-right: 1.7em;
@@ -694,4 +694,16 @@ ol.instruction li {
 li:nth-child( even ) {
 	position: relative;
 	left: 250px;
+}
+
+.blue-background {
+	color: #ffffff;
+	background-color: #385fae;
+	padding: 100px 100px 0px;
+	margin: 0 -100px;
+}
+
+.modal_box-content img {
+	max-width: 100%;
+	height: 100%;
 }
