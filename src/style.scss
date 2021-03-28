@@ -539,6 +539,14 @@ ol.instruction li {
 	color: #ff6363;
 }
 
+.modal_box-content, .modal_box-content iframe {
+	max-width: 100%;
+}
+
+.modal_box-content img {
+	height: 100%;
+}
+
 // menu
 
 .menu-button {
@@ -613,13 +621,6 @@ ol.instruction li {
 	transition: all 0.5s;
 }
 
-.dropdown_content img, .dropdown_content iframe {
-	max-width: 100%;
-}
-
-.dropdown_content img {
-	height: 100%;
-}
 
 .dropdown_content a {
 	color: #ff6363;
@@ -653,10 +654,10 @@ ol.instruction li {
 
 	.fullwidth-background {
 		background: inherit;
-		width: 300vh;
+		width: 300vw;
 		height: 100%;
 		position: absolute;
-		left: -100vh;
+		left: -100vw;
 		top: 0;
 		z-index: -1;
 	}
@@ -691,7 +692,7 @@ ol.instruction li {
 .room-choice li div > * {
 	flex-grow: 0;
 }
-li:nth-child( even ) {
+.room-choice li:nth-child( even ) {
 	position: relative;
 	left: 250px;
 }
@@ -706,4 +707,8 @@ li:nth-child( even ) {
 .modal_box-content img {
 	max-width: 100%;
 	height: 100%;
+}
+
+.welcome-screen {
+	z-index: 910;
 }

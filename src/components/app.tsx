@@ -3,12 +3,11 @@ import IngredientChoice from './ingredients/choice';
 import IngredientPicks from './ingredients/picks';
 import ExperimentMatch from './experiment/experimentMatch';
 import IndicatorBackground from './indicatorBackground';
-import fetchIngredients, { IIngredientsData } from '../api/fetchIngredients';
-import fetchExperiments, { IExperimentsData } from '../api/fetchExperiments';
+import { IIngredientsData } from '../api/fetchIngredients';
 import Menu from './generic/menu/menu';
 import Modal from './generic/modal/modal';
 import RoomList from './roomPicker/roomsList';
-import fetchRooms, { IRoomsData } from '../api/fetchRooms';
+import { IRoomsData } from '../api/fetchRooms';
 import Welcome from './welcome';
 import { ReactComponent as MainMenuIcon } from '../resources/planet.svg';
 import { ReactComponent as AboutIcon } from '../resources/questionMark.svg';
@@ -24,11 +23,15 @@ interface IProps {
 
 const App: React.FC<IProps> = (props) => {
 	const data = useData();
-	
+
 	const [experimentIds, setExperimentIds] = React.useState(props.defaultRoom.experimentIds);
 	const [ingredientIds, setIngredientIds] = React.useState(props.defaultRoom.ingredientIds);
 	React.useEffect(
-		() => data.request({ingredients: ingredientIds, experiments: experimentIds}), [ingredientIds, experimentIds]
+		() => data.request({
+			ingredients: ingredientIds,
+			experiments: experimentIds
+		}),
+		[ingredientIds, experimentIds]
 	);
 
 	const [textBlocks, setTextBlocks] = React.useState([]);
@@ -60,7 +63,7 @@ const App: React.FC<IProps> = (props) => {
 
 	return <>
 		<Welcome />
-		<LoadingScreen/>
+		<LoadingScreen />
 		<Menu buttonLabel={MainMenuIcon} className="main" key="main">
 
 			<RoomList
@@ -76,7 +79,7 @@ const App: React.FC<IProps> = (props) => {
 			{generateAbout(textBlocks)}
 		</Menu>
 		<div className="picks-indicator-wrapper">
-			<div className="fullwidth-background"/>
+			<div className="fullwidth-background" />
 			<IndicatorBackground
 				experimentMatchStatus={matchStatus}
 			/>
