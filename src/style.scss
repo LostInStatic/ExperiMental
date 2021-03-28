@@ -244,6 +244,17 @@ button.centered {
 	@include ingredientWidth($factor: $ingredient-choice-size-factor);
 	vertical-align: middle;
 	border-radius: 50% 50%;
+
+}
+ul.experiment-icons-list li {
+	list-style-type: none;
+	display: inline;
+}
+
+ul.experiment-icons-list {
+	padding: 5px 24px;
+	background-color: aliceblue;
+	margin: 16px -24px;
 }
 
 .intro-page .ingredient-icon.color{
