@@ -697,5 +697,13 @@ li:nth-child( even ) {
 }
 
 .blue-background {
+	color: #ffffff;
 	background-color: #385fae;
+	padding: 100px 100px 0px;
+	margin: 0 -100px;
+}
+
+.modal_box-content img {
+	max-width: 100%;
+	height: 100%;
 }
