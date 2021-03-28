@@ -521,7 +521,7 @@ ol.instruction li {
 	z-index: 990;
 }
 
-.modal_box-content { //elo jestę testę
+.modal_box-content {
 	width: 100%;
 	padding: 1.5em;
 	padding-right: 1.7em;
@@ -537,6 +537,14 @@ ol.instruction li {
 
 .modal_box-content a{
 	color: #ff6363;
+}
+
+.modal_box-content, .modal_box-content iframe {
+	max-width: 100%;
+}
+
+.modal_box-content img {
+	height: 100%;
 }
 
 // menu
@@ -613,13 +621,6 @@ ol.instruction li {
 	transition: all 0.5s;
 }
 
-.dropdown_content img, .dropdown_content iframe {
-	max-width: 100%;
-}
-
-.dropdown_content img {
-	height: 100%;
-}
 
 .dropdown_content a {
 	color: #ff6363;
