@@ -692,7 +692,7 @@ ol.instruction li {
 .room-choice li div > * {
 	flex-grow: 0;
 }
-li:nth-child( even ) {
+.room-choice li:nth-child( even ) {
 	position: relative;
 	left: 250px;
 }
