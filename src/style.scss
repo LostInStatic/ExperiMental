@@ -244,6 +244,17 @@ button.centered {
 	@include ingredientWidth($factor: $ingredient-choice-size-factor);
 	vertical-align: middle;
 	border-radius: 50% 50%;
+
+}
+ul.experiment-icons-list li {
+	list-style-type: none;
+	display: inline;
+}
+
+ul.experiment-icons-list {
+	padding: 5px 24px;
+	background-color: aliceblue;
+	margin: 16px -24px;
 }
 
 .intro-page .ingredient-icon.color{
@@ -434,9 +445,10 @@ button.active {
 	font-weight: 500;
 }
 
-// .experiment-title {
-// 	color: $experiment-intro-color;
-// }
+.experiment-title {
+	// color: $experiment-intro-color;
+	color: #fdcb37;
+}
 
 ol.instruction li {
 	margin: .67em 0;
@@ -521,7 +533,7 @@ ol.instruction li {
 	z-index: 990;
 }
 
-.modal_box-content {
+.modal_box-content { //elo jestę testę
 	width: 100%;
 	padding: 1.5em;
 	padding-right: 1.7em;
@@ -533,6 +545,7 @@ ol.instruction li {
 	border-radius: 1em;
 	box-sizing: border-box;
 	position: relative;
+	overflow: hidden;
 }
 
 .modal_box-content a{
@@ -711,4 +724,18 @@ ol.instruction li {
 
 .welcome-screen {
 	z-index: 910;
+}
+
+.experiment-summary {
+	background-color: #385fae;
+	margin: -100px -50px -50px;
+	padding: 100px 50px 50px 50px;
+}
+
+.experiment.intro-page .modal_box-content {
+	background-color: #fff;
+}
+
+.experiment.intro-page .modal_box-content .dropdown_content{
+	background-color: #fff;
 }
