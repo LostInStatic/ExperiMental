@@ -22,7 +22,7 @@ const fetchRooms = async (
 			specificIds: ids
 		})
 	);
-	let rooms = dataObject.data.map(room => {
+	const rooms = dataObject.data.map(room => {
 		return {
 			id: room.id,
 			name: room.attributes.title,
@@ -30,7 +30,6 @@ const fetchRooms = async (
 			ingredientIds: room.relationships.field_skladniki.data.map(data => data.id),
 			experimentIds: room.relationships.field_eksperymenty.data.map(data => data.id),
 			order: room.attributes.field_kolejnosc
-
 		};
 	});
 	if (rooms.length === 0) {
