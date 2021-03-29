@@ -8,7 +8,8 @@ export interface IRoomsData {
 	name: string,
 	description,
 	ingredientIds: string[],
-	experimentIds: string[]
+	experimentIds: string[],
+	order: number
 
 }
 
@@ -27,14 +28,15 @@ const fetchRooms = async (
 			name: room.attributes.title,
 			description: room.attributes.field_opis,
 			ingredientIds: room.relationships.field_skladniki.data.map(data => data.id),
-			experimentIds: room.relationships.field_eksperymenty.data.map(data => data.id)
+			experimentIds: room.relationships.field_eksperymenty.data.map(data => data.id),
+			order: room.attributes.field_kolejnosc
 
 		};
 	});
 	if (rooms.length === 0) {
 		throw 'Room list empty!';
 	}
-	return rooms;
+	return rooms.sort((a, b) => b.order - a.order);
 };
 
 export default fetchRooms;

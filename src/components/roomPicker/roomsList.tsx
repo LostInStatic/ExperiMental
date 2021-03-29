@@ -21,6 +21,12 @@ const RoomList: React.FC<IProps> = (props) => {
 			data.request({rooms: props.ids});
 		}
 	}, [props.ids]);
+
+	React.useEffect(() => {
+		if (data.state.rooms.data.length){
+			makeRequest(data.state.rooms.data[0]);
+		}		
+	}, [data.state.rooms]);
 	
 	return <Modal
 		buttonSymbol="Wybierz pokój"
