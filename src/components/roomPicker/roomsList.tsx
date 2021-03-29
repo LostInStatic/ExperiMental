@@ -4,6 +4,7 @@ import fetchRooms, { IRoomsData } from '../../api/fetchRooms';
 import Category from '../category';
 import { useData } from '../dataProvider';
 import Modal from '../generic/modal/modal';
+import DinoSvg from '../resources/dino.svg';
 
 interface IProps {
 	ids: string[]
