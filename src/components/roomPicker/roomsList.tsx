@@ -12,13 +12,14 @@ interface IProps {
 const RoomList: React.FC<IProps> = (props) => {
 	const data = useData();
 	const makeRequest = (room: IRoomsData) => {
-		data.request({experiments: room.experimentIds, ingredients: room.ingredientIds});
+		data.request.experiments(room.experimentIds);
+		data.request.ingredients(room.ingredientIds);
 	};
 	const [modalDisplayed, setModalDisplayed] = React.useState(false);
 
 	React.useEffect(() => {
 		if (props.ids.length) {
-			data.request({rooms: props.ids});
+			data.request.rooms(props.ids);
 		}
 	}, [props.ids]);
 

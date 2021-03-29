@@ -11,6 +11,7 @@ const Category: React.FC<IProps> = (props) => {
 	const urlParams = new URLSearchParams(window.location.search);
 	const data = useData();
 	const [currentIds, setCurrentIds] = React.useState({rooms: [], textBlocks: []});
+	React.useEffect( () => data.request.categories('all'), []);
 	React.useEffect( () => setCurrentIds( selectData(urlParams.get('cat'), data.state.categories.data)), [data.state.categories]); 
 	return <App
 		roomIds={currentIds.rooms}

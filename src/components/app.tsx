@@ -24,15 +24,12 @@ interface IProps {
 
 const App: React.FC<IProps> = (props) => {
 	const data = useData();
-	const [experimentIds, setExperimentIds] = React.useState([]);
-	const [ingredientIds, setIngredientIds] = React.useState([]);
-	// React.useEffect(
-	// 	() => data.request({
-	// 		ingredients: ingredientIds,
-	// 		experiments: experimentIds
-	// 	}),
-	// 	[ingredientIds, experimentIds]
-	// );
+	React.useEffect(() => {
+		if (props.textBlockIds.length) {
+			data.request.textBlocks(props.textBlockIds);
+		}
+	}, [props.textBlockIds]);
+	
 	const picksDispatch = React.useCallback(
 		createPicksReducer(data.state.ingredients.data),
 		[data.state.experiments.data, data.state.ingredients.data]
