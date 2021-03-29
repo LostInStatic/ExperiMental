@@ -751,3 +751,14 @@ ol.instruction li {
 .experiment.intro-page .modal_box-content .dropdown_content{
 	background-color: #fff;
 }
+
+.loading-screen .modal_box-content {
+	height: 100%;
+	display: flex;
+}
+
+.loading-screen img {
+	height: 50%;
+	margin: auto;
+	display: block;
+}
