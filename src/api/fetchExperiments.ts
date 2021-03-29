@@ -24,9 +24,6 @@ const fetchExperiments = async (
 			specificIds: ids
 		})
 	);
-	console.log(APIURLS.experiments + addAPIParameters({
-		specificIds: ids
-	}));
 	let experiments = dataObject.data.map(experiment => {
 		return {
 			id: experiment.id,

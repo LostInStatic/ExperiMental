@@ -2,7 +2,6 @@ import React = require('react');
 import Cookies from '../cookiesProvider';
 import ModalBox from './generic/modal/modalBox';
 const COOKIENAME_SEEN = 'welcomeSeen';
-import { ReactComponent as Sponsors } from '../resources/sponsors.svg';
 import GirlGif from '../resources/girl.gif';
 
 interface IProps {
@@ -20,8 +19,8 @@ const Welcome: React.FC<IProps> = () => {
 				:
 				<ModalBox
 					displayed={true}
+					className="welcome-screen"
 				>
-					<Sponsors className="sponsors" />
 					<img className="girl-gif" src={GirlGif} alt="" />
 					<button
 						className="centered"

@@ -1,13 +1,13 @@
 import React = require('react');
 import { IExperimentsData } from '../../api/fetchExperiments';
 import { IIngredientsData } from '../../api/fetchIngredients';
-import { IExperimentMatchState} from '../app';
+import { IExperimentMatchState } from '../app';
 import ExperimentDisplay from './experimentDisplay';
 
 interface IProps {
 	experiments: IExperimentsData[],
 	picks: IIngredientsData[],
-	reportCallback: (status:IExperimentMatchState) => void
+	reportCallback: (status: IExperimentMatchState) => void
 }
 
 const ExperimentMatch: React.FC<IProps> = (props) => {
@@ -16,15 +16,17 @@ const ExperimentMatch: React.FC<IProps> = (props) => {
 
 	React.useEffect(() => {
 		props.reportCallback({
-			isMatched: match.experiments.length !== 0, 
+			isMatched: match.experiments.length !== 0,
 			hasPartialMatch: match.hasPartialFit,
 			hasNonePicked: props.picks.length === 0
 		});
 	}, [props.picks]);
 
-	return <ul className="experiments-list">
-		{match.experiments.map(experiment => createExperiment(experiment, props.picks))}
-	</ul>;
+	return <div className="experiments-list-wrapper">
+		<ul className="experiments-list">
+			{match.experiments.map(experiment => createExperiment(experiment, props.picks))}
+		</ul>
+	</div>;
 };
 
 const createExperiment = (experiment: IExperimentsData, picks: IIngredientsData[]) => {

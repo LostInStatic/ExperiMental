@@ -3,47 +3,36 @@ import IngredientChoice from './ingredients/choice';
 import IngredientPicks from './ingredients/picks';
 import ExperimentMatch from './experiment/experimentMatch';
 import IndicatorBackground from './indicatorBackground';
-import fetchIngredients, { IIngredientsData } from '../api/fetchIngredients';
-import fetchExperiments, { IExperimentsData } from '../api/fetchExperiments';
+import { IIngredientsData } from '../api/fetchIngredients';
 import Menu from './generic/menu/menu';
 import Modal from './generic/modal/modal';
 import RoomList from './roomPicker/roomsList';
-import fetchRooms, { IRoomsData } from '../api/fetchRooms';
+import { IRoomsData } from '../api/fetchRooms';
 import Welcome from './welcome';
 import { ReactComponent as MainMenuIcon } from '../resources/planet.svg';
+import { ReactComponent as AboutIcon } from '../resources/questionMark.svg';
+import fetchTextBlocks, { ITextBlockData } from '../api/fetchTextBlocks';
+import parse from 'html-react-parser';
+import LoadingScreen from './loadingScreen';
+import { useData } from './dataProvider';
 
 interface IProps {
-	defaultRoom: IRoomsData
+	roomIds: string[]
+	textBlockIds: string[]
 }
 
 
 const App: React.FC<IProps> = (props) => {
-	const [experimentIds, setExperimentIds] = React.useState(props.defaultRoom.experimentIds);
-	const [ingredientIds, setIngredientIds] = React.useState(props.defaultRoom.ingredientIds);
-
-	const [experiments, setExperiments] = React.useState([] as IExperimentsData[]);
-
+	const data = useData();
 	React.useEffect(() => {
-		const updateExperiments = async () => {
-			const experiments = await fetchExperiments(experimentIds);
-			setExperiments(experiments);
-		};
-		updateExperiments();
-	}, [experimentIds]);
-
-	const [ingredients, setIngredients] = React.useState([] as IIngredientsData[]);
-
-	React.useEffect(() => {
-		const updateIngredients = async () => {
-			const ingredients = await fetchIngredients(ingredientIds);
-			setIngredients(ingredients);
-		};
-		updateIngredients();
-	}, [ingredientIds]);
-
+		if (props.textBlockIds.length) {
+			data.request.textBlocks(props.textBlockIds);
+		}
+	}, [props.textBlockIds]);
+	
 	const picksDispatch = React.useCallback(
-		createPicksReducer(ingredients),
-		[experiments, ingredients]
+		createPicksReducer(data.state.ingredients.data),
+		[data.state.experiments.data, data.state.ingredients.data]
 	);
 
 	const [picks, managePicks] = React.useReducer(
@@ -59,22 +48,18 @@ const App: React.FC<IProps> = (props) => {
 
 	return <>
 		<Welcome />
+		<LoadingScreen />
 		<Menu buttonLabel={MainMenuIcon} className="main" key="main">
 
 			<RoomList
-				callback={
-					room => {
-						setExperimentIds(room.experimentIds);
-						setIngredientIds(room.ingredientIds);
-					}
-				}
+				ids={props.roomIds}
 			/>
 		</Menu>
-		<Menu buttonLabel={MainMenuIcon} className="about" key="about">
-
-			tu będzie about
+		<Menu buttonLabel={AboutIcon} className="about" key="about">
+			{generateAbout(data.state.textBlocks.data)}
 		</Menu>
 		<div className="picks-indicator-wrapper">
+			<div className="fullwidth-background" />
 			<IndicatorBackground
 				experimentMatchStatus={matchStatus}
 			/>
@@ -86,13 +71,13 @@ const App: React.FC<IProps> = (props) => {
 
 		<ExperimentMatch
 			picks={picks}
-			experiments={experiments}
+			experiments={data.state?.experiments?.data || []}
 			reportCallback={setMatchStatus}
 		/>
 		{
 			(picks.length < 5) ?
 				<IngredientChoice
-					ingredients={ingredients}
+					ingredients={data.state.ingredients.data}
 					callback={id => managePicks({ type: 'add', id })}
 				/>
 				:
@@ -133,6 +118,29 @@ const createPicksReducer = (ingredients: IIngredientsData[]) => {
 				return state;
 		}
 	};
+};
+
+const generateAbout = (textBlocks: ITextBlockData[]) => {
+	return selectTextBlocksByAnchor('about', textBlocks).map(
+		textBlock => {
+			return <Modal
+				key={`about_${textBlock.id}`}
+				buttonSymbol={textBlock.name}
+			>
+				{parse(textBlock.content)}
+			</Modal>;
+		}
+	);
+};
+
+
+const selectTextBlocksByAnchor = (
+	anchorID: string,
+	textBlocks: ITextBlockData[]
+) => {
+	return textBlocks.filter(
+		textBlock => textBlock.anchor === anchorID
+	);
 };
 
 interface IManagePickAction {
