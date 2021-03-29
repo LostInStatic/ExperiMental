@@ -56,21 +56,27 @@ const assembleIntroPage = (props: IProps) => {
 	return {
 		id: 'intro-page',
 		content: <>
-			<h1 className="experiment-title">{props.data.name}</h1>
-			<div className="intro">{parse(props.data.intro)}</div>
+			<div className="experiment-summary">
+				<h1 className="experiment-title">{props.data.name}</h1>
+				<div className="intro">{parse(props.data.intro)}</div>
+			</div>
+			<ul className="experiment-icons-list">
 			{
 				props.ingredients.map(
 					(ingredient, index) => {
-						return <IngredientIcon
+						return <li>
+							<IngredientIcon
 							ingredientName={ingredient.name}
 							type="color"
 							iconUrl={ingredient.iconUrls.color}
 							key={ingredient.id + index}
 
-						/>;
+						/>
+						</li>;
 					}
 				)
 			}
+			</ul>
 			<Dropdown
 				key="intro-dropdown"
 				buttonLabel="Instrukcja"
