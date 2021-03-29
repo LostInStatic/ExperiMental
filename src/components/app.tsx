@@ -17,34 +17,22 @@ import LoadingScreen from './loadingScreen';
 import { useData } from './dataProvider';
 
 interface IProps {
-	defaultRoom: IRoomsData
+	roomIds: string[]
+	textBlockIds: string[]
 }
 
 
 const App: React.FC<IProps> = (props) => {
 	const data = useData();
-
-	const [experimentIds, setExperimentIds] = React.useState(props.defaultRoom.experimentIds);
-	const [ingredientIds, setIngredientIds] = React.useState(props.defaultRoom.ingredientIds);
-	React.useEffect(
-		() => data.request({
-			ingredients: ingredientIds,
-			experiments: experimentIds
-		}),
-		[ingredientIds, experimentIds]
-	);
-
-	const [textBlocks, setTextBlocks] = React.useState([]);
-	React.useEffect(() => {
-		const updateRooms = async () => {
-			const rooms = await fetchTextBlocks('all');
-			setTextBlocks(rooms);
-		};
-		updateRooms();
-	}, []);
-
-
-
+	const [experimentIds, setExperimentIds] = React.useState([]);
+	const [ingredientIds, setIngredientIds] = React.useState([]);
+	// React.useEffect(
+	// 	() => data.request({
+	// 		ingredients: ingredientIds,
+	// 		experiments: experimentIds
+	// 	}),
+	// 	[ingredientIds, experimentIds]
+	// );
 	const picksDispatch = React.useCallback(
 		createPicksReducer(data.state.ingredients.data),
 		[data.state.experiments.data, data.state.ingredients.data]
@@ -67,16 +55,11 @@ const App: React.FC<IProps> = (props) => {
 		<Menu buttonLabel={MainMenuIcon} className="main" key="main">
 
 			<RoomList
-				callback={
-					room => {
-						setExperimentIds(room.experimentIds);
-						setIngredientIds(room.ingredientIds);
-					}
-				}
+				ids={props.roomIds}
 			/>
 		</Menu>
 		<Menu buttonLabel={AboutIcon} className="about" key="about">
-			{generateAbout(textBlocks)}
+			{generateAbout(data.state.textBlocks.data)}
 		</Menu>
 		<div className="picks-indicator-wrapper">
 			<div className="fullwidth-background" />

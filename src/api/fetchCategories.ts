@@ -6,6 +6,7 @@ import addAPIParameters, { TIdsOrAll } from './parameters';
 export interface ICategoriesData {
 	id: string,
 	name: string,
+	urlSlug: string
 	roomIds: string[],
 	textBlockIds: string[]
 }
@@ -23,6 +24,7 @@ const fetchCategories = async (
 		return {
 			id: category.id,
 			name: category.attributes.title,
+			urlSlug: category.attributes.field_urlslug,
 			roomIds: category.relationships.field_pokoje.data.map(data => data.id),
 			textBlockIds: category.relationships.field_bloki.data.map(data => data.id)
 		};

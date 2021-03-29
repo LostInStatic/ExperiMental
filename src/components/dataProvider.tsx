@@ -55,7 +55,7 @@ export const DataProvider: React.FC<{
 			ingredients: { status: 'loaded', data: [] },
 			rooms: { status: 'loaded', data: [] },
 			textBlocks: { status: 'loaded', data: [] },
-			categories: {status: 'loaded', data: []}
+			categories: { status: 'loaded', data: [] }
 		});
 
 	React.useEffect(() => {
@@ -100,14 +100,14 @@ export const DataProvider: React.FC<{
 				() => fetchIngredients(request.textBlocks)
 			);
 		}
-		if (request.categories){
+		if (request.categories) {
 			resolveRequest(
 				state => {
 					updateState({
 						categories: state
 					});
 				},
-				() => fetchCategories(request.textBlocks)
+				() => fetchCategories(request.categories)
 			);
 		}
 	}, [request]);
@@ -127,7 +127,7 @@ const resolveRequest = ( //todo-could be better
 	updateState: (state: TEntityState<any>) => void,
 	fetchData: () => Promise<any>
 ) => {
-	updateState({ status: 'loading', data: null });
+	updateState({ status: 'loading', data: [] });
 	fetchData().then(
 		data => {
 			updateState({

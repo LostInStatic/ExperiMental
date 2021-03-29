@@ -5,6 +5,7 @@ const APIURLS = {
 	experiments: `${base}node/eksperyment`,
 	rooms: `${base}node/pokoj`,
 	textBlocks: `${base}node/blok_tekstu`,
-	categories: `${base}node/kategoria`
+	categories: `${base}node/kategoria`,
+	mainCategoryQuery: 'main'
 };
 export default APIURLS;
