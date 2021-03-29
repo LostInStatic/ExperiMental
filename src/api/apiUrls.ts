@@ -6,6 +6,7 @@ const APIURLS = {
 	rooms: `${base}node/pokoj`,
 	textBlocks: `${base}node/blok_tekstu`,
 	categories: `${base}node/kategoria`,
-	mainCategoryQuery: 'main'
+	mainCategorySlug: 'main',
+	defaultCategorySlug: 'default'	
 };
 export default APIURLS;
