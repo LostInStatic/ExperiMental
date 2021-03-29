@@ -1,24 +1,27 @@
 import React = require('react');
+import { ICategoriesData } from '../../api/fetchCategories';
 import fetchRooms, { IRoomsData } from '../../api/fetchRooms';
+import Category from '../category';
+import { useData } from '../dataProvider';
 import Modal from '../generic/modal/modal';
 
 interface IProps {
-	callback: (room: IRoomsData) => void
+	ids: string[]
 }
 
 const RoomList: React.FC<IProps> = (props) => {
-
+	const data = useData();
+	const makeRequest = (room: IRoomsData) => {
+		data.request({experiments: room.experimentIds, ingredients: room.ingredientIds});
+	};
 	const [modalDisplayed, setModalDisplayed] = React.useState(false);
-	const [rooms, setRooms] = React.useState([] as IRoomsData[]);
 
 	React.useEffect(() => {
-		const updateRooms = async () => {
-			const rooms = await fetchRooms('all');
-			setRooms(rooms);
-		};
-		updateRooms();
-	}, []);
-
+		if (props.ids.length) {
+			data.request({rooms: props.ids});
+		}
+	}, [props.ids]);
+	
 	return <Modal
 		buttonSymbol="Wybierz pokój"
 		externalState={
@@ -28,13 +31,14 @@ const RoomList: React.FC<IProps> = (props) => {
 			}
 		}
 		className="room-choice">
-		{listRooms(rooms, props.callback, () => setModalDisplayed(false))}
+		{listRooms(data.state.rooms.data, makeRequest, () => setModalDisplayed(false))}
 	</Modal>;
 };
 
 export default RoomList;
 
-const listRooms = (list: IRoomsData[], callback: (id: IRoomsData) => void, closeModal: () => void) => {
+const listRooms = (list: IRoomsData[], makeRequest: (room: IRoomsData) => void, closeModal: () => void) => {
+	if (!list || list.length === 0) return <p>W tej kategorii nie ma żadnych pokoi.</p>;
 	return <ul>
 		{
 			list.map(roomData => {
@@ -43,7 +47,7 @@ const listRooms = (list: IRoomsData[], callback: (id: IRoomsData) => void, close
 						<button
 							className="choose-room"
 							onClick={() => {
-								callback(roomData);
+								makeRequest(roomData);
 								closeModal();
 							}}
 						>{roomData.name}</button>
