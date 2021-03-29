@@ -5,6 +5,7 @@ import fetchIngredients, { IIngredientsData } from '../api/fetchIngredients';
 import fetchRooms, { IRoomsData } from '../api/fetchRooms';
 import fetchTextBlocks, { ITextBlockData } from '../api/fetchTextBlocks';
 import { TIdsOrAll } from '../api/parameters';
+import Ingredient from './ingredients/ingredient';
 
 export type TFetchStatus = 'loaded' | 'loading' | 'error'
 
@@ -21,17 +22,15 @@ type TProviderState = {
 	categories: TEntityState<ICategoriesData[]>
 }
 
-type TRequest = {
-	experiments?: TIdsOrAll
-	ingredients?: TIdsOrAll
-	rooms?: TIdsOrAll
-	textBlocks?: TIdsOrAll
-	categories?: TIdsOrAll
-}
-
 export type TContextValue = {
 	state: TProviderState
-	request: (request: TRequest) => void
+	request: {
+		experiments: (ids: TIdsOrAll) => void
+		ingredients: (ids: TIdsOrAll) => void
+		rooms: (ids: TIdsOrAll) => void
+		textBlocks: (ids: TIdsOrAll) => void
+		categories: (ids: TIdsOrAll) => void
+	}
 }
 
 const Context = React.createContext<TContextValue>(null);
@@ -44,10 +43,7 @@ export const useData = (): TContextValue => {
 	return contextState;
 };
 
-export const DataProvider: React.FC<{
-	initialRequest: TRequest
-}> = (props) => {
-	const [request, updateRequest] = React.useState(props.initialRequest);
+export const DataProvider: React.FC = (props) => {
 	const [state, updateState] = React.useReducer(
 		updateData,
 		{
@@ -58,62 +54,8 @@ export const DataProvider: React.FC<{
 			categories: { status: 'loaded', data: [] }
 		});
 
-	React.useEffect(() => {
-		if (request.rooms) {
-			resolveRequest(
-				state => {
-					updateState({
-						rooms: state
-					});
-				},
-				() => fetchRooms(request.rooms)
-			);
-		}
-		if (request.experiments) {
-			resolveRequest(
-				state => {
-					updateState({
-						experiments: state
-					});
-				},
-				() => fetchExperiments(request.experiments)
-			);
-		}
-		if (request.ingredients) {
-			resolveRequest(
-				state => {
-					updateState({
-						ingredients: state
-					});
-				},
-				() => fetchIngredients(request.ingredients)
-			);
-		}
-
-		if (request.textBlocks) {
-			resolveRequest(
-				state => {
-					updateState({
-						textBlocks: state
-					});
-				},
-				() => fetchIngredients(request.textBlocks)
-			);
-		}
-		if (request.categories) {
-			resolveRequest(
-				state => {
-					updateState({
-						categories: state
-					});
-				},
-				() => fetchCategories(request.categories)
-			);
-		}
-	}, [request]);
-
 	return (
-		<Context.Provider value={{ state: state, request: updateRequest }}>
+		<Context.Provider value={{ state: state, request: generateRequestFunctions(updateState) }}>
 			{props.children}
 		</Context.Provider>
 	);
@@ -124,11 +66,12 @@ const updateData = (state: TProviderState, update: Partial<TProviderState>) => {
 };
 
 const resolveRequest = ( //todo-could be better
+	ids: TIdsOrAll,
 	updateState: (state: TEntityState<any>) => void,
-	fetchData: () => Promise<any>
+	fetchData: (ids: TIdsOrAll) => Promise<any>
 ) => {
 	updateState({ status: 'loading', data: [] });
-	fetchData().then(
+	fetchData(ids).then(
 		data => {
 			updateState({
 				status: 'loaded',
@@ -146,4 +89,16 @@ const resolveRequest = ( //todo-could be better
 			});
 		}
 	);
+};
+
+const generateRequestFunctions = (
+	updateState: (state: Partial<TProviderState>) => void
+) => {
+	return {
+		experiments: ids => resolveRequest(ids, state => updateState({ experiments: state }), fetchExperiments),
+		ingredients: ids => resolveRequest(ids, state => updateState({ ingredients: state }), fetchIngredients),
+		rooms: ids => resolveRequest(ids, state => updateState({ rooms: state }), fetchRooms),
+		textBlocks: ids => resolveRequest(ids, state => updateState({ textBlocks: state }), fetchTextBlocks),
+		categories: ids => resolveRequest(ids, state => updateState({ categories: state }), fetchCategories),
+	};
 };

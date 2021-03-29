@@ -14,7 +14,7 @@ console.info('devbuild');
 const urlParams = new URLSearchParams(window.location.search);
 
 ReactDOM.render(
-	<DataProvider initialRequest={{ categories: 'all' }}>
+	<DataProvider>
 		<Category/>
 	</DataProvider>,
 	document.getElementById('root')
