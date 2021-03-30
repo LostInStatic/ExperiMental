@@ -29,6 +29,7 @@ export interface Attributes {
 	default_langcode:              boolean;
 	revision_translation_affected: boolean;
 	path:                          Path;
+	field_exact_match:             boolean;
 	field_urlslug:                 string;
 }
 
@@ -60,14 +61,8 @@ export interface Field {
 }
 
 export interface DAT {
-	type: Type;
+	type: string;
 	id:   string;
-}
-
-export enum Type {
-	NodePokoj = 'node--pokoj',
-	NodeTypeNodeType = 'node_type--node_type',
-	UserUser = 'user--user',
 }
 
 export interface FieldBlokiLinks {
