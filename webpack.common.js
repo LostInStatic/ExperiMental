@@ -16,12 +16,14 @@ module.exports = {
 	},
 	output: {
 		path: outputPath,
-		filename: '[name].js'
+		filename: '[name].js',
+		publicPath: '/'
 	},
 	devServer: {
 		contentBase: outputPath,
 		watchContentBase: true,
 		disableHostCheck: true,
+		historyApiFallback: true,
 		port: 9000,
 		proxy: {
 			'/experimental-admin/': {
