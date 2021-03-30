@@ -17,7 +17,6 @@ module.exports = {
 	output: {
 		path: outputPath,
 		filename: '[name].js',
-		publicPath: '/'
 	},
 	devServer: {
 		contentBase: outputPath,
