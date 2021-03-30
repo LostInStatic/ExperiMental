@@ -4,7 +4,7 @@ import React = require('react')
 import './style.scss';
 import { DataProvider } from './components/dataProvider';
 import Category from './components/category/current';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 
 /// #if PRODUCTION
 import registerServiceWorker from './registerServiceWorker';
@@ -18,7 +18,12 @@ ReactDOM.render(
 	<Router>
 		<DataProvider>
 			<Switch>
-				<Route path='/:slug'><Category /></Route>
+				<Route exact path='/'>
+					<Redirect to='/default' />
+				</Route>
+				<Route path='/:slug'>
+					<Category />
+				</Route>
 			</Switch>
 		</DataProvider>
 	</Router>,
