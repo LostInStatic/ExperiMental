@@ -44,7 +44,7 @@ const generateCategoryLinks = (
 		{filterCategories(categories, searchQuery).map(category => {
 			return <li key={`category_${category.urlSlug}`}>
 				<Link
-					to={`/${category.urlSlug}`}
+					to={`${category.urlSlug}`}
 					onClick={closeModal}
 				>{category.name}</Link>
 			</li>;
