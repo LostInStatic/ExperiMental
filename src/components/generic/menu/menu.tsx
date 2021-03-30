@@ -10,14 +10,12 @@ const Menu: React.FC<IProps> = (props) => {
 	const [displayed, toggleDisplayed] = React.useReducer(toggleState, false);
 
 	return <ClickAwayListener
-		onClickAway={() => { toggleDisplayed(true); console.log('away'); }}
+		onClickAway={() => { toggleDisplayed(true);}}
 	>
 		<div>
 			<button
 				className={`menu-button ${props.className || ''}`}
 				onClick={(e) => {
-					e.stopPropagation();
-					console.log('elo');
 					toggleDisplayed(false);
 				}}
 			>
