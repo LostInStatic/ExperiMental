@@ -739,3 +739,55 @@ ol.instruction li {
 .experiment.intro-page .modal_box-content .dropdown_content{
 	background-color: #fff;
 }
+
+.tutorial.next-button {
+	box-sizing: border-box;
+	padding: 10px 15px; 
+	color: rgb(255, 255, 255); 
+	background-color: rgb(255, 99, 99); 
+	border: 0px none; 
+	border-radius: 3em; 
+	cursor: pointer; 
+	position: relative; 
+	// top: -5em; 
+	text-decoration-line: none; 
+	font-weight: 500; 
+	font-size: 1rem;
+}
+
+.tutorial .img-center {
+	display: block;
+	margin: auto;
+	max-width: 80%;
+}
+
+.tutorial.blue-background {
+	padding-top: 0;
+}
+
+.tutorial.text-align-right {
+	text-align: right;
+}
+
+.tutorial-hint {
+	display: flex;
+	text-align: left;
+}
+
+.tutorial-hint p {
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	flex-direction: column;
+	padding-left: 1em;
+	font-size: 0.75em;
+	line-height: 1.25em;
+}
+
+.tutorial-hint img {
+	max-width: 5em;
+}
+
+.tutorial-hint.blue-background {
+	padding-top: 1em;
+}
