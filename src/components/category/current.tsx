@@ -1,8 +1,8 @@
 import React = require('react');
-import APIURLS from '../api/apiUrls';
-import { ICategoriesData } from '../api/fetchCategories';
-import App from './app';
-import { useData } from './dataProvider';
+import APIURLS from '../../api/apiUrls';
+import { ICategoriesData } from '../../api/fetchCategories';
+import App from '../app';
+import { useData } from '../dataProvider';
 
 interface IProps {
 }
