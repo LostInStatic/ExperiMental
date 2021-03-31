@@ -9,7 +9,6 @@ import Modal from './generic/modal/modal';
 import RoomList from './roomPicker/roomsList';
 import { IRoomsData } from '../api/fetchRooms';
 import Welcome from './welcome';
-import { ReactComponent as MainMenuIcon } from '../resources/planet.svg';
 import { ReactComponent as AboutIcon } from '../resources/questionMark.svg';
 import fetchTextBlocks, { ITextBlockData } from '../api/fetchTextBlocks';
 import parse from 'html-react-parser';
@@ -30,7 +29,7 @@ const App: React.FC<IProps> = (props) => {
 			data.request.textBlocks(props.textBlockIds);
 		}
 	}, [props.textBlockIds]);
-	
+
 	const picksDispatch = React.useCallback(
 		createPicksReducer(data.state.ingredients.data),
 		[data.state.experiments.data, data.state.ingredients.data]
@@ -50,12 +49,9 @@ const App: React.FC<IProps> = (props) => {
 	return <>
 		<Welcome />
 		<LoadingScreen />
-		<Menu buttonLabel={MainMenuIcon} className="main" key="main">
-			<RoomList
-				ids={props.roomIds}
-			/>
-			<CategorySelection/>
-		</Menu>
+		<RoomList
+			ids={props.roomIds}
+		/>
 		<Menu buttonLabel={AboutIcon} className="about" key="about">
 			{generateAbout(data.state.textBlocks.data)}
 		</Menu>
