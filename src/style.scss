@@ -148,9 +148,7 @@ button.centered {
 .picks-container {
 	@include on-circle(
 		$item-count: 5,
-		$circle-size: (
-			$ingredient-picks-height * 0.4,
-		),
+		$circle-size: $ingredient-picks-height * 0.4,
 		$item-size: $ingredient-picks-height * $ingredient-pick-size-factor
 	);
 
