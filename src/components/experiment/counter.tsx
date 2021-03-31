@@ -23,7 +23,7 @@ const Counter: React.FC<IProps> = (props) => {
 export default Counter;
 
 const addNewlyMatched = (previous, experiments: IExperimentsData[]) => {
-	const matched = {};
+	let matched = {};
 	experiments.map( (experiment) => {
 		matched[experiment.id] = true;
 	});
