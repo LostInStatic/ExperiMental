@@ -9,6 +9,7 @@ export interface ICategoriesData {
 	urlSlug: string
 	roomIds: string[],
 	textBlockIds: string[]
+	partialMatch: boolean
 }
 
 
@@ -26,7 +27,8 @@ const fetchCategories = async (
 			name: category.attributes.title,
 			urlSlug: category.attributes.field_urlslug,
 			roomIds: category.relationships.field_pokoje.data.map(data => data.id),
-			textBlockIds: category.relationships.field_bloki.data.map(data => data.id)
+			textBlockIds: category.relationships.field_bloki.data.map(data => data.id),
+			partialMatch: category.attributes.field_exact_match
 		};
 	});
 	if (categories.length === 0) {
