@@ -7,7 +7,7 @@ import { IIngredientsData } from '../../api/fetchIngredients';
 import IngredientIcon from '../ingredients/IngredientIcon';
 import Dropdown from '../generic/dropdown/dropdown';
 import { ReactComponent as IconArrow } from '../../resources/arrow.svg';
-import { ReactComponent as Background } from '../../resources/experiment-backgrounds/1.svg';
+import Background from './background';
 
 interface IProps {
 	data: IExperimentsData,
@@ -57,21 +57,28 @@ const assembleIntroPage = (props: IProps) => {
 	return {
 		id: 'intro-page',
 		content: <>
-			<h1 className="experiment-title">{props.data.name}</h1>
-			<div className="intro">{parse(props.data.intro)}</div>
-			{
-				props.ingredients.map(
-					(ingredient, index) => {
-						return <IngredientIcon
-							ingredientName={ingredient.name}
-							type="color"
-							iconUrl={ingredient.iconUrls.color}
-							key={ingredient.id + index}
+			<div className="experiment-summary">
+				<Background />
+				<h1 className="experiment-title">{props.data.name}</h1>
+				<div className="intro">{parse(props.data.intro)}</div>
+			</div>
+			<ul className="experiment-icons-list">
+				{
+					props.ingredients.map(
+						(ingredient, index) => {
+							return <li key={ingredient.id}>
+								<IngredientIcon
+									ingredientName={ingredient.name}
+									type="color"
+									iconUrl={ingredient.iconUrls.color}
+									key={ingredient.id + index}
 
-						/>;
-					}
-				)
-			}
+								/>
+							</li>;
+						}
+					)
+				}
+			</ul>
 			<Dropdown
 				key="intro-dropdown"
 				buttonLabel="Instrukcja"
@@ -99,8 +106,8 @@ const assembleExplanationPage = (props: IProps) => {
 						key="explanation-dropdown"
 					>
 						{parse(props.data.references)}
-					</Dropdown> 
-					: 
+					</Dropdown>
+					:
 					''
 			}
 
