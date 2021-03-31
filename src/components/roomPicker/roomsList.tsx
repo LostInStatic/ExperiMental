@@ -15,14 +15,14 @@ interface IProps {
 
 const RoomList: React.FC<IProps> = (props) => {
 	const data = useData();
-	
+
 	const [modalDisplayed, setModalDisplayed] = React.useState(false);
 	const [currentRoom, setCurrentRoom] = React.useState('');
 
 	const makeRequest = (room: IRoomsData) => {
+		setCurrentRoom(room.id);
 		data.request.experiments(room.experimentIds);
 		data.request.ingredients(room.ingredientIds);
-		setCurrentRoom(room.id);
 	};
 
 	React.useEffect(() => {
@@ -44,7 +44,10 @@ const RoomList: React.FC<IProps> = (props) => {
 		>
 			<PlanetIcon />
 		</button>
-		<ModalBox displayed={modalDisplayed}>
+		<ModalBox
+			displayed={modalDisplayed}
+			className={'room-dialog'}
+		>
 			<h1>Wybierz pokój</h1>
 			<Dropdown buttonLabel="Zmień kategorię">
 				<CategorySelection />
@@ -60,9 +63,9 @@ const RoomList: React.FC<IProps> = (props) => {
 export default RoomList;
 
 const listRooms = (
-	list: IRoomsData[], 
+	list: IRoomsData[],
 	currentRoom: string,
-	makeRequest: (room: IRoomsData) => void, 
+	makeRequest: (room: IRoomsData) => void,
 	closeModal: () => void) => {
 	if (!list || list.length === 0) return <p>W tej kategorii nie ma żadnych pokoi.</p>;
 	return <ul>
@@ -70,8 +73,8 @@ const listRooms = (
 			list.map(roomData => {
 				return <li key={roomData.id}>
 
-					<div>
-						{currentRoom === roomData.id && <CurrentIcon/>}
+					<div className='room-choice'>
+						{currentRoom === roomData.id && <CurrentIcon />}
 						<button
 							className="choose-room"
 							onClick={() => {
