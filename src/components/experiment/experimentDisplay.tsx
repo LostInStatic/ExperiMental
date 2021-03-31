@@ -7,6 +7,7 @@ import { IIngredientsData } from '../../api/fetchIngredients';
 import IngredientIcon from '../ingredients/IngredientIcon';
 import Dropdown from '../generic/dropdown/dropdown';
 import { ReactComponent as IconArrow } from '../../resources/arrow.svg';
+import Background from './background';
 
 interface IProps {
 	data: IExperimentsData,
@@ -57,6 +58,7 @@ const assembleIntroPage = (props: IProps) => {
 		id: 'intro-page',
 		content: <>
 			<div className="experiment-summary">
+				<Background />
 				<h1 className="experiment-title">{props.data.name}</h1>
 				<div className="intro">{parse(props.data.intro)}</div>
 			</div>
