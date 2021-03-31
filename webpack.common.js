@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { GenerateSW } = require('workbox-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 
 const inputPath = path.resolve(__dirname, 'src');
@@ -76,6 +77,14 @@ module.exports = {
 				src: path.resolve(inputPath, 'resources/icon.svg'),
 				sizes: [256],
 			}]
+		}),
+		new CopyWebpackPlugin({
+			patterns: [
+				{
+					from: path.resolve(inputPath, '.htaccess'),
+					to: path.resolve(outputPath)
+				}
+			]
 		})
 	]
 };
