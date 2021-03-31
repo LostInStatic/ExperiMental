@@ -196,7 +196,16 @@ button.centered {
 	@include resize-smaller() {
 		height: $ingredient-picks-height-smaller;
 	}
+	transition: 0.2s ease-in-out;
+
 }
+
+.ingredient-choice.locked {
+	pointer-events: none;
+	opacity: 0.5;
+	
+}
+
 
 .ingredient {
 	grid-column: span 2;
@@ -804,3 +813,4 @@ ol.instruction li {
 	margin: auto;
 	display: block;
 }
+

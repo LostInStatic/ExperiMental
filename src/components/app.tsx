@@ -71,28 +71,12 @@ const App: React.FC<IProps> = (props) => {
 			experiments={data.state?.experiments?.data || []}
 			reportCallback={setMatchStatus}
 		/>
-		{
-			(picks.length < 5) ?
-				<IngredientChoice
-					ingredients={data.state.ingredients.data}
-					callback={id => managePicks({ type: 'add', id })}
-				/>
-				:
-				<div
-					className="max-picks-message">
 
-					Maksymalna ilość wybrana!
-
-					<button
-						className="clear"
-						onClick={() => managePicks({ type: 'clear' })}
-					>
-						&#8634;
-					</button>
-				</div>
-		}
-
-
+		<IngredientChoice
+			ingredients={data.state.ingredients.data}
+			callback={id => managePicks({ type: 'add', id })}
+			locked={!( matchStatus.hasPartialMatch || matchStatus.hasNonePicked )}
+		/>
 	</>;
 };
 
