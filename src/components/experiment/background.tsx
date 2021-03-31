@@ -20,7 +20,7 @@ const Background: React.FC<IProps> = (props) => {
 		Math.random() * backgrounds.length
 	)];
 
-	return <RandomBackground/>;
+	return <RandomBackground className="experiment-background"/>;
 };
 
 export default Background;
