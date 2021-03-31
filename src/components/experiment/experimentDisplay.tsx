@@ -61,21 +61,21 @@ const assembleIntroPage = (props: IProps) => {
 				<div className="intro">{parse(props.data.intro)}</div>
 			</div>
 			<ul className="experiment-icons-list">
-			{
-				props.ingredients.map(
-					(ingredient, index) => {
-						return <li>
-							<IngredientIcon
-							ingredientName={ingredient.name}
-							type="color"
-							iconUrl={ingredient.iconUrls.color}
-							key={ingredient.id + index}
+				{
+					props.ingredients.map(
+						(ingredient, index) => {
+							return <li key={ingredient.id}>
+								<IngredientIcon
+									ingredientName={ingredient.name}
+									type="color"
+									iconUrl={ingredient.iconUrls.color}
+									key={ingredient.id + index}
 
-						/>
-						</li>;
-					}
-				)
-			}
+								/>
+							</li>;
+						}
+					)
+				}
 			</ul>
 			<Dropdown
 				key="intro-dropdown"
@@ -104,8 +104,8 @@ const assembleExplanationPage = (props: IProps) => {
 						key="explanation-dropdown"
 					>
 						{parse(props.data.references)}
-					</Dropdown> 
-					: 
+					</Dropdown>
+					:
 					''
 			}
 
