@@ -20,6 +20,7 @@ const RoomList: React.FC<IProps> = (props) => {
 	const [currentRoom, setCurrentRoom] = React.useState('');
 
 	const makeRequest = (room: IRoomsData) => {
+		if (room.id === currentRoom) return;
 		setCurrentRoom(room.id);
 		data.request.experiments(room.experimentIds);
 		data.request.ingredients(room.ingredientIds);
