@@ -155,9 +155,7 @@ button.centered {
 	@include resize-smaller() {
 		@include on-circle(
 			$item-count: 5,
-			$circle-size: (
-				$ingredient-picks-height-smaller * 0.4,
-			),
+			$circle-size: $ingredient-picks-height-smaller * 0.4,
 			$item-size: $ingredient-picks-height-smaller * $ingredient-pick-size-factor
 		);
 	}
