@@ -2,6 +2,7 @@ import React = require('react');
 import { IExperimentsData } from '../../api/fetchExperiments';
 import { IIngredientsData } from '../../api/fetchIngredients';
 import { IExperimentMatchState } from '../app';
+import Counter from './counter';
 import ExperimentDisplay from './experimentDisplay';
 
 interface IProps {
@@ -23,6 +24,7 @@ const ExperimentMatch: React.FC<IProps> = (props) => {
 	}, [props.picks]);
 
 	return <div className="experiments-list-wrapper">
+		<Counter matchedExperiments={match.experiments}/>
 		<ul className="experiments-list">
 			{match.experiments.map(experiment => createExperiment(experiment, props.picks))}
 		</ul>
