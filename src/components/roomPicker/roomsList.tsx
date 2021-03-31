@@ -3,6 +3,7 @@ import { ICategoriesData } from '../../api/fetchCategories';
 import fetchRooms, { IRoomsData } from '../../api/fetchRooms';
 import { useData } from '../dataProvider';
 import Modal from '../generic/modal/modal';
+import DinoSvg from '../resources/dino.svg';
 
 interface IProps {
 	ids: string[]
