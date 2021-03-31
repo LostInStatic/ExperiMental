@@ -71,7 +71,7 @@ const listRooms = (
 	makeRequest: (room: IRoomsData) => void,
 	closeModal: () => void) => {
 	if (!list || list.length === 0) return <p>W tej kategorii nie ma żadnych pokoi.</p>;
-	return <ul>
+	return <ul className="rooms-list">
 		{
 			list.map(roomData => {
 				return <li key={roomData.id}>
