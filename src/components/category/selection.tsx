@@ -2,6 +2,7 @@ import React = require('react');
 import { Link } from 'react-router-dom';
 import { ICategoriesData } from '../../api/fetchCategories';
 import { useData } from '../dataProvider';
+import Dropdown from '../generic/dropdown/dropdown';
 import Modal from '../generic/modal/modal';
 
 interface IProps {
@@ -12,16 +13,7 @@ const CategorySelection: React.FC<IProps> = () => {
 	const data = useData();
 	const [modalDisplayed, setModalDisplayed] = React.useState(false);
 	const [searchQuery, setSearchquery] = React.useState('');
-	return <Modal
-		buttonSymbol="Zmień kategorię"
-		externalState={
-			{
-				displayed: modalDisplayed,
-				manageExternalState: setModalDisplayed
-			}
-		}
-		className="category-choice"
-	>
+	return <>
 		<label htmlFor="category-search">Wyszukaj</label>
 		<input type="text" name="category-search"
 			onChange={e => setSearchquery(e.target.value)}
@@ -31,7 +23,7 @@ const CategorySelection: React.FC<IProps> = () => {
 			searchQuery,
 			() => setModalDisplayed(false)
 		)}
-	</Modal>;
+	</>;
 };
 
 export default CategorySelection;
