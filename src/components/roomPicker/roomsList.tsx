@@ -49,10 +49,12 @@ const RoomList: React.FC<IProps> = (props) => {
 			displayed={modalDisplayed}
 			className={'room-dialog'}
 		>
-			<h1>Wybierz pokój</h1>
-			<Dropdown buttonLabel="Zmień kategorię">
-				<CategorySelection />
-			</Dropdown>
+			<div className="room-dialog_header">
+				<h1>Wybierz pokój</h1>
+				<Dropdown buttonLabel="Zmień kategorię">
+					<CategorySelection />
+				</Dropdown>
+			</div>
 			{listRooms(data.state.rooms.data,
 				currentRoom,
 				makeRequest,
