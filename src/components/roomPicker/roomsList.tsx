@@ -1,8 +1,12 @@
 import React = require('react');
 import { ICategoriesData } from '../../api/fetchCategories';
 import fetchRooms, { IRoomsData } from '../../api/fetchRooms';
+import CategorySelection from '../category/selection';
 import { useData } from '../dataProvider';
-import Modal from '../generic/modal/modal';
+import Dropdown from '../generic/dropdown/dropdown';
+import { ReactComponent as PlanetIcon } from '../../resources/planet.svg';
+import { ReactComponent as CurrentIcon } from '../../resources/dino.svg';
+import ModalBox from '../generic/modal/modalBox';
 import DinoSvg from '../resources/dino.svg';
 
 interface IProps {
@@ -11,11 +15,15 @@ interface IProps {
 
 const RoomList: React.FC<IProps> = (props) => {
 	const data = useData();
+	
+	const [modalDisplayed, setModalDisplayed] = React.useState(false);
+	const [currentRoom, setCurrentRoom] = React.useState('');
+
 	const makeRequest = (room: IRoomsData) => {
 		data.request.experiments(room.experimentIds);
 		data.request.ingredients(room.ingredientIds);
+		setCurrentRoom(room.id);
 	};
-	const [modalDisplayed, setModalDisplayed] = React.useState(false);
 
 	React.useEffect(() => {
 		if (props.ids.length) {
@@ -24,33 +32,46 @@ const RoomList: React.FC<IProps> = (props) => {
 	}, [props.ids]);
 
 	React.useEffect(() => {
-		if (data.state.rooms.data.length){
+		if (data.state.rooms.data.length) {
 			makeRequest(data.state.rooms.data[0]);
-		}		
-	}, [data.state.rooms]);
-	
-	return <Modal
-		buttonSymbol="Wybierz pokój"
-		externalState={
-			{
-				displayed: modalDisplayed,
-				manageExternalState: setModalDisplayed
-			}
 		}
-		className="room-choice">
-		{listRooms(data.state.rooms.data, makeRequest, () => setModalDisplayed(false))}
-	</Modal>;
+	}, [data.state.rooms]);
+
+	return <>
+		<button
+			onClick={() => setModalDisplayed(true)}
+			className="menu-button main"
+		>
+			<PlanetIcon />
+		</button>
+		<ModalBox displayed={modalDisplayed}>
+			<h1>Wybierz pokój</h1>
+			<Dropdown buttonLabel="Zmień kategorię">
+				<CategorySelection />
+			</Dropdown>
+			{listRooms(data.state.rooms.data,
+				currentRoom,
+				makeRequest,
+				() => setModalDisplayed(false))}
+		</ModalBox>
+	</>;
 };
 
 export default RoomList;
 
-const listRooms = (list: IRoomsData[], makeRequest: (room: IRoomsData) => void, closeModal: () => void) => {
+const listRooms = (
+	list: IRoomsData[], 
+	currentRoom: string,
+	makeRequest: (room: IRoomsData) => void, 
+	closeModal: () => void) => {
 	if (!list || list.length === 0) return <p>W tej kategorii nie ma żadnych pokoi.</p>;
 	return <ul>
 		{
 			list.map(roomData => {
 				return <li key={roomData.id}>
+
 					<div>
+						{currentRoom === roomData.id && <CurrentIcon/>}
 						<button
 							className="choose-room"
 							onClick={() => {
