@@ -1,7 +1,6 @@
 import React = require('react');
 import { ICategoriesData } from '../../api/fetchCategories';
 import fetchRooms, { IRoomsData } from '../../api/fetchRooms';
-import Category from '../category';
 import { useData } from '../dataProvider';
 import Modal from '../generic/modal/modal';
 

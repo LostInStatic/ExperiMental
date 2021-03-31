@@ -15,6 +15,7 @@ import fetchTextBlocks, { ITextBlockData } from '../api/fetchTextBlocks';
 import parse from 'html-react-parser';
 import LoadingScreen from './loadingScreen';
 import { useData } from './dataProvider';
+import CategorySelection from './category/selection';
 
 interface IProps {
 	roomIds: string[]
@@ -50,10 +51,10 @@ const App: React.FC<IProps> = (props) => {
 		<Welcome />
 		<LoadingScreen />
 		<Menu buttonLabel={MainMenuIcon} className="main" key="main">
-
 			<RoomList
 				ids={props.roomIds}
 			/>
+			<CategorySelection/>
 		</Menu>
 		<Menu buttonLabel={AboutIcon} className="about" key="about">
 			{generateAbout(data.state.textBlocks.data)}
