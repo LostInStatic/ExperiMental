@@ -804,3 +804,58 @@ ol.instruction li {
 	margin: auto;
 	display: block;
 }
+
+.room-dialog .modal_box-content {
+	background-color: $background-primary-blue;
+	color: #fff;
+}
+
+.room-dialog .arrow-button {
+	background: transparent;
+}
+
+.room-dialog .arrow-button svg {
+	background-color: $button-color;
+	border: 0;
+	border-radius: 50%;
+	cursor: pointer;
+	padding: 1em 1em;
+	width: 1em;
+	height: 1em;
+}
+
+.room-dialog_header {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	flex-wrap: wrap;
+}
+
+.room-dialog_header .dropdown_content {
+	width: 100%;
+}
+
+.room-choice svg {
+	width: 10%;
+	position: absolute;
+}
+
+.room-dialog ul.rooms-list {
+	list-style-type: none;
+	padding: 0;
+	margin-top: 3em;
+}
+
+.room-choice p {
+	text-align: center;
+}
+
+.room-choice button{
+	margin: 0 auto;
+	
+}
+
+div.room-choice {
+	display: flex;
+	flex-wrap: wrap;
+}
