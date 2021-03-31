@@ -2,8 +2,9 @@
 import ReactDOM = require('react-dom')
 import React = require('react')
 import './style.scss';
-import App from './components/app';
-import fetchRooms from './api/fetchRooms';
+import { DataProvider } from './components/dataProvider';
+import Category from './components/category/current';
+import { BrowserRouter as Router, Switch, Route, Redirect, match, withRouter } from 'react-router-dom';
 
 /// #if PRODUCTION
 import registerServiceWorker from './registerServiceWorker';
@@ -11,14 +12,20 @@ registerServiceWorker();
 /// #else
 console.info('devbuild');
 /// #endif
+const urlParams = new URLSearchParams(window.location.search);
 
-fetchRooms(['d12a373c-ab08-458b-ba23-241b8a8343ef']).then(
-	(rooms) => {
-		ReactDOM.render(
-			<App
-				defaultRoom={rooms[0]}
-			/>,
-			document.getElementById('root')
-		);
-	}
+ReactDOM.render(
+	<Router>
+		<DataProvider>
+			<Switch>
+				<Route exact strict path='*/:slug'>
+					<Category />
+				</Route>
+				<Route>
+					<Redirect to='./default' />
+				</Route>
+			</Switch>
+		</DataProvider>
+	</Router>,
+	document.getElementById('root')
 );

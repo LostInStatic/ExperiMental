@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
 const browsersync = require('browser-sync-webpack-plugin');
 const { FALSE } = require('node-sass');
@@ -13,6 +13,9 @@ module.exports = merge(common, {
 	/* 	watch: true, */
 	mode: 'development',
 	devtool: 'inline-source-map',
+	output: {
+		publicPath: '/'
+	},
 	module: {
 		rules: [
 			{

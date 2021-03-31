@@ -2,6 +2,7 @@ import React = require('react');
 import { IExperimentsData } from '../../api/fetchExperiments';
 import { IIngredientsData } from '../../api/fetchIngredients';
 import { IExperimentMatchState } from '../app';
+import Counter from './counter';
 import ExperimentDisplay from './experimentDisplay';
 
 interface IProps {
@@ -23,6 +24,7 @@ const ExperimentMatch: React.FC<IProps> = (props) => {
 	}, [props.picks]);
 
 	return <div className="experiments-list-wrapper">
+		<Counter matchedExperiments={match.experiments}/>
 		<ul className="experiments-list">
 			{match.experiments.map(experiment => createExperiment(experiment, props.picks))}
 		</ul>
@@ -36,10 +38,10 @@ const createExperiment = (experiment: IExperimentsData, picks: IIngredientsData[
 };
 
 const matchExperiments = (props: IProps): { experiments: IExperimentsData[], hasPartialFit: boolean } => {
-	let output = { experiments: [], hasPartialFit: false };
+	const output = { experiments: [], hasPartialFit: false };
 	props.experiments.map(
 		(experiment) => {
-			let matchStatus = checkIDsMatch(props.picks, experiment.ingredientIds);
+			const matchStatus = checkIDsMatch(props.picks, experiment.ingredientIds);
 			if (matchStatus.isMatch) {
 				output.experiments.push(experiment);
 			}
@@ -60,7 +62,7 @@ const checkIDsMatch = (picks: IIngredientsData[], ingredientIDs: string[]): { is
 	const pickIDsCount = createIDCount(picks.map(({ id }) => id));
 	const ingredientIDsCount = createIDCount(ingredientIDs);
 
-	let output = { isMatch: true, isPartialFit: true };
+	const output = { isMatch: true, isPartialFit: true };
 	let IDsNotProcessed = Object.keys(pickIDsCount);
 
 	for (const key in ingredientIDsCount) {
@@ -86,7 +88,7 @@ const checkIDsMatch = (picks: IIngredientsData[], ingredientIDs: string[]): { is
 };
 
 const createIDCount = (array) => {
-	let obj = {};
+	const obj = {};
 	array.map(
 		(element) => {
 			obj[element] ? obj[element] = obj[element] + 1 : obj[element] = 1;
