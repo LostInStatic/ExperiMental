@@ -1,8 +1,8 @@
 const fetchJSON = async <T> (dataURL: string): Promise<T> => {
-	let response = await fetch(dataURL).catch(error => {
+	const response = await fetch(dataURL).catch(error => {
 		return handleError(error, dataURL);
 	});
-	let data = await response.json().catch(error => {
+	const data = await response.json().catch(error => {
 		return handleError(error, dataURL, true);
 	});
 	return data;

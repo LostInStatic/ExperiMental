@@ -9,23 +9,23 @@ import { ReactComponent as Background7 } from '../../resources/experiment-backgr
 import { ReactComponent as Background8 } from '../../resources/experiment-backgrounds/8.svg';
 import { ReactComponent as Background9 } from '../../resources/experiment-backgrounds/9.svg';
 import { ReactComponent as Background10 } from '../../resources/experiment-backgrounds/10.svg';
+import { useData } from '../dataProvider';
+import { IExperimentsData } from '../../api/fetchExperiments';
 
 interface IProps {
-
+	experiment: IExperimentsData
 }
 
 const Background: React.FC<IProps> = (props) => {
 
-	const RandomBackground = backgrounds[Math.floor(
-		Math.random() * backgrounds.length
-	)];
+	const Background = getBackground(props.experiment.backgroundImageUrl);
 
-	return <RandomBackground className="experiment-background"/>;
+	return <Background className="experiment-background" />;
 };
 
 export default Background;
 
-const backgrounds = [
+const backgrounds: React.ElementType<any>[] = [
 	Background1,
 	Background2,
 	Background3,
@@ -37,3 +37,17 @@ const backgrounds = [
 	Background9,
 	Background10,
 ];
+
+const getBackground = (url: string): React.ElementType<any> => {
+	if (url) {
+		return () => Img(url);
+	} else {
+		return backgrounds[Math.floor(
+			Math.random() * backgrounds.length
+		)];
+	}
+};
+
+const Img = (props) => {
+	return <img src={props}></img>;
+};
