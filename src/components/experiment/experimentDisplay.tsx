@@ -58,7 +58,7 @@ const assembleIntroPage = (props: IProps) => {
 		id: 'intro-page',
 		content: <>
 			<div className="experiment-summary">
-				<Background />
+				<Background experiment={props.data}/>
 				<h1 className="experiment-title">{props.data.name}</h1>
 				<div className="intro">{parse(props.data.intro)}</div>
 			</div>
