@@ -1,13 +1,14 @@
 interface IOpts {
 	specificIds?: TIdsOrAll,
 	includeIcons?: boolean
+	includeBackgroundPhoto?:boolean
 }
 
 export type TIdsOrAll = string[] | 'all'
 
 const addAPIParameters = (opts:IOpts) => {
 	if (Object.keys(opts).length === 0) return '';
-	let parameterStrings = [];
+	const parameterStrings = [];
 
 	if (opts.specificIds !== 'all') {
 		parameterStrings.push(
@@ -15,6 +16,7 @@ const addAPIParameters = (opts:IOpts) => {
 		);
 	}
 	if (opts.includeIcons) parameterStrings.push(includeIcons);
+	if (opts.includeBackgroundPhoto) parameterStrings.push(includeBackgroundPhoto);
 
 	return`?${parameterStrings.join('&')}`;
 };
@@ -36,3 +38,4 @@ const idsToParameters = (ids: string[]) => {
 };
 
 const includeIcons = 'include=field_ikona_mono,field_ikona&jsonapi_include=1';
+const includeBackgroundPhoto = 'include=field_tlo_tytulu&jsonapi_include=1';
