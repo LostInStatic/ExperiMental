@@ -881,13 +881,18 @@ div.room-choice {
 	top: 0;
 	left: 50%;
 	transform: translateX(-50%);
+}
 
+.experiment-background {
+	fill: rgb(114, 197, 217);
+	opacity: 0.36;
 }
 .experiment-summary h1,
 .experiment-summary div {
 	z-index: 10;
 	position: relative;
 }
+
 .explanation-page-button {
 	z-index: 1;
 }
