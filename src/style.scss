@@ -742,8 +742,40 @@ ol.instruction li {
 
 .experiment-summary {
 	background-color: #385fae;
-	margin: -100px -50px -50px;
-	padding: 100px 50px 50px 50px;
+	margin: -100px -50px 0;
+	padding: 100px 50px 1em 50px;
+	position: relative;
+	overflow: hidden;
+}
+
+.experiment-background {
+	position:absolute;
+	width: 100%;
+	top: 0;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+svg.experiment-background {
+	fill: rgb(114, 197, 217);
+	opacity: 0.36;
+}
+
+img.experiment-background {
+	opacity: 0.55;
+	max-height: 100%;
+	object-fit: cover;
+	object-position: center;
+}
+
+.experiment-summary div {
+	z-index: 1;
+	position: relative;
+}
+
+.modal_box.experiment .arrow-button {
+	z-index: 2;
+	position: relative;
 }
 
 .experiment.intro-page .modal_box-content {
@@ -869,30 +901,4 @@ ol.instruction li {
 div.room-choice {
 	display: flex;
 	flex-wrap: wrap;
-}
-.experiment-summary {
-	position: relative;
-	overflow: hidden;
-}
-
-.experiment-background {
-	position:absolute;
-	width: 100%;
-	top: 0;
-	left: 50%;
-	transform: translateX(-50%);
-}
-
-.experiment-background {
-	fill: rgb(114, 197, 217);
-	opacity: 0.36;
-}
-.experiment-summary h1,
-.experiment-summary div {
-	z-index: 10;
-	position: relative;
-}
-
-.explanation-page-button {
-	z-index: 1;
 }

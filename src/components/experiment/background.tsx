@@ -9,7 +9,6 @@ import { ReactComponent as Background7 } from '../../resources/experiment-backgr
 import { ReactComponent as Background8 } from '../../resources/experiment-backgrounds/8.svg';
 import { ReactComponent as Background9 } from '../../resources/experiment-backgrounds/9.svg';
 import { ReactComponent as Background10 } from '../../resources/experiment-backgrounds/10.svg';
-import { useData } from '../dataProvider';
 import { IExperimentsData } from '../../api/fetchExperiments';
 
 interface IProps {
@@ -49,5 +48,5 @@ const getBackground = (url: string): React.ElementType<any> => {
 };
 
 const Img = (props) => {
-	return <img src={props}></img>;
+	return <img src={props} className="experiment-background"/>;
 };

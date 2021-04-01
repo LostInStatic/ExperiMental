@@ -58,9 +58,11 @@ const assembleIntroPage = (props: IProps) => {
 		id: 'intro-page',
 		content: <>
 			<div className="experiment-summary">
-				<Background experiment={props.data}/>
-				<h1 className="experiment-title">{props.data.name}</h1>
-				<div className="intro">{parse(props.data.intro)}</div>
+				<Background experiment={props.data} />
+				<div>
+					<h1 className="experiment-title">{props.data.name}</h1>
+					<div className="intro">{parse(props.data.intro)}</div>
+				</div>
 			</div>
 			<ul className="experiment-icons-list">
 				{
@@ -96,9 +98,15 @@ const assembleExplanationPage = (props: IProps) => {
 	return {
 		id: 'explanation-page',
 		content: <>
-			<h1 className="experiment-title">{props.data.name}</h1>
-			<h2>Wyjaśnienie</h2>
-			{ parse(props.data.explanation)}
+			<div className="experiment-summary">
+				<Background experiment={props.data} />
+				<div>
+					<h1 className="experiment-title">{props.data.name}</h1>
+					<h2>Wyjaśnienie</h2>
+					
+				</div>
+			</div>
+			{parse(props.data.explanation)}
 			{
 				props.data.references ?
 					<Dropdown
