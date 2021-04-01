@@ -12,7 +12,7 @@ export interface IExperimentsData {
 	explanationDelay: number,
 	explanation: string,
 	references: string
-
+	backgroundImageUrl: string
 }
 
 
@@ -21,19 +21,21 @@ const fetchExperiments = async (
 ): Promise<IExperimentsData[]> => {
 	const dataObject = await fetchJSON<IAPIExperiments>(
 		APIURLS.experiments + addAPIParameters({
-			specificIds: ids
+			specificIds: ids,
+			includeBackgroundPhoto: true
 		})
 	);
-	let experiments = dataObject.data.map(experiment => {
+	const experiments = dataObject.data.map(experiment => {
 		return {
 			id: experiment.id,
-			name: experiment.attributes.title,
-			ingredientIds: experiment.relationships.field_skladniki.data.map(data => data.id),
-			intro: experiment.attributes.field_wstep.processed,
-			steps: experiment.attributes.field_instrukcja,
-			explanationDelay: experiment.attributes.field_opoznienie_wyjasnienia,
-			explanation: experiment.attributes.field_wyjasnienie.processed,
-			references: experiment.attributes.field_odnosniki?.processed
+			name: experiment.title,
+			ingredientIds: experiment.field_skladniki.map(data => data.id),
+			intro: experiment.field_wstep.processed,
+			steps: experiment.field_instrukcja,
+			explanationDelay: experiment.field_opoznienie_wyjasnienia,
+			explanation: experiment.field_wyjasnienie.processed,
+			references: experiment.field_odnosniki?.processed,
+			backgroundImageUrl: experiment.field_tlo_tytulu.uri?.url
 
 		};
 	});
@@ -41,3 +43,5 @@ const fetchExperiments = async (
 };
 
 export default fetchExperiments;
+
+
