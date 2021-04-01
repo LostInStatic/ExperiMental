@@ -21,7 +21,7 @@ const fetchCategories = async (
 			specificIds: ids
 		})
 	);
-	let categories = dataObject.data.map(category => {
+	const categories = dataObject.data.map(category => {
 		return {
 			id: category.id,
 			name: category.attributes.title,
