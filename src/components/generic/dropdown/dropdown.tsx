@@ -2,7 +2,7 @@ import React = require('react');
 import { ReactComponent as IconArrow } from '../../../resources/arrow.svg';
 
 interface IProps {
-	buttonLabel: string
+	buttonLabel: React.ReactNode | string
 	className?: string
 }
 
