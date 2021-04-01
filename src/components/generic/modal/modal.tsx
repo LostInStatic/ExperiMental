@@ -1,6 +1,6 @@
 import React = require('react');
+import CloseButton from './closeButton';
 import ModalBox from './modalBox';
-import { ReactComponent as Cross } from '../../../resources/X.svg';
 
 interface IProps {
 	buttonSymbol: React.ReactNode | string
@@ -29,12 +29,7 @@ const Modal: React.FC<IProps> = (props) => {
 			className={props.className}
 			displayed={displayed}
 		>
-			<button
-				className='modal_box-close'
-				onClick={() => setDisplayed(false)}
-			>
-				<Cross/>
-			</button>
+			<CloseButton onClick={ () => setDisplayed(false) }/>
 			{props.children}
 		</ModalBox>
 	</>;
