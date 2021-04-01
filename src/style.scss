@@ -855,6 +855,8 @@ img.experiment-background {
 
 .room-dialog .arrow-button {
 	background: transparent;
+	justify-self: center;
+	align-self: end;
 }
 
 .room-dialog .arrow-button svg {
@@ -868,14 +870,16 @@ img.experiment-background {
 }
 
 .room-dialog_header {
-	display: flex;
-	justify-content: space-between;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
 	width: 100%;
 	flex-wrap: wrap;
 }
 
 .room-dialog_header .dropdown_content {
-	width: 100%;
+	grid-area: auto / auto 1/3;
+	grid-column: 1/span 2;
+	justify-self: end;
 }
 
 .room-choice svg {
@@ -901,4 +905,50 @@ img.experiment-background {
 div.room-choice {
 	display: flex;
 	flex-wrap: wrap;
+	// margin-top: 2em;
+}
+
+.experiment-background {
+	position:absolute;
+	width: 100%;
+	top: 0;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.experiment-background {
+	fill: rgb(114, 197, 217);
+	opacity: 0.36;
+}
+.experiment-summary h1,
+.experiment-summary div {
+	z-index: 10;
+	position: relative;
+}
+
+.explanation-page-button {
+	z-index: 1;
+}
+
+div.category-dropdown {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	justify-content: center;
+	margin-top: 1em;
+}
+
+button.category-dropdown {
+	display: flex;
+	align-items: center;
+}
+
+.category-dropdown ul {
+	height: 6em;
+	overflow: hidden;
+	justify-self: center;
+}
+
+.category-search {
+	justify-self: end;
+	display: block;
 }

@@ -52,8 +52,8 @@ const RoomList: React.FC<IProps> = (props) => {
 		>
 			<CloseButton onClick={() => setModalDisplayed(false)}/>
 			<div className="room-dialog_header">
-				<h1>Wybierz pokój</h1>
-				<Dropdown buttonLabel="Zmień kategorię">
+				<h1>Wybierz <br /> pokój</h1>
+				<Dropdown buttonLabel={<><div>Zmień <br/> kategorię</div></>} className="category-dropdown">
 					<CategorySelection />
 				</Dropdown>
 			</div>
