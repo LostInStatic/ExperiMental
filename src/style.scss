@@ -265,6 +265,8 @@ ul.experiment-icons-list {
 	padding: 5px 1.7em 5px 1.5em;
 	background-color: aliceblue;
 	margin: 16px -1.7em 16px -1.5em;
+	position: relative;
+	z-index: 11;
 }
 
 .intro-page .ingredient-icon.color {
@@ -867,4 +869,22 @@ ol.instruction li {
 div.room-choice {
 	display: flex;
 	flex-wrap: wrap;
+}
+.experiment-summary {
+	position: relative;
+	overflow: hidden;
+}
+
+.experiment-background {
+	position:absolute;
+	width: 100%;
+	top: 0;
+	left: 50%;
+	transform: translateX(-50%);
+
+}
+.experiment-summary h1,
+.experiment-summary div {
+	z-index: 10;
+	position: relative;
 }
