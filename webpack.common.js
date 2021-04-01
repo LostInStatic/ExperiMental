@@ -18,6 +18,7 @@ module.exports = {
 	output: {
 		path: outputPath,
 		filename: '[name].js',
+		publicPath: ''
 	},
 	devServer: {
 		contentBase: outputPath,
@@ -67,16 +68,25 @@ module.exports = {
 		new GenerateSW({
 			maximumFileSizeToCacheInBytes: 500000000,
 			skipWaiting: true,
-			runtimeCaching: [{ handler: 'StaleWhileRevalidate', urlPattern: '.*' }]
+			runtimeCaching: [{ handler: 'StaleWhileRevalidate', urlPattern: '.*' }],
+			exclude: [
+				'.htaccess'
+			]
 		}
 		),
 		new WebpackPwaManifest({
 			name: 'ExperiMental',
 			short_name: 'ExperiMental',
-			icons: [{
-				src: path.resolve(inputPath, 'resources/icon.svg'),
-				sizes: [256],
-			}]
+			icons: [
+				{
+					src: path.resolve(inputPath, 'resources/appIcons/pwa1024.png'),
+					sizes: [96, 128, 192, 256, 384, 512]
+				},
+				{
+					src: path.resolve(inputPath, 'resources/appIcons/pwa.svg'),
+					sizes: [256],
+				}
+			]
 		}),
 		new CopyWebpackPlugin({
 			patterns: [
