@@ -4,13 +4,14 @@ import Ingredient from './ingredient';
 
 interface IProps {
 	ingredients: IIngredientsData[],
-	callback: (id: string) => void
+	callback: (id: string) => void,
+	locked: boolean
 }
 
 const IngredientChoice: React.FC<IProps> = (props) => {
 
 	return <div
-		className="ingredient-choice">
+		className={`ingredient-choice${props.locked ? ' locked' : ''}`}>
 		{listIngredients(props.ingredients, props.callback)}
 	</div>;
 };

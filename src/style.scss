@@ -196,7 +196,16 @@ button.centered {
 	@include resize-smaller() {
 		height: $ingredient-picks-height-smaller;
 	}
+	transition: 0.2s ease-in-out;
+
 }
+
+.ingredient-choice.locked {
+	pointer-events: none;
+	opacity: 0.5;
+	
+}
+
 
 .ingredient {
 	grid-column: span 2;
@@ -256,6 +265,8 @@ ul.experiment-icons-list {
 	padding: 5px 1.7em 5px 1.5em;
 	background-color: aliceblue;
 	margin: 16px -1.7em 16px -1.5em;
+	position: relative;
+	z-index: 11;
 }
 
 .intro-page .ingredient-icon.color {
@@ -858,4 +869,30 @@ ol.instruction li {
 div.room-choice {
 	display: flex;
 	flex-wrap: wrap;
+}
+.experiment-summary {
+	position: relative;
+	overflow: hidden;
+}
+
+.experiment-background {
+	position:absolute;
+	width: 100%;
+	top: 0;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.experiment-background {
+	fill: rgb(114, 197, 217);
+	opacity: 0.36;
+}
+.experiment-summary h1,
+.experiment-summary div {
+	z-index: 10;
+	position: relative;
+}
+
+.explanation-page-button {
+	z-index: 1;
 }
