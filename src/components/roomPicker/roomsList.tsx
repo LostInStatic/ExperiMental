@@ -51,7 +51,7 @@ const RoomList: React.FC<IProps> = (props) => {
 		>
 			<div className="room-dialog_header">
 				<h1>Wybierz pokój</h1>
-				<Dropdown buttonLabel="Zmień kategorię">
+				<Dropdown buttonLabel="Zmień kategorię" className="category-dropdown">
 					<CategorySelection />
 				</Dropdown>
 			</div>

@@ -3,6 +3,7 @@ import { ReactComponent as IconArrow } from '../../../resources/arrow.svg';
 
 interface IProps {
 	buttonLabel: string
+	className?: string
 }
 
 const Dropdown: React.FC<IProps> = (props) => {
@@ -13,7 +14,10 @@ const Dropdown: React.FC<IProps> = (props) => {
 	React.useEffect(() => setHeight(contentRef.current.scrollHeight), [props.children]);
 	return <>
 		<button
-			className={`arrow-button ${displayed ? 'up' : 'down'}`}
+			className={`
+			arrow-button ${displayed ? 'up' : 'down'}
+			${props.className || ''}
+			`}
 			onClick={toggleDisplayed}
 		>
 			{props.buttonLabel}
@@ -22,8 +26,10 @@ const Dropdown: React.FC<IProps> = (props) => {
 		<div
 			ref={contentRef}
 			className={
-				`dropdown_content ${displayed ? '' : 'collapsed'
-				}`
+				`
+				dropdown_content ${displayed ? '' : 'collapsed'}
+				${props.className || ''}
+				`
 			}
 			style={{ height: `${displayed ? height : 0}px` }}>
 			{props.children}
