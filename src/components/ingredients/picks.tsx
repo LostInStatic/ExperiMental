@@ -27,15 +27,14 @@ const createPicks = (props: IProps) => {
 
 		if (element === undefined) {
 			output.push(
-				<div className="pick-wrapper" />
+				<div className="pick-wrapper" key={`pick${index.toString()}`}/>
 
 			);
 		} else {
 			output.push(
-				<div className="pick-wrapper">
+				<div className="pick-wrapper" key={`pick${index.toString()}`}>
 					<button
 						className="pick"
-						key={index.toString()}
 						onClick={() => { props.removePickCallback(index); }}
 					>
 						<IngredientIcon
