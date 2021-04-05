@@ -73,7 +73,8 @@ module.exports = {
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
-			template: './index.html'
+			template: './index.html',
+			favicon: './resources/appIcons/fav.ico'
 		}),
 		new CleanWebpackPlugin(),
 		new GenerateSW({
