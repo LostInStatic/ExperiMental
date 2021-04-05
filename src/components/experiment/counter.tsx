@@ -16,19 +16,3 @@ const Counter: React.FC<IProps> = (props) => {
 };
 
 export default Counter;
-
-const addNewlyMatched = (previous, experiments: IExperimentsData[]) => {
-	const matched = {};
-	experiments.map( (experiment) => {
-		matched[experiment.id] = true;
-	});
-	return {...previous, ...matched};
-};
-
-const getSeenExperimentsCount = (experiments: IExperimentsData[]) => {
-	return experiments.filter(
-		experiment => {
-			return CookiesProvider.get(`experiment-seen${experiment.id}`) === 'true';
-		}
-	).length;
-};

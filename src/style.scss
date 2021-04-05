@@ -261,7 +261,7 @@ ul.experiment-icons-list li {
 ul.experiment-icons-list {
 	padding: 5px 1.7em 5px 1.5em;
 	background-color: aliceblue;
-	margin: 16px -1.7em 16px -1.5em;
+	margin: 0 -1.7em 16px -1.5em;
 	position: relative;
 	z-index: 11;
 }
@@ -383,6 +383,7 @@ ul.experiment-icons-list {
 	overflow-x: auto;
 	height: 100%;
 	padding-left: 0;
+	z-index: 0;
 }
 
 .experiments-list-wrapper,
@@ -423,8 +424,11 @@ button.experiment {
 	font-size: 12px;
 }
 
-button.experiment.seen {
-	color: #c1c1c1;
+button.experiment.seen svg {
+	width: 1em;
+	height: 1em;
+	margin-left: 0.2em;
+	vertical-align: bottom;
 }
 
 .experiments-counter {
@@ -434,6 +438,13 @@ button.experiment.seen {
 	margin: 1em;
 	color: #fff;
 	font-size: 12px;
+	position:absolute;
+	top: $ingredient-picks-height * 0.85;
+	@include resize-smaller(){
+		top: $ingredient-picks-height-smaller * 0.82;
+	}
+	transform: translateY(-50%);
+	left: 0;
 }
 
 button.active {

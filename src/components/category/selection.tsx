@@ -14,12 +14,12 @@ const CategorySelection: React.FC<IProps> = () => {
 	const [modalDisplayed, setModalDisplayed] = React.useState(false);
 	const [searchQuery, setSearchquery] = React.useState('');
 	return <>
-	<div className="category-search">
-	<label htmlFor="category-search">Wyszukaj</label>
-		<input type="text" name="category-search"
-					onChange={e => setSearchquery(e.target.value)}
-					/>
-	</div>
+		<div className="category-search">
+			<label htmlFor="category-search">Wyszukaj</label>
+			<input type="text" name="category-search"
+				onChange={e => setSearchquery(e.target.value)}
+			/>
+		</div>
 
 
 		{generateCategoryLinks(
@@ -54,6 +54,7 @@ const filterCategories = (categories: ICategoriesData[], query: string) => {
 	return categories.filter((category) => {
 		return (
 			(
+				window.location.pathname !== `/${category.urlSlug}` &&
 				category.partialMatch && (
 					regex.test(category.name) ||
 					regex.test(category.urlSlug)
