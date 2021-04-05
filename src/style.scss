@@ -736,6 +736,7 @@ ol.instruction li {
 
 .modal_box-content img {
 	max-width: 100%;
+	height: 100%;
 }
 
 .welcome-screen {
@@ -821,8 +822,8 @@ img.experiment-background {
 	padding-top: 0;
 }
 
-.tutorial.text-align-right {
-	text-align: right;
+.tutorial.text-align-center {
+	text-align: center;
 }
 
 .tutorial-hint {
@@ -847,6 +848,13 @@ img.experiment-background {
 .tutorial-hint.blue-background {
 	padding-top: 1em;
 }
+
+h2.tutorial.blue-background {
+	padding-top: 2em;
+	padding-bottom: 1em;
+	margin-top: -2em;
+}
+
 .loading-screen .modal_box-content {
 	height: 100%;
 	display: flex;
