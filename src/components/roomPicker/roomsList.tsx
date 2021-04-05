@@ -5,10 +5,11 @@ import CategorySelection from '../category/selection';
 import { useData } from '../dataProvider';
 import Dropdown from '../generic/dropdown/dropdown';
 import { ReactComponent as PlanetIcon } from '../../resources/planet.svg';
-import { ReactComponent as CurrentIcon } from '../../resources/dino.svg';
+//import { ReactComponent as CurrentIcon } from /..;
 import ModalBox from '../generic/modal/modalBox';
-import DinoSvg from '../resources/dino.svg';
+//import DinoSvg from '../resources/dino.svg';
 import CloseButton from '../generic/modal/closeButton';
+import CurrentIcon from '../../resources/rocket.gif';
 
 interface IProps {
 	ids: string[]
@@ -79,7 +80,7 @@ const listRooms = (
 				return <li key={roomData.id}>
 
 					<div className='room-choice'>
-						{currentRoom === roomData.id && <CurrentIcon />}
+						{currentRoom === roomData.id && <img src={CurrentIcon} alt="" />}
 						<button
 							className="choose-room"
 							onClick={() => {
