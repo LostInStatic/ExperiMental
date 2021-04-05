@@ -423,6 +423,10 @@ button.experiment {
 	font-size: 12px;
 }
 
+button.experiment.seen {
+	color: #c1c1c1;
+}
+
 button.active {
 	display: none;
 }

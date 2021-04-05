@@ -8,6 +8,9 @@ import IngredientIcon from '../ingredients/IngredientIcon';
 import Dropdown from '../generic/dropdown/dropdown';
 import { ReactComponent as IconArrow } from '../../resources/arrow.svg';
 import Background from './background';
+import CookiesProvider from '../../cookiesProvider';
+
+
 
 interface IProps {
 	data: IExperimentsData,
@@ -21,13 +24,25 @@ const ExperimentDisplay: React.FC<IProps> = (props) => {
 
 	const [activePage, setActivePage] = React.useState(frontPage);
 	const [wasOpened, setWasOpened] = React.useState(false);
+	React.useEffect(
+		() => {
+			const CookieName = `experiment-seen${props.data.id}`;
+			if (wasOpened) {
+				CookiesProvider.set(CookieName, 'true', true, 7);
+			} else if (CookiesProvider.get(CookieName) === 'true') {
+				setWasOpened(true);
+			} 
+		}
+	);
 
 	return <div onClick={() => setWasOpened(true)}>
 		<Modal
 			buttonSymbol={props.data.name}
 			className={
-				`experiment ${activePage.id === frontPage.id ? 'intro-page' : 'explanation'
-				}`
+				`experiment
+				${activePage.id === frontPage.id ? ' intro-page' : ' explanation'}
+				${wasOpened ? ' seen' : ''}
+				`
 			}>
 			<button
 				onClick={() => setActivePage(frontPage)}
