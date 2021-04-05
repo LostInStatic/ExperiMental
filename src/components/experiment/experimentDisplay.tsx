@@ -9,6 +9,7 @@ import Dropdown from '../generic/dropdown/dropdown';
 import { ReactComponent as IconArrow } from '../../resources/arrow.svg';
 import Background from './background';
 import CookiesProvider from '../../cookiesProvider';
+import { ReactComponent as SeenIcon } from '../../resources/seen.svg';
 
 
 
@@ -39,7 +40,7 @@ const ExperimentDisplay: React.FC<IProps> = (props) => {
 
 	return <div onClick={() => setWasOpened(true)}>
 		<Modal
-			buttonSymbol={props.data.name}
+			buttonSymbol={<>{props.data.name} {wasOpened ? <SeenIcon/> : ''}</>}
 			className={
 				`experiment
 				${activePage.id === frontPage.id ? ' intro-page' : ' explanation'}
