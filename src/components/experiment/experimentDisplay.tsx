@@ -15,6 +15,7 @@ import CookiesProvider from '../../cookiesProvider';
 interface IProps {
 	data: IExperimentsData,
 	ingredients: IIngredientsData[];
+	seenCallback: (experiment: IExperimentsData) => void
 }
 
 const ExperimentDisplay: React.FC<IProps> = (props) => {
@@ -29,6 +30,7 @@ const ExperimentDisplay: React.FC<IProps> = (props) => {
 			const CookieName = `experiment-seen${props.data.id}`;
 			if (wasOpened) {
 				CookiesProvider.set(CookieName, 'true', true, 7);
+				props.seenCallback(props.data);
 			} else if (CookiesProvider.get(CookieName) === 'true') {
 				setWasOpened(true);
 			} 
