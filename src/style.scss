@@ -176,6 +176,7 @@ button.centered {
 	height: 100%;
 }
 
+
 .ingredient-choice {
 	flex-shrink: 0;
 	display: grid;
@@ -192,7 +193,6 @@ button.centered {
 	padding: 1em 2em 0;
 	box-sizing: border-box;
 	width: 100%;
-	height: $ingredient-picks-height;
 	@include resize-smaller() {
 		height: $ingredient-picks-height-smaller;
 	}
