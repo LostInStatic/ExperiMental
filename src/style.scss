@@ -434,6 +434,13 @@ button.experiment.seen {
 	margin: 1em;
 	color: #fff;
 	font-size: 12px;
+	position:absolute;
+	top: $ingredient-picks-height * 0.85;
+	@include resize-smaller(){
+		top: $ingredient-picks-height-smaller * 0.82;
+	}
+	transform: translateY(-50%);
+	left: 0;
 }
 
 button.active {
