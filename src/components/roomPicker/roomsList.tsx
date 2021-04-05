@@ -8,6 +8,7 @@ import { ReactComponent as PlanetIcon } from '../../resources/planet.svg';
 import { ReactComponent as CurrentIcon } from '../../resources/dino.svg';
 import ModalBox from '../generic/modal/modalBox';
 import DinoSvg from '../resources/dino.svg';
+import CloseButton from '../generic/modal/closeButton';
 
 interface IProps {
 	ids: string[]
@@ -49,9 +50,10 @@ const RoomList: React.FC<IProps> = (props) => {
 			displayed={modalDisplayed}
 			className={'room-dialog'}
 		>
+			<CloseButton onClick={() => setModalDisplayed(false)}/>
 			<div className="room-dialog_header">
-				<h1>Wybierz pokój</h1>
-				<Dropdown buttonLabel="Zmień kategorię">
+				<h1>Wybierz <br /> pokój</h1>
+				<Dropdown buttonLabel={<><div>Zmień <br/> kategorię</div></>} className="category-dropdown">
 					<CategorySelection />
 				</Dropdown>
 			</div>

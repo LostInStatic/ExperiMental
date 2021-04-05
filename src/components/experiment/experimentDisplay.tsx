@@ -7,10 +7,15 @@ import { IIngredientsData } from '../../api/fetchIngredients';
 import IngredientIcon from '../ingredients/IngredientIcon';
 import Dropdown from '../generic/dropdown/dropdown';
 import { ReactComponent as IconArrow } from '../../resources/arrow.svg';
+import Background from './background';
+import CookiesProvider from '../../cookiesProvider';
+
+
 
 interface IProps {
 	data: IExperimentsData,
 	ingredients: IIngredientsData[];
+	seenCallback: (experiment: IExperimentsData) => void
 }
 
 const ExperimentDisplay: React.FC<IProps> = (props) => {
@@ -20,13 +25,26 @@ const ExperimentDisplay: React.FC<IProps> = (props) => {
 
 	const [activePage, setActivePage] = React.useState(frontPage);
 	const [wasOpened, setWasOpened] = React.useState(false);
+	React.useEffect(
+		() => {
+			const CookieName = `experiment-seen${props.data.id}`;
+			if (wasOpened) {
+				CookiesProvider.set(CookieName, 'true', true, 7);
+				props.seenCallback(props.data);
+			} else if (CookiesProvider.get(CookieName) === 'true') {
+				setWasOpened(true);
+			} 
+		}
+	);
 
 	return <div onClick={() => setWasOpened(true)}>
 		<Modal
 			buttonSymbol={props.data.name}
 			className={
-				`experiment ${activePage.id === frontPage.id ? 'intro-page' : 'explanation'
-				}`
+				`experiment
+				${activePage.id === frontPage.id ? ' intro-page' : ' explanation'}
+				${wasOpened ? ' seen' : ''}
+				`
 			}>
 			<button
 				onClick={() => setActivePage(frontPage)}
@@ -57,8 +75,11 @@ const assembleIntroPage = (props: IProps) => {
 		id: 'intro-page',
 		content: <>
 			<div className="experiment-summary">
-				<h1 className="experiment-title">{props.data.name}</h1>
-				<div className="intro">{parse(props.data.intro)}</div>
+				<Background experiment={props.data} />
+				<div>
+					<h1 className="experiment-title">{props.data.name}</h1>
+					<div className="intro">{parse(props.data.intro)}</div>
+				</div>
 			</div>
 			<ul className="experiment-icons-list">
 				{
@@ -94,9 +115,15 @@ const assembleExplanationPage = (props: IProps) => {
 	return {
 		id: 'explanation-page',
 		content: <>
-			<h1 className="experiment-title">{props.data.name}</h1>
-			<h2>Wyjaśnienie</h2>
-			{ parse(props.data.explanation)}
+			<div className="experiment-summary">
+				<Background experiment={props.data} />
+				<div>
+					<h1 className="experiment-title">{props.data.name}</h1>
+					<h2>Wyjaśnienie</h2>
+					
+				</div>
+			</div>
+			{parse(props.data.explanation)}
 			{
 				props.data.references ?
 					<Dropdown
