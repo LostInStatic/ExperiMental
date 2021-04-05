@@ -1,4 +1,5 @@
 import React = require('react');
+import CloseButton from './closeButton';
 import ModalBox from './modalBox';
 
 interface IProps {
@@ -28,12 +29,7 @@ const Modal: React.FC<IProps> = (props) => {
 			className={props.className}
 			displayed={displayed}
 		>
-			<button
-				className='modal_box-close'
-				onClick={() => setDisplayed(false)}
-			>
-				✖
-			</button>
+			<CloseButton onClick={ () => setDisplayed(false) }/>
 			{props.children}
 		</ModalBox>
 	</>;
