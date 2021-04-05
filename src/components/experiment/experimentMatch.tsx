@@ -1,6 +1,7 @@
 import React = require('react');
 import { IExperimentsData } from '../../api/fetchExperiments';
 import { IIngredientsData } from '../../api/fetchIngredients';
+import CookiesProvider from '../../cookiesProvider';
 import { IExperimentMatchState } from '../app';
 import Counter from './counter';
 import ExperimentDisplay from './experimentDisplay';
@@ -14,6 +15,14 @@ interface IProps {
 const ExperimentMatch: React.FC<IProps> = (props) => {
 
 	const match = matchExperiments(props);
+	const [seenCount, setSeenCount] = React.useState(0);
+
+	React.useEffect(
+		() => {
+			setSeenCount(getSeenExperimentsCount(props.experiments));
+		},
+		[props.experiments]
+	);
 
 	React.useEffect(() => {
 		props.reportCallback({
@@ -24,16 +33,16 @@ const ExperimentMatch: React.FC<IProps> = (props) => {
 	}, [props.picks]);
 
 	return <div className="experiments-list-wrapper">
-		<Counter matchedExperiments={match.experiments}/>
 		<ul className="experiments-list">
-			{match.experiments.map(experiment => createExperiment(experiment, props.picks))}
+			{match.experiments.map(experiment => createExperiment(experiment, props.picks, () => setSeenCount(getSeenExperimentsCount(props.experiments))))}
 		</ul>
+		<Counter seen={seenCount}/>
 	</div>;
 };
 
-const createExperiment = (experiment: IExperimentsData, picks: IIngredientsData[]) => {
+const createExperiment = (experiment: IExperimentsData, picks: IIngredientsData[], seenCallback) => {
 	return <li key={experiment.id}>
-		<ExperimentDisplay data={experiment} ingredients={picks} />
+		<ExperimentDisplay data={experiment} ingredients={picks} seenCallback={seenCallback} />
 	</li>;
 };
 
@@ -95,6 +104,14 @@ const createIDCount = (array) => {
 		}
 	);
 	return obj;
+};
+
+const getSeenExperimentsCount = (experiments: IExperimentsData[]) => {
+	return experiments.filter(
+		experiment => {
+			return CookiesProvider.get(`experiment-seen${experiment.id}`) === 'true';
+		}
+	).length;
 };
 
 export default ExperimentMatch;

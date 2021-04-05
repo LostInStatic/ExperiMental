@@ -1,22 +1,17 @@
 import React = require('react');
 import { IExperimentsData } from '../../api/fetchExperiments';
+import CookiesProvider from '../../cookiesProvider';
 import { useData } from '../dataProvider';
 
 interface IProps {
-	matchedExperiments: IExperimentsData[];
+	seen: number
 }
 
 const Counter: React.FC<IProps> = (props) => {
 	const data = useData();
-	const [matched, update] = React.useReducer(addNewlyMatched, {});
-	
-	React.useEffect(
-		() => update(props.matchedExperiments),
-		[props.matchedExperiments]
-	);	
-	
+
 	return <div className="experiments-counter">
-		{`${Object.keys(matched).length}/${data.state.experiments.data.length}`}
+		{`${props.seen}/${data.state.experiments.data.length}`}
 	</div>;
 };
 
@@ -28,4 +23,12 @@ const addNewlyMatched = (previous, experiments: IExperimentsData[]) => {
 		matched[experiment.id] = true;
 	});
 	return {...previous, ...matched};
+};
+
+const getSeenExperimentsCount = (experiments: IExperimentsData[]) => {
+	return experiments.filter(
+		experiment => {
+			return CookiesProvider.get(`experiment-seen${experiment.id}`) === 'true';
+		}
+	).length;
 };
