@@ -88,7 +88,7 @@ const listRooms = (
 								closeModal();
 							}}
 						>{roomData.name}</button>
-						<p>{roomData.description}</p>
+						<div className="room-description">{roomData.description}</div>
 					</div>
 
 				</li>;
