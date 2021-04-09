@@ -82,13 +82,14 @@ module.exports = {
 			skipWaiting: true,
 			runtimeCaching: [{ handler: 'StaleWhileRevalidate', urlPattern: '.*' }],
 			exclude: [
-				'.htaccess'
+				'.htaccess',
+				'.*admin.*'
 			]
 		}
 		),
 		new WebpackPwaManifest({
-			name: 'ExperiMental',
-			short_name: 'ExperiMental',
+			name: 'Eksperymenty! Para-buch!',
+			short_name: 'Eksperymenty!',
 			icons: [
 				{
 					src: path.resolve(inputPath, 'resources/appIcons/pwa1024.png'),
