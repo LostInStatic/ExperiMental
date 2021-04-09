@@ -21,6 +21,10 @@ const Welcome: React.FC<IProps> = () => {
 					displayed={true}
 					className="welcome-screen"
 				>
+					<>
+						<h1>Para-buch!</h1>
+						<h3>Eksperymenty</h3>
+					</>
 					<img className="girl-gif" src={GirlGif} alt="" />
 					<button
 						className="centered"
@@ -30,6 +34,7 @@ const Welcome: React.FC<IProps> = () => {
 						}}>
 						Start!
 					</button>
+					<><p>realizacja<br/><span>immortal wombat</span></p></>
 				</ModalBox>
 		}
 	</>;

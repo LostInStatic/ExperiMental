@@ -762,6 +762,31 @@ ol.instruction li {
 	justify-content: center;
 }
 
+.welcome-screen h1 {
+	// line-height: 1em;
+	margin-bottom: 0.15em;
+	text-align: center;
+	color: #477ebc;
+}
+
+.welcome-screen h3 {
+	// line-height: 1em;
+	margin-top: 0.25em;
+	margin-bottom: 0.5em;
+	text-align: center;
+	color: #477ebc;
+}
+
+.welcome-screen p {
+	text-align: center;
+	color: #71a1c9;
+}
+
+.welcome-screen span {
+	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+	text-transform: uppercase;
+}
+
 .experiment-summary {
 	background-color: #385fae;
 	margin: -100px -50px 0;
