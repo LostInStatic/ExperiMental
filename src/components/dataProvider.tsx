@@ -85,7 +85,7 @@ const resolveRequest = ( //todo-could be better
 			console.error(error);
 			updateState({
 				status: 'error',
-				data: null
+				data: []
 			});
 		}
 	);

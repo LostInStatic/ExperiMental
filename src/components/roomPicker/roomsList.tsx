@@ -73,7 +73,7 @@ const listRooms = (
 	currentRoom: string,
 	makeRequest: (room: IRoomsData) => void,
 	closeModal: () => void) => {
-	if (!list || list.length === 0) return <p>W tej kategorii nie ma żadnych pokoi.</p>;
+	if (list.length === 0) return <p>W tej kategorii nie ma żadnych pokoi.</p>;
 	return <ul className="rooms-list">
 		{
 			list.map(roomData => {

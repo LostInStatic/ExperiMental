@@ -9,18 +9,23 @@ const LoadingScreen: React.FC = () => {
 	React.useEffect( () => console.log(generateInformation(data)), [data]);
 
 	return <ModalBox
-		displayed={isDataLoading(data)}
+		displayed={getDataLoading(data) || getFetchingError(data)}
 		className="loading-screen"
 	>
 		<img src={LoadingGif} alt=""/>
+		{getFetchingError(data) ? <p>Wystąpił błąd połączenia z serwerem.</p> : ''}
 
 	</ModalBox>;
 };
 
 export default LoadingScreen;
 
-const isDataLoading = (data: TContextValue) => {
+const getDataLoading = (data: TContextValue) => {
 	return Object.values(data?.state || {}).some(entity => entity.status === 'loading');
+};
+
+const getFetchingError = (data: TContextValue) => {
+	return Object.values(data?.state || {}).some(entity => entity.status === 'error');
 };
 
 const generateInformation = (data: TContextValue) => {
