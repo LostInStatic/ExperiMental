@@ -98,8 +98,8 @@ h1 {
 	margin-bottom: 0.4em;
 }
 
-h2 {
-	font-size: 1.25em;
+h1, h2, h3, h4, h5, h6 {
+	font-weight: 600;
 }
 
 #root {
@@ -597,10 +597,6 @@ ol.instruction li {
 	object-fit: contain;
 }
 
-.modal_box.welcome-screen .modal_box-content {
-	// height: 100%;
-}
-
 // menu
 
 .menu-button {
@@ -776,6 +772,7 @@ ol.instruction li {
 	margin-bottom: 0.15em;
 	text-align: center;
 	color: #477ebc;
+	font-weight: bold;
 }
 
 .welcome-screen h3 {
@@ -784,6 +781,7 @@ ol.instruction li {
 	margin-bottom: 0.5em;
 	text-align: center;
 	color: #477ebc;
+	font-weight: bold;
 }
 
 .welcome-screen p {
@@ -792,7 +790,6 @@ ol.instruction li {
 }
 
 .immortal {
-	font-family: 'Tommorow', sans-serif;
 	text-transform: uppercase;
 	font-weight: 900;
 }
