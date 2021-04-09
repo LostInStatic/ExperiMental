@@ -547,7 +547,7 @@ ol.instruction li {
 	right: 0;
 	bottom: 0;
 	left: 0;
-	z-index: 900;
+	z-index: 800;
 	overflow: auto;
 	background: rgba(0, 0, 0, 0.8);
 	transition: ease-in-out opacity 0.6s, visibility 0.6s;
@@ -875,6 +875,10 @@ h2.tutorial.blue-background {
 	padding-top: 2em;
 	padding-bottom: 1em;
 	margin-top: -2em;
+}
+
+.modal_box.loading-screen {
+	z-index: 900;
 }
 
 .loading-screen .modal_box-content {
