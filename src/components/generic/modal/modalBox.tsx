@@ -22,7 +22,7 @@ const ModalBox: React.FC<IProps> = (props) => {
 
 	return <>
 		{
-			createPortal(modal, document.getElementById('root'))
+			createPortal(modal, document.getElementById('modals'))
 		}
 
 	</>;
