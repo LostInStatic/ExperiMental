@@ -127,7 +127,6 @@ button:focus {
 }
 
 button:focus-visible {
-	
 	outline: 0;
 	box-shadow: $button-color inset 0 0 5px 2px;
 }
@@ -185,7 +184,6 @@ button.centered {
 	width: 100%;
 	height: 100%;
 }
-
 
 .ingredient-choice {
 	flex-shrink: 0;
@@ -449,9 +447,9 @@ button.experiment.seen svg {
 	margin: 1em;
 	color: #fff;
 	font-size: 12px;
-	position:absolute;
+	position: absolute;
 	top: $ingredient-picks-height * 0.85;
-	@include resize-smaller(){
+	@include resize-smaller() {
 		top: $ingredient-picks-height-smaller * 0.82;
 	}
 	transform: translateY(-50%);
@@ -884,11 +882,14 @@ h2.tutorial.blue-background {
 .loading-screen .modal_box-content {
 	height: 100%;
 	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
 }
 
 .loading-screen img {
 	height: 50%;
-	margin: auto;
 	display: block;
 }
 
@@ -949,7 +950,7 @@ div.room-choice {
 	display: grid;
 	grid-template-columns: 40% 20% 40%;
 	grid-template-rows: 30% auto;
-	grid-template-areas: 
+	grid-template-areas:
 		"rocket room-choice-button . "
 		"description description description";
 	gap: 0.5em 5px;
