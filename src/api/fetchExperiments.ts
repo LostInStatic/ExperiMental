@@ -2,6 +2,7 @@ import APIURLS from './apiUrls';
 import fetchJSON from './fetchJSON';
 import { IAPIExperiments } from './interfaces/experiments';
 import addAPIParameters, { TIdsOrAll } from './parameters';
+import alterOutgoingLinks from './alterOutgoingLinks';
 
 export interface IExperimentsData {
 	id: string,
@@ -30,11 +31,11 @@ const fetchExperiments = async (
 			id: experiment.id,
 			name: experiment.title,
 			ingredientIds: experiment.field_skladniki.map(data => data.id),
-			intro: experiment.field_wstep.processed,
+			intro: alterOutgoingLinks(experiment.field_wstep.processed),
 			steps: experiment.field_instrukcja,
 			explanationDelay: experiment.field_opoznienie_wyjasnienia,
-			explanation: experiment.field_wyjasnienie.processed,
-			references: experiment.field_odnosniki?.processed,
+			explanation: alterOutgoingLinks(experiment.field_wyjasnienie.processed),
+			references: alterOutgoingLinks(experiment.field_odnosniki?.processed),
 			backgroundImageUrl: experiment.field_tlo_tytulu.uri?.url
 
 		};

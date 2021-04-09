@@ -1,3 +1,4 @@
+import alterOutgoingLinks from './alterOutgoingLinks';
 import APIURLS from './apiUrls';
 import fetchJSON from './fetchJSON';
 import { IAPIRooms } from './interfaces/rooms';
@@ -26,7 +27,7 @@ const fetchRooms = async (
 		return {
 			id: room.id,
 			name: room.attributes.title,
-			description: room.attributes.field_opis,
+			description: alterOutgoingLinks(room.attributes.field_opis),
 			ingredientIds: room.relationships.field_skladniki.data.map(data => data.id),
 			experimentIds: room.relationships.field_eksperymenty.data.map(data => data.id),
 			order: room.attributes.field_kolejnosc
