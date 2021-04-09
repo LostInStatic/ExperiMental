@@ -28,7 +28,7 @@ const Welcome: React.FC<IProps> = () => {
 							// just for tests Cookies.set(COOKIENAME_SEEN, 'true', true);
 							setClosed(true);
 						}}>
-						Zaczynamy!
+						Start!
 					</button>
 				</ModalBox>
 		}
