@@ -128,7 +128,7 @@ const assembleExplanationPage = (props: IProps) => {
 			{
 				props.data.references ?
 					<Dropdown
-						buttonLabel="Odnośniki"
+						buttonLabel="Więcej inspiracji"
 						key="explanation-dropdown"
 					>
 						{parse(props.data.references)}
