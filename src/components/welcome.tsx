@@ -34,7 +34,7 @@ const Welcome: React.FC<IProps> = () => {
 						}}>
 						Start!
 					</button>
-					<><p>realizacja<br/><span>immortal wombat</span></p></>
+					<><p>realizacja<br/><span className="immortal">immortal wombat</span></p></>
 				</ModalBox>
 		}
 	</>;
