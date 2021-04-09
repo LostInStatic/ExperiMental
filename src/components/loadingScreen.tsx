@@ -6,8 +6,6 @@ import LoadingGif from '../resources/loading.gif';
 const LoadingScreen: React.FC = () => {
 	const data = useData();
 
-	React.useEffect( () => console.log(generateInformation(data)), [data]);
-
 	return <ModalBox
 		displayed={getDataLoading(data) || getFetchingError(data)}
 		className="loading-screen"
