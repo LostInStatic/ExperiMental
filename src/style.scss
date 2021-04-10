@@ -972,12 +972,12 @@ h2.tutorial.blue-background {
 
 div.room-choice {
 	display: grid;
-	grid-template-columns: 40% 20% 40%;
+	grid-template-columns: 2fr 1fr 2fr;
 	grid-template-rows: 30% auto;
 	grid-template-areas:
 		"rocket room-choice-button . "
 		"description description description";
-	gap: 0.5em 5px;
+	gap: 0.5em;
 	margin-bottom: 2em;
 }
 
