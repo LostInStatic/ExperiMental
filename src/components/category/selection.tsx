@@ -54,7 +54,7 @@ const filterCategories = (categories: ICategoriesData[], query: string) => {
 	return categories.filter((category) => {
 		return (
 			(
-				window.location.pathname !== `/${category.urlSlug}` &&
+				window.location.pathname.split('/').pop() !== category.urlSlug &&
 				category.partialMatch && (
 					regex.test(category.name) ||
 					regex.test(category.urlSlug)

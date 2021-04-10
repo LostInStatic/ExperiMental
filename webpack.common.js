@@ -81,7 +81,6 @@ module.exports = {
 			maximumFileSizeToCacheInBytes: 500000000,
 			skipWaiting: true,
 			runtimeCaching: [
-				{ handler: 'NetworkFirst', urlPattern: new RegExp('.*admin.*(blok|kategoria|pokoj).*') },
 				{ handler: 'StaleWhileRevalidate', urlPattern: new RegExp('.*(admin|fonts).*')}
 			],
 			exclude: [
