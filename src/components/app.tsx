@@ -102,7 +102,7 @@ const createPicksReducer = (ingredients: IIngredientsData[]) => {
 };
 
 const generateAbout = (textBlocks: ITextBlockData[]) => {
-	return selectTextBlocksByAnchor('about', textBlocks).map(
+	return textBlocks.map(
 		textBlock => {
 			return <Modal
 				key={`about_${textBlock.id}`}
@@ -111,16 +111,6 @@ const generateAbout = (textBlocks: ITextBlockData[]) => {
 				{parse(textBlock.content)}
 			</Modal>;
 		}
-	);
-};
-
-
-const selectTextBlocksByAnchor = (
-	anchorID: string,
-	textBlocks: ITextBlockData[]
-) => {
-	return textBlocks.filter(
-		textBlock => textBlock.anchor === anchorID
 	);
 };
 

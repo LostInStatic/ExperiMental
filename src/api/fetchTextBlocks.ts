@@ -5,7 +5,6 @@ import addAPIParameters, { TIdsOrAll } from './parameters';
 
 export interface ITextBlockData {
 	id: string,
-	anchor: string,
 	name: string,
 	content: string
 }
@@ -21,7 +20,6 @@ const fetchTextBlocks = async (
 		(textBlock): ITextBlockData => {
 			return {
 				id: textBlock.id,
-				anchor: textBlock.attributes.field_anchor,
 				name: textBlock.attributes.title,
 				content: textBlock.attributes.field_content.processed
 			};
