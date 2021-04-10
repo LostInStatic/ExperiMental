@@ -80,10 +80,12 @@ module.exports = {
 		new GenerateSW({
 			maximumFileSizeToCacheInBytes: 500000000,
 			skipWaiting: true,
-			runtimeCaching: [{ handler: 'StaleWhileRevalidate', urlPattern: '.*' }],
+			runtimeCaching: [
+				{ handler: 'NetworkFirst', urlPattern: new RegExp('.*admin.*(blok|kategoria|pokoj).*') },
+				{ handler: 'StaleWhileRevalidate', urlPattern: new RegExp('.*(admin|fonts).*')}
+			],
 			exclude: [
-				'.htaccess',
-				'.*admin.*'
+				'.htaccess'
 			]
 		}
 		),
