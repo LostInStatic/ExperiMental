@@ -19,24 +19,20 @@ const fetchIngredients = async (
 		includeIcons: true,
 		specificIds: ids || undefined
 	});
-	try {
-		const dataObject = await fetchJSON<IAPIIngredients>(url);
-		let ingredients = dataObject.data.map(
-			(ingredient): IIngredientsData => {
-				return {
-					id: ingredient.id,
-					name: ingredient.title,
-					iconUrls: {
-						color: ingredient?.field_ikona?.uri?.url,
-						mono: ingredient?.field_ikona_mono?.uri?.url
-					}
-				};
-			});
-		return ingredients;
+	const dataObject = await fetchJSON<IAPIIngredients>(url);
+	const ingredients = dataObject.data.map(
+		(ingredient): IIngredientsData => {
+			return {
+				id: ingredient.id,
+				name: ingredient.title,
+				iconUrls: {
+					color: ingredient?.field_ikona?.uri?.url,
+					mono: ingredient?.field_ikona_mono?.uri?.url
+				}
+			};
+		});
+	return ingredients;
 
-	} catch (error) {
-		handleError(error, url);
-	}
 
 
 };
@@ -44,7 +40,6 @@ const fetchIngredients = async (
 export default fetchIngredients;
 
 
-const handleError = (error: any, URL: string): Response => {
+const handleError = (error: any, URL: string): void => {
 	console.error(`There has been a problem with fetching ingredients.\nURL: ${URL}\nError: ${error}`);
-	return new Response(JSON.stringify({}));
 };

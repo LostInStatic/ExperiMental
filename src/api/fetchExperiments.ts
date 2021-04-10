@@ -20,12 +20,12 @@ export interface IExperimentsData {
 const fetchExperiments = async (
 	ids: TIdsOrAll
 ): Promise<IExperimentsData[]> => {
-	const dataObject = await fetchJSON<IAPIExperiments>(
-		APIURLS.experiments + addAPIParameters({
-			specificIds: ids,
-			includeBackgroundPhoto: true
-		})
-	);
+	const url = APIURLS.experiments + addAPIParameters({
+		specificIds: ids,
+		includeBackgroundPhoto: true
+	});
+
+	const dataObject = await fetchJSON<IAPIExperiments>(url);
 	const experiments = dataObject.data.map(experiment => {
 		return {
 			id: experiment.id,
@@ -44,5 +44,9 @@ const fetchExperiments = async (
 };
 
 export default fetchExperiments;
+
+const handleError = (error: any, URL: string): void => {
+	console.error(`There has been a problem with fetching experiments.\nURL: ${URL}\nError: ${error}`);
+};
 
 

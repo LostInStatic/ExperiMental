@@ -18,11 +18,11 @@ export interface IRoomsData {
 const fetchRooms = async (
 	ids: TIdsOrAll
 ): Promise<IRoomsData[]> => {
-	const dataObject = await fetchJSON<IAPIRooms>(
-		APIURLS.rooms + addAPIParameters({
-			specificIds: ids
-		})
-	);
+	const url = APIURLS.rooms + addAPIParameters({
+		specificIds: ids
+	});
+	const dataObject = await fetchJSON<IAPIRooms>(url);
+
 	const rooms = dataObject.data.map(room => {
 		return {
 			id: room.id,
@@ -33,10 +33,11 @@ const fetchRooms = async (
 			order: room.attributes.field_kolejnosc
 		};
 	});
-	if (rooms.length === 0) {
-		throw 'Room list empty!';
-	}
 	return rooms.sort((a, b) => b.order - a.order);
 };
 
 export default fetchRooms;
+
+const handleError = (error: any, URL: string): void => {
+	console.error(`There has been a problem with fetching rooms.\nURL: ${URL}\nError: ${error}`);
+};
