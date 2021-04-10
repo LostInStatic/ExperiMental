@@ -923,7 +923,7 @@ h2.tutorial.blue-background {
 
 .room-dialog .arrow-button {
 	background: transparent;
-	justify-self: center;
+	justify-self: end;
 	align-self: end;
 }
 
@@ -942,6 +942,7 @@ h2.tutorial.blue-background {
 	grid-template-columns: 1fr 1fr;
 	width: 100%;
 	flex-wrap: wrap;
+	grid-template-areas: "choose-room change-category-button";
 }
 
 .room-dialog_header .dropdown_content {
@@ -971,12 +972,12 @@ h2.tutorial.blue-background {
 
 div.room-choice {
 	display: grid;
-	grid-template-columns: 40% 20% 40%;
+	grid-template-columns: 2fr 1fr 2fr;
 	grid-template-rows: 30% auto;
 	grid-template-areas:
 		"rocket room-choice-button . "
 		"description description description";
-	gap: 0.5em 5px;
+	gap: 0.5em;
 	margin-bottom: 2em;
 }
 
@@ -999,8 +1000,10 @@ button.category-dropdown {
 
 .category-dropdown ul {
 	height: 6em;
-	overflow: hidden;
+	overflow-y: auto;
+	overflow-x: hidden;
 	justify-self: center;
+	padding-right: 3em;
 }
 
 .category-search {
