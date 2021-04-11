@@ -98,7 +98,12 @@ h1 {
 	margin-bottom: 0.4em;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
 	font-weight: 600;
 }
 
@@ -109,7 +114,8 @@ h1, h2, h3, h4, h5, h6 {
 	height: 100vh;
 }
 
-button, .button-placeholder {
+button,
+.button-placeholder {
 	box-sizing: border-box;
 	padding: 1em 2em;
 	font-family: inherit;
@@ -965,7 +971,8 @@ h2.tutorial.blue-background {
 	margin-top: 3em;
 }
 
-.room-choice button, .button-placeholder {
+.room-choice button,
+.button-placeholder {
 	grid-area: room-choice-button;
 	justify-self: center;
 	align-self: center;
@@ -974,11 +981,13 @@ h2.tutorial.blue-background {
 .button-placeholder {
 	background: transparent;
 	border: $button-color 2px solid;
-	font-size: 1rem;
+	font-size: calc(1rem - 2px);
 }
 
 .button-placeholder svg {
-	height: 1rem;
+	height: 1em;
+	width: 60px;
+	display: block;
 }
 
 div.room-choice {
@@ -988,13 +997,15 @@ div.room-choice {
 	grid-template-areas:
 		"rocket room-choice-button . "
 		"description description description";
-	gap: 0.5em;
+	gap: 1em;
 	margin-bottom: 2em;
 }
 
 .room-description {
 	grid-area: description;
 	text-align: center;
+	max-width: 380px;
+	justify-self: center;
 }
 
 div.category-dropdown {
