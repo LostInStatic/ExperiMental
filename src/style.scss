@@ -1044,3 +1044,29 @@ button.category-dropdown {
 	display: block;
 	width: 8em;
 }
+
+h1.about-app {
+	margin-top: -100px;
+	padding-bottom: 1em;
+}
+
+p.about-app {
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+}
+
+.modal_box-content .about-app {
+	color: $background-primary-blue;
+}
+
+.about-app.blue-background {
+	color: #fff;
+}
+
+p.about-app.last-paragraph {
+	padding-bottom: 3em;
+}
+
+h2.about-app {
+	margin-top: 1.5em;
+}
