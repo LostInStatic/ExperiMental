@@ -11,6 +11,7 @@ import ModalBox from '../generic/modal/modalBox';
 import CloseButton from '../generic/modal/closeButton';
 import CurrentIcon from '../../resources/rocket.gif';
 import RoomPlaceholders from './RoomPlaceholders';
+import { ReactComponent as Dino } from '../../resources/dino.svg';
 
 interface IProps {
 	ids: string[]
@@ -59,10 +60,14 @@ const RoomList: React.FC<IProps> = (props) => {
 					<CategorySelection />
 				</Dropdown>
 			</div>
-			{listRooms(data.state.rooms.data,
-				currentRoom,
-				makeRequest,
-				() => setModalDisplayed(false))}
+			{
+				listRooms(data.state.rooms.data,
+					currentRoom,
+					makeRequest,
+					() => setModalDisplayed(false))
+			}
+			<Dino className="yellow-dino" onClick={e => beep(new AudioContext())} />
+
 		</ModalBox>
 	</>;
 };
@@ -96,4 +101,17 @@ const listRooms = (
 			})}
 		<RoomPlaceholders number={3 - list.length || 0} />
 	</ul>;
+};
+
+
+const beep = (context, freq = 200, duration = 200, vol = 40) => {
+	const oscillator = context.createOscillator();
+	const gain = context.createGain();
+	oscillator.connect(gain);
+	oscillator.frequency.value = freq;
+	oscillator.type = 'square';
+	gain.connect(context.destination);
+	gain.gain.value = vol * 0.01;
+	oscillator.start(context.currentTime);
+	oscillator.stop(context.currentTime + duration * 0.001);
 };
