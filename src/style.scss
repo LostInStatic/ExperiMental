@@ -284,6 +284,7 @@ ul.experiment-icons-list {
 .ingredient-icon.mono {
 	@include ingredientHeight($factor: $ingredient-pick-size-factor);
 	@include ingredientWidth($factor: $ingredient-pick-size-factor);
+	border-radius: 50% 50%;
 }
 
 .ingredient-icon.placeholder {
