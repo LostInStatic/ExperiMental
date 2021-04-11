@@ -29,7 +29,7 @@ const Welcome: React.FC<IProps> = () => {
 					<button
 						className="centered"
 						onClick={() => {
-							// just for tests Cookies.set(COOKIENAME_SEEN, 'true', true);
+							Cookies.set(COOKIENAME_SEEN, 'true', true);
 							setClosed(true);
 						}}>
 						Start!
