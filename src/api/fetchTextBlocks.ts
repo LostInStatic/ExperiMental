@@ -6,7 +6,8 @@ import addAPIParameters, { TIdsOrAll } from './parameters';
 export interface ITextBlockData {
 	id: string,
 	name: string,
-	content: string
+	content: string,
+	order: number
 }
 
 const fetchTextBlocks = async (
@@ -21,10 +22,11 @@ const fetchTextBlocks = async (
 			return {
 				id: textBlock.id,
 				name: textBlock.attributes.title,
-				content: textBlock.attributes.field_content.processed
+				content: textBlock.attributes.field_content.processed,
+				order: textBlock.attributes.field_kolejnosc
 			};
 		});
-	return textBlocks;
+	return textBlocks.sort((a, b) => b.order - a.order);
 
 };
 

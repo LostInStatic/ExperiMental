@@ -27,10 +27,10 @@ export interface Attributes {
 	promote:                       boolean;
 	sticky:                        boolean;
 	default_langcode:              boolean;
-	revision_translation_affected: boolean | null;
+	revision_translation_affected: boolean;
 	path:                          Path;
-	field_anchor:                  string;
 	field_content:                 FieldContent;
+	field_kolejnosc:               number;
 }
 
 export interface FieldContent {
@@ -65,13 +65,8 @@ export interface NodeType {
 }
 
 export interface Data {
-	type: Type;
+	type: string;
 	id:   string;
-}
-
-export enum Type {
-	NodeTypeNodeType = 'node_type--node_type',
-	UserUser = 'user--user',
 }
 
 export interface NodeTypeLinks {
