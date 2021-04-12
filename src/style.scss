@@ -192,7 +192,6 @@ button.centered {
 }
 
 .ingredient-choice {
-	flex-shrink: 0;
 	display: grid;
 	grid-template-columns: repeat(6, 1fr);
 	@media (orientation: landscape) {

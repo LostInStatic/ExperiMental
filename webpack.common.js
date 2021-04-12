@@ -81,7 +81,7 @@ module.exports = {
 			maximumFileSizeToCacheInBytes: 500000000,
 			skipWaiting: true,
 			runtimeCaching: [
-				{ handler: 'StaleWhileRevalidate', urlPattern: new RegExp('.*(admin|fonts).*')}
+				{ handler: 'StaleWhileRevalidate', urlPattern: new RegExp('.*(jsonapi|fonts|files).*')}
 			],
 			exclude: [
 				'.htaccess'
@@ -91,6 +91,7 @@ module.exports = {
 		new WebpackPwaManifest({
 			name: 'Eksperymenty! Para-buch!',
 			short_name: 'Eksperymenty!',
+			theme_color: '#385fae',
 			icons: [
 				{
 					src: path.resolve(inputPath, 'resources/appIcons/pwa1024.png'),
