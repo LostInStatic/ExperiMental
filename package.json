@@ -30,7 +30,7 @@
     "file-loader": "^6.2.0",
     "front-matter-loader": "^0.2.0",
     "html-webpack-plugin": "^4.4.1",
-    "i": "^0.3.6",
+    "i": "^0.3.7",
     "ifdef-loader": "^2.1.5",
     "json-loader": "^0.5.7",
     "mini-css-extract-plugin": "^0.7.0",
